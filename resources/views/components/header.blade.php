@@ -94,7 +94,7 @@
 										data-kt-search-enter="enter" data-kt-search-layout="menu"
 										data-kt-menu-trigger="auto" data-kt-menu-overflow="false"
 										data-kt-menu-permanent="true" data-kt-menu-placement="bottom-end">
-									
+
 										<!--begin::Menu-->
 										<div data-kt-search-element="content"
 											class="menu menu-sub menu-sub-dropdown p-7 w-325px w-md-375px">
@@ -544,7 +544,7 @@
 													<!--end::Items-->
 												</div>
 												<!--end::Recently viewed-->
-												
+
 												<!--begin::Empty-->
 												<div data-kt-search-element="empty" class="text-center d-none">
 													<!--begin::Icon-->
@@ -704,199 +704,135 @@
 								@endif
 
 								@if (Auth::check())
-											<!--begin::Chat-->
-								<div class="d-flex align-items-center ms-1 ms-lg-3">
-									<!--begin::Menu wrapper-->
-									<div class="btn btn-icon btn-active-light-primary position-relative w-30px h-30px w-md-40px h-md-40px"
-										id="kt_drawer_chat_toggle">
-										<!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
-										<span class="svg-icon svg-icon-1 fs-3">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-												viewBox="0 0 24 24" fill="none">
-												<path opacity="0.3"
-													d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z"
-													fill="black" />
-												<rect x="6" y="12" width="7" height="2" rx="1" fill="black" />
-												<rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
-											</svg>
-										</span>
-										<!--end::Svg Icon-->
-										<span
-											class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
+									<!--begin::Chat-->
+									<div class="d-flex align-items-center ms-1 ms-lg-3">
+										<!--begin::Menu wrapper-->
+										<div class="btn btn-icon btn-active-light-primary position-relative w-30px h-30px w-md-40px h-md-40px"
+											id="kt_drawer_chat_toggle">
+											<!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
+											<span class="svg-icon svg-icon-1 fs-3">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none">
+													<path opacity="0.3"
+														d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z"
+														fill="black" />
+													<rect x="6" y="12" width="7" height="2" rx="1" fill="black" />
+													<rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
+												</svg>
+											</span>
+											<!--end::Svg Icon-->
+											<span
+												class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
+										</div>
+										<!--end::Menu wrapper-->
 									</div>
-									<!--end::Menu wrapper-->
-								</div>
-								<!--end::Chat-->
-
+									<!--end::Chat-->
 								@endif
 
-						
+
 								<!--begin::User-->
 								<div class="d-flex align-items-center me-n3 ms-1 ms-lg-3"
 									id="kt_header_user_menu_toggle">
 									<!--begin::Menu wrapper-->
-
 									<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
 										data-kt-menu-trigger="click" data-kt-menu-attach="parent"
 										data-kt-menu-placement="bottom-end">
-										@if(auth()->check())
-											<img class="h-30px w-30px rounded"
-												src="{{ asset('assets/media/avatars/150-25.jpg') }}" alt="" />
-												@else
-												<img class="h-30px w-30px rounded fs-3" src="{{ asset('assets/media/avatars/blank.png') }}" alt="" />
-											@endif
+										@auth
+											<div class="symbol symbol-30px">
+												<img alt="Avatar"
+													src="{{ Auth::user()->image_url ? asset('storage/' . Auth::user()->image_url) : asset('assets/media/avatars/blank.png') }}" />
+											</div>
+										@endauth
+										@guest
+											<div class="symbol symbol-30px">
+												<img alt="Avatar" src="{{ asset('assets/media/avatars/blank.png') }}" />
+											</div>
+										@endguest
 									</div>
-
 									<!--begin::Menu-->
 									<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
 										data-kt-menu="true">
-										<!--begin::Menu item-->
-										<div class="menu-item px-3">
-											<div class="menu-content d-flex align-items-center px-3">
-												@if (Auth::check())
+
+										@auth
+											<!--begin::Menu item (User info)-->
+											<div class="menu-item px-3">
+												<div class="menu-content d-flex align-items-center px-3">
 													<!--begin::Avatar-->
 													<div class="symbol symbol-50px me-5">
-														<img alt="Logo" src="assets/media/avatars/150-25.jpg" />
+														<img alt="Avatar"
+															src="{{ Auth::user()->image_url ? asset('storage/' . Auth::user()->image_url) : asset('assets/media/avatars/blank.png') }}" />
 													</div>
 													<!--end::Avatar-->
 													<!--begin::Username-->
 													<div class="d-flex flex-column">
-														<div class="fw-bolder d-flex align-items-center fs-5">
+														<div class="fw-bolder d-flex align-items-center fs-3">
 															{{ Auth::user()->nom }}
 														</div>
 														<a href="#"
 															class="fw-bold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
 													</div>
 													<!--end::Username-->
-												@endif
-
-											</div>
-										</div>
-										<!--end::Menu item-->
-								
-										<!--end::Menu separator-->
-										@if (Auth::check())
-											<!--begin::Menu item-->
-											<div class="menu-item px-5">
-												<a href="../../demo2/dist/pages/projects/list.html" class="menu-link px-5">
-													<span class="menu-text">My Projects</span>
-													<span class="menu-badge">
-														<span
-															class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-													</span>
-												</a>
-											</div>
-											<!--end::Menu item-->
-											<!--begin::Menu item-->
-											<div class="menu-item px-5" data-kt-menu-trigger="hover"
-												data-kt-menu-placement="left-start">
-												<a href="#" class="menu-link px-5">
-													<span class="menu-title">My Subscription</span>
-													<span class="menu-arrow"></span>
-												</a>
-												<!--begin::Menu sub-->
-												<div class="menu-sub menu-sub-dropdown w-175px py-4">
-													<!--begin::Menu item-->
-													<div class="menu-item px-3">
-														<a href="../../demo2/dist/account/referrals.html"
-															class="menu-link px-5">Referrals</a>
-													</div>
-													<!--end::Menu item-->
-													<!--begin::Menu item-->
-													<div class="menu-item px-3">
-														<a href="../../demo2/dist/account/billing.html"
-															class="menu-link px-5">Billing</a>
-													</div>
-													<!--end::Menu item-->
-													<!--begin::Menu item-->
-													<div class="menu-item px-3">
-														<a href="../../demo2/dist/account/statements.html"
-															class="menu-link px-5">Payments</a>
-													</div>
-													<!--end::Menu item-->
-													<!--begin::Menu item-->
-													<div class="menu-item px-3">
-														<a href="../../demo2/dist/account/statements.html"
-															class="menu-link d-flex flex-stack px-5">Statements
-															<i class="fas fa-exclamation-circle ms-2 fs-7"
-																data-bs-toggle="tooltip"
-																title="View your statements"></i></a>
-													</div>
-													<!--end::Menu item-->
-												
-													<!--begin::Menu item-->
-													<div class="menu-item px-3">
-														<div class="menu-content px-3">
-															<label
-																class="form-check form-switch form-check-custom form-check-solid">
-																<input class="form-check-input w-30px h-20px"
-																	type="checkbox" value="1" checked="checked"
-																	name="notifications" />
-																<span
-																	class="form-check-label text-muted fs-7">Notifications</span>
-															</label>
-														</div>
-													</div>
-													<!--end::Menu item-->
 												</div>
-												<!--end::Menu sub-->
 											</div>
 											<!--end::Menu item-->
 
-											<!--begin::Menu separator-->
+											<!-- Menu options for logged-in users -->
+											<div class="menu-item px-5 my-1 d-flex justify-between">
+												<a href="#" class="menu-link px-5 fs-3">Mes trajets</a>
+											</div>
+											<div class="menu-item px-5 my-1 d-flex justify-between">
+												<a href="{{ route('user.index', ['user' => Auth::user()->id]) }}"
+													class="menu-link px-5 fs-3">Paramètres de compte</a>
+											</div>
 
-											<!--end::Menu separator-->
-											<!--begin::Menu item-->
-											<!--begin::Menu item-->
+											<!-- Logout button -->
 											<div class="menu-item px-5 my-1">
-												<a href="{{ route('profil.show', ['user' => Auth::user()->id]) }}"
-													class="menu-link px-5 fs-3">
-													Paramètre de compte
-												</a>
+												<form action="{{ route('logout') }}" method="POST">
+													@csrf
+													<button type="submit"
+														class="menu-link px-5 fs-3 text-danger bg-transparent border-0">
+														<i class="fas fa-sign-out-alt text-danger mr-2"></i> Déconnexion
+													</button>
+												</form>
 											</div>
-											<!--end::Menu item-->
 
-											<!--begin::Menu item-->
-											<div class="menu-item px-5">
-												<a href="{{ route('logout') }}" class="menu-link px-5 fs-3">Déconnexion</a>
-											</div>
-											<!--end::Menu item-->
-										@endif
+										@endauth
+
 										@guest
+											<!-- Menu options for guests (non-logged-in users) -->
 											<div class="menu-item px-5">
 												<a href="{{ route('login') }}" class="menu-link px-5">
 													<span class="menu-text fs-3">Se connecter</span>
-													<span class="menu-badge">
-
-													</span>
 												</a>
 											</div>
 											<div class="menu-item px-5">
 												<a href="{{ route('register') }}" class="menu-link px-5">
 													<span class="menu-text fs-3">S'inscrire</span>
-													<span class="menu-badge">
-
-													</span>
 												</a>
 											</div>
 										@endguest
+
+										<!-- Language selection option -->
 										<div class="menu-item px-5" data-kt-menu-trigger="hover"
 											data-kt-menu-placement="left-start">
 											<a href="#" class="menu-link px-5">
 												<span class="menu-title position-relative fs-3">Langue
 													<span
-														class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0 fs-3">Francais
-														<img class="w-15px h-15px rounded-1 ms-2"
-															src="assets/media/flags/france.svg" alt="" /></span></span>
+														class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0 fs-3">
+														Français <img class="w-15px h-15px rounded-1 ms-2"
+															src="assets/media/flags/france.svg" alt="" />
+													</span>
+												</span>
 											</a>
 										</div>
+
 									</div>
 									<!--end::Menu-->
 									<!--end::Menu wrapper-->
 								</div>
-								<!--end::User -->
-								<!--begin::Aside mobile toggle-->
-								<!--end::Aside mobile toggle-->
+								<!--end::User-->
+
+
 							</div>
 							<!--end::Toolbar wrapper-->
 						</div>

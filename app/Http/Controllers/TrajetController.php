@@ -60,4 +60,8 @@ class TrajetController extends Controller
             'isAuthenticatedAndConducteur' => $isAuthenticatedAndConducteur,
         ]);
     }
+
+    public function create(){
+        
+    }
 }

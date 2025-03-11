@@ -12,11 +12,11 @@ class TrajetSeeder extends Seeder
 {
     public function run()
     {
-        $users = User::all();
+        $conducteurs = User::where('type', 'conducteur')->get();
         $villes = Ville::all();
 
         for ($i = 0; $i < 100; $i++) {
-            $user = $users->random();
+            $user = $conducteurs->random();
             $villeDepart = $villes->random();
             $villeArrive = $villes->random();
 

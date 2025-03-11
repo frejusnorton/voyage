@@ -34,7 +34,7 @@
 
             <!--begin::Wrapper pour le bouton Publier-->
             <div>
-                <a href="#" class="btn btn-bg-white btn-active-color-primary" data-bs-toggle="modal"
+                <a href="{{ route('trajet.create') }}" class="btn btn-bg-white btn-active-color-primary" data-bs-toggle="modal"
                     data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Publiez un trajet</a>
             </div>
         </div>

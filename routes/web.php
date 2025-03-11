@@ -17,7 +17,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('conditions', [ConditionsController::class, 'index'])->name('conditions');
 
 //TRAJETS
-Route::match(['get','post'],'/trajet', [TrajetController::class, 'index'])->name('trajet');
+Route::match(['get', 'post'], '/trajet', [TrajetController::class, 'index'])->name('trajet');
 
 //NOUS CONTACTER
 Route::post('/trajet', [HomeController::class, 'contact'])->name('contact');
@@ -25,6 +25,7 @@ Route::post('/trajet', [HomeController::class, 'contact'])->name('contact');
 
 // ROUTES D'AUTHENTIFICATION ET ROUTES ACCESIBLE POUR L'UTILISATEUR NON CONNECTE
 Route::middleware('guest')->group(function () {
+    
     // Route pour la page de connexion
     Route::get('connexion', [LoginController::class, 'showLoginForm'])->name('loginShow');
     Route::post('connexion', [LoginController::class, 'login'])->name('login');
@@ -32,23 +33,29 @@ Route::middleware('guest')->group(function () {
     // Route pour la page d'inscription
     Route::get('inscription', [RegisterController::class, 'showRegistrationForm'])->name('registerShow');
     Route::post('inscription', [RegisterController::class, 'register'])->name('register');
- 
+
 
     //USER PROFIL
     Route::get('/profil/{user}', [ProfilController::class, 'show'])->name('profil.show');
- 
 });
 
 Route::middleware('auth')->group(function () {
+
     // RESERVATION
     Route::get('/reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
 
-    //MODIFICATION INFORMATION UTILISATEUR 
+    //MODIFICATION INFORMATIONS UTILISATEUR 
     Route::get('compte', [UserController::class, 'index'])->name('user.index');
     Route::post('user/edit', [UserController::class, 'edit'])->name('user.edit');
 
+    //TRAJET
+    Route::match(['get', 'post'], '/trajet/create', [TrajetController::class, 'create'])->name('trajet.create');
+
+
     //CONTACTER L'UTILISATEUR
     Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
+
+
 
     Route::post('deconnexion', function () {
         Auth::logout();

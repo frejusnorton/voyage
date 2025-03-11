@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('conducteurs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('note')->nullable(); 
             $table->string('permis_de_conduire_numero')->nullable(); 
             $table->date('permis_de_conduire_date')->nullable(); 
             $table->date('permis_de_conduire_validite')->nullable(); 

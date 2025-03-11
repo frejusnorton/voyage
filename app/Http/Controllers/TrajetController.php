@@ -60,8 +60,8 @@ class TrajetController extends Controller
             'isAuthenticatedAndConducteur' => $isAuthenticatedAndConducteur,
         ]);
     }
-
-    public function create(){
-        
+    public function create() {}
+    public function details() {
+        return view('trajet.details');
     }
 }

@@ -1,4 +1,4 @@
-<div class="card-body p-lg-17 " id="a-propos">
+<div class="card-body " id="a-propos">
     <!--begin::About-->
     <div class="mb-18">
         <!--begin::Wrapper-->
@@ -20,14 +20,14 @@
             <!--begin::Overlay-->
             <div class="overlay">
                 <!--begin::Image-->
-                <img class="w-100 card-rounded" src="/metronic8/demo2/assets/media/stock/1600x800/covoiturage.jpg" alt="Covoiturage">
+                <img class="w-100 card-rounded" src="{{ asset('assets/media/covoiturage.jpg') }}" alt="Covoiturage">
                 <!--end::Image-->
 
                 <!--begin::Links-->
                 <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                    <a href="/metronic8/demo2/pages/inscription.html" class="btn btn-primary">Inscription</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary">Inscription</a>
 
-                    <a href="/metronic8/demo2/pages/contact.html" class="btn btn-light-primary ms-3">Contactez-nous</a>
+                    <a href="{{ route('trajet') }}" class="btn btn-light-primary ms-3">Trajet</a>
                 </div>
                 <!--end::Links-->
             </div>

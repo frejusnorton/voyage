@@ -6,7 +6,6 @@
     @else
     @foreach ($trajets as $trajet)
     <div class="col-xl-4">
-
         <a href="{{ route('trajet.details', ['trajet' => $trajet->id]) }}" class="text-decoration-none">
             <div class="card card-xl-stretch">
                 <!-- Header -->

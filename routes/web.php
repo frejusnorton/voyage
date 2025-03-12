@@ -18,13 +18,13 @@ Route::get('conditions', [ConditionsController::class, 'index'])->name('conditio
 
 //TRAJETS
 Route::match(['get', 'post'], '/trajet', [TrajetController::class, 'index'])->name('trajet');
-Route::match(['get', 'post'], '/trajet/{trajet}/details', [TrajetController::class, 'details'])->name('trajet.details');
+Route::match(['get', 'post'], '/trajet/{trajet}', [TrajetController::class, 'details'])->name('trajet.details');
 
 //NOUS CONTACTER
 Route::post('/trajet', [HomeController::class, 'contact'])->name('contact');
 
   //USER PROFIL
-  Route::get('/profil/{user}', [ProfilController::class, 'show'])->name('profil.show');
+  Route::get('{user}', [ProfilController::class, 'show'])->name('profil.show');
 
 
 // ROUTES D'AUTHENTIFICATION ET ROUTES ACCESIBLE POUR L'UTILISATEUR NON CONNECTE

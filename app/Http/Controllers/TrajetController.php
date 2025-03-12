@@ -24,7 +24,7 @@ class TrajetController extends Controller
         }
 
         if ($request->filled('ville_depart')) {
-           
+
             $query->where('ville_depart_id', $request->ville_depart);
         }
 
@@ -63,8 +63,17 @@ class TrajetController extends Controller
 
 
     public function create() {}
-    public function details()
+
+    public function details(Trajet $trajet)
     {
-        return view('trajet.details');
+        $conducteur = $trajet->user;
+        $nombreTrajets = $conducteur->trajets()->count();
+     
+       
+        return view('trajet.details', [
+            'trajet' => $trajet,
+            'conducteur' => $conducteur,
+            'nombreTrajets' => $nombreTrajets,
+        ]);
     }
 }

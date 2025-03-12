@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trajets', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); 
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->unsignedBigInteger('ville_depart_id');
             $table->unsignedBigInteger('ville_arrive_id');
             $table->date('date_depart');

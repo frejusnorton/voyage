@@ -12,18 +12,19 @@ use Illuminate\Support\Facades\Auth;
 class TrajetController extends Controller
 {
     public function index(Request $request)
-
     {
-
         $villes = Ville::all();
 
-        $query = Trajet::with(['villeDepart', 'villeArrive']);
+
+        $search = $request->input('search', '');
+        $query = Trajet::filter($search)->with(['villeDepart', 'villeArrive']);
 
         if ($request->filled('statut')) {
             $query->where('statut', $request->statut);
         }
 
         if ($request->filled('ville_depart')) {
+           
             $query->where('ville_depart_id', $request->ville_depart);
         }
 
@@ -39,18 +40,17 @@ class TrajetController extends Controller
             $query->where('prix', '<=', $request->montant);
         }
 
-        $page = $request->input('page', 1);
-        $trajets = $query->paginate(9, ['*'], 'page', $page);
 
         if ($request->ajax()) {
-
-            $search = $request->input('search', '');
-            $trajets = Trajet::filter($search)->paginate(9);
+            $trajets = $query->paginate(9);
             return view('trajet.datapart', [
                 'trajets' => $trajets
             ]);
         }
 
+
+        $page = $request->input('page', 1);
+        $trajets = $query->paginate(9, ['*'], 'page', $page);
 
         $isAuthenticatedAndConducteur = Auth::check() && Conducteur::where('user_id', Auth::id())->exists();
 
@@ -60,8 +60,11 @@ class TrajetController extends Controller
             'isAuthenticatedAndConducteur' => $isAuthenticatedAndConducteur,
         ]);
     }
+
+
     public function create() {}
-    public function details() {
+    public function details()
+    {
         return view('trajet.details');
     }
 }

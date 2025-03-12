@@ -62,138 +62,6 @@
                                     <!--end::Info-->
                                 </div>
                                 <!--end::User-->
-
-                                <!--begin::Actions-->
-                                <div class="d-flex my-4">
-
-
-                                    <!--begin::Menu-->
-                                    <div class="me-0">
-                                        <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <i class="ki-solid ki-dots-horizontal fs-2x"></i> </button>
-
-                                        <!--begin::Menu 3-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
-                                            data-kt-menu="true">
-                                            <!--begin::Heading-->
-                                            <div class="menu-item px-3">
-                                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
-                                                    Payments
-                                                </div>
-                                            </div>
-                                            <!--end::Heading-->
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">
-                                                    Create Invoice
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link flex-stack px-3">
-                                                    Create Payment
-
-                                                    <span class="ms-2" data-bs-toggle="tooltip"
-                                                        aria-label="Specify a target name for future usage and reference"
-                                                        data-bs-original-title="Specify a target name for future usage and reference"
-                                                        data-kt-initialized="1">
-                                                        <i class="ki-duotone ki-information fs-6"><span
-                                                                class="path1"></span><span class="path2"></span><span
-                                                                class="path3"></span></i> </span>
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">
-                                                    Generate Bill
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                data-kt-menu-placement="right-end">
-                                                <a href="#" class="menu-link px-3">
-                                                    <span class="menu-title">Subscription</span>
-                                                    <span class="menu-arrow"></span>
-                                                </a>
-
-                                                <!--begin::Menu sub-->
-                                                <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3">
-                                                            Plans
-                                                        </a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3">
-                                                            Billing
-                                                        </a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3">
-                                                            Statements
-                                                        </a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-
-                                                    <!--begin::Menu separator-->
-                                                    <div class="separator my-2"></div>
-                                                    <!--end::Menu separator-->
-
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <div class="menu-content px-3">
-                                                            <!--begin::Switch-->
-                                                            <label
-                                                                class="form-check form-switch form-check-custom form-check-solid">
-                                                                <!--begin::Input-->
-                                                                <input class="form-check-input w-30px h-20px"
-                                                                    type="checkbox" value="1" checked="checked"
-                                                                    name="notifications">
-                                                                <!--end::Input-->
-
-                                                                <!--end::Label-->
-                                                                <span class="form-check-label text-muted fs-6">
-                                                                    Recuring
-                                                                </span>
-                                                                <!--end::Label-->
-                                                            </label>
-                                                            <!--end::Switch-->
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu sub-->
-                                            </div>
-                                            <!--end::Menu item-->
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3 my-1">
-                                                <a href="#" class="menu-link px-3">
-                                                    Settings
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu 3-->
-                                    </div>
-                                    <!--end::Menu-->
-                                </div>
-                                <!--end::Actions-->
                             </div>
                             <!--end::Title-->
 
@@ -217,7 +85,7 @@
                                             <!--end::Number-->
 
                                             <!--begin::Label-->
-                                            <div class="fw-semibold fs-6 text-gray-500">Mes trajets</div>
+                                            <div class="fw-semibold fs-6 text-gray-500">Mes trajets effectués</div>
                                             <!--end::Label-->
                                         </div>
                                         <!--end::Stat-->
@@ -259,7 +127,7 @@
                     <!--end::Card title-->
 
                     <!--begin::Action-->
-                    <a href="#" class="btn btn-sm btn-primary align-self-center">Modifier mes informations</a>
+                    <a href="#" class="btn btn-sm btn-primary align-self-center">Modifier</a>
                     <!--end::Action-->
                 </div>
                 <!--begin::Card header-->
@@ -269,15 +137,15 @@
                     <!--begin::Row-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Nom</label>
+                        <label class="col-lg-4 fw-semibold fs-3">Nom</label>
                         <!--end::Label-->
 
                         <!--begin::Col-->
-                        <div class="col-lg-8">
+                        <div class="col-lg-8 ">
                             @isset($user->nom)
-                                <span class="fw-bold fs-6 text-gray-800">{{$user->nom}} </span>
+                                <span class="fw-bold fs-6 text-gray-800 text-muted">{{$user->nom}} </span>
                             @else
-                                <span class="fw-bold fs-6 text-gray-800"></span>
+                                <span class="fw-bold fs-6 text-gray-800 text-muted">Non renseigné</span>
                             @endisset
                         </div>
                         <!--end::Col-->
@@ -287,7 +155,7 @@
                     <!--begin::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Prénom</label>
+                        <label class="col-lg-4 fw-semibold fs-3">Prénom</label>
                         <!--end::Label-->
 
                         <!--begin::Col-->
@@ -295,7 +163,7 @@
                             @isset($user->prenom)
                                 <span class="fw-bold fs-6 text-gray-800">{{$user->prenom}} </span>
                             @else
-                                <span class="fw-bold fs-6 text-gray-800"></span>
+                                <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                             @endisset
                         </div>
                         <!--end::Col-->
@@ -305,7 +173,7 @@
                     <!--begin::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">E-mail</label>
+                        <label class="col-lg-4 fw-semibold fs-3">E-mail</label>
                         <!--end::Label-->
 
                         <!--begin::Col-->
@@ -313,7 +181,7 @@
                             @isset($user->email)
                                 <span class="fw-bold fs-6 text-gray-800">{{$user->email}} </span>
                             @else
-                                <span class="fw-bold fs-6 text-gray-800"></span>
+                                <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                             @endisset
                         </div>
                         <!--end::Col-->
@@ -321,7 +189,7 @@
                     <!--end::Input group--> <!--begin::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Sexe</label>
+                        <label class="col-lg-4 fw-semibold fs-3">Sexe</label>
                         <!--end::Label-->
 
                         <!--begin::Col-->
@@ -329,7 +197,7 @@
                             @isset($user->sexe)
                                 <span class="fw-bold fs-6 text-gray-800">{{$user->sexe}} </span>
                             @else
-                                <span class="fw-bold fs-6 text-gray-800"></span>
+                                <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                             @endisset
                         </div>
                         <!--end::Col-->
@@ -338,7 +206,7 @@
                     <!--begin::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">
+                        <label class="col-lg-4 fw-semibold fs-3">
                             Téléphone
 
                             <span class="ms-1" data-bs-toggle="tooltip" aria-label="Phone number must be active"
@@ -357,7 +225,7 @@
                     <!--end::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Adresse</label>
+                        <label class="col-lg-4 fw-semibold fs-3">Adresse</label>
                         <!--end::Label-->
 
                         <!--begin::Col-->
@@ -365,7 +233,7 @@
                             @isset($user->adresse)
                                 <span class="fw-bold fs-6 text-gray-800">{{$user->adresse}} </span>
                             @else
-                                <span class="fw-bold fs-6 text-gray-800"></span>
+                                <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                             @endisset
                         </div>
                         <!--end::Col-->
@@ -373,7 +241,7 @@
 
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Photo de profil</label>
+                        <label class="col-lg-4 fw-semibold fs-3 fs-3" >Photo de profil</label>
                         <!--end::Label-->
 
                         <!--begin::Col-->
@@ -381,7 +249,7 @@
                             @isset($user->profil_img)
                                 <span class="fw-bold fs-6 text-gray-800">{{$user->profil_img}} </span>
                             @else
-                                <span class="fw-bold fs-6 text-gray-800"></span>
+                                <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                             @endisset
                         </div>
                         <!--end::Col-->
@@ -389,7 +257,7 @@
 
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Date de naissance</label>
+                        <label class="col-lg-4 fw-semibold fs-3">Date de naissance</label>
                         <!--end::Label-->
 
                         <!--begin::Col-->
@@ -399,7 +267,7 @@
                                     class="fw-bold fs-6 text-gray-800">{{\Carbon\Carbon::parse($user->naissance)->format('d/m/Y') }}
                                 </span>
                             @else
-                                <span class="fw-bold fs-6 text-gray-800"></span>
+                                <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                             @endisset
                         </div>
                         <!--end::Col-->
@@ -407,48 +275,48 @@
 
                     @if ($user->type === 'conducteur')
                         <div class="row mb-7">
-                            <label class="col-lg-4 fw-semibold text-muted">Permis de conduire</label>
+                            <label class="col-lg-4 fw-semibold fs-3">Permis de conduire</label>
                             <div class="col-lg-8 fv-row">
                                 @isset($user->permis_de_conduire_numero)
                                     <span class="fw-bold fs-6 text-gray-800">{{$user->permis_de_conduire_numero}}</span>
                                 @else
-                                    <span class="fw-bold fs-6 text-gray-800"></span>
+                                    <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
                             </div>
                         </div>
                         <div class="row mb-7">
-                            <label class="col-lg-4 fw-semibold text-muted">Date d'obtention du permis</label>
+                            <label class="col-lg-4 fw-semibold fs-3">Date d'obtention du permis</label>
                             <div class="col-lg-8 fv-row">
                                 @isset($user->permis_de_conduire_date)
                                     <span class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->permis_de_conduire_date)->format('d/m/Y') }}</span>
                                 @else
-                                    <span class="fw-bold fs-6 text-gray-800"></span>
+                                    <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
                             </div>
                         </div>
                         <div class="row mb-7">
-                            <label class="col-lg-4 fw-semibold text-muted">Carte d'identité</label>
+                            <label class="col-lg-4 fw-semibold fs-3">Carte d'identité</label>
                             <div class="col-lg-8 fv-row">
                                 @isset($user->carte_identite_numero)
                                     <span class="fw-bold fs-6 text-gray-800">{{$user->carte_identite_numero}}</span>
                                 @else
-                                    <span class="fw-bold fs-6 text-gray-800"></span>
+                                    <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
                             </div>
                         </div>
                         <div class="row mb-7">
-                            <label class="col-lg-4 fw-semibold text-muted">Date d'obtention de la carte</label>
+                            <label class="col-lg-4 fw-semibold fs-3">Date d'obtention de la carte</label>
                             <div class="col-lg-8 fv-row">
                                 @isset($user->carte_identite_date)
                                     <span class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->carte_identite_date)->format('d/m/Y') }}</span>
                                 @else
-                                    <span class="fw-bold fs-6 text-gray-800"></span>
+                                    <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
                             </div>
                         </div>
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-semibold text-muted">Photo du permis</label>
+                            <label class="col-lg-4 fw-semibold fs-3">Photo du permis</label>
                             <!--end::Label-->
     
                             <!--begin::Col-->
@@ -456,7 +324,7 @@
                                 @isset($user->photo_permis)
                                     <span class="fw-bold fs-6 text-gray-800">{{$user->photo_permis}} </span>
                                 @else
-                                    <span class="fw-bold fs-6 text-gray-800"></span>
+                                    <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
                             </div>
                             <!--end
@@ -466,7 +334,7 @@
 
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-semibold text-muted">Photo de la carte d'identité</label>
+                            <label class="col-lg-4 fw-semibold fs-3">Photo de la carte d'identité</label>
                             <!--end::Label-->
     
                             <!--begin::Col-->
@@ -474,7 +342,7 @@
                                 @isset($user->photo_cni)
                                     <span class="fw-bold fs-6 text-gray-800">{{$user->photo_cni}} </span>
                                 @else
-                                    <span class="fw-bold fs-6 text-gray-800"></span>
+                                    <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
                             </div>
                             <!--end::Col-->

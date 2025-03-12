@@ -4,18 +4,21 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use Illuminate\Support\Str;
 
 class ConducteurSeeder extends Seeder
 {
     public function run()
     {
         $faker = Faker::create();
-        
+    
+   
         $conducteurs = DB::table('users')->where('type', 'conducteur')->pluck('id')->toArray();
-
+    
         foreach ($conducteurs as $userId) {
             DB::table('conducteurs')->insert([
-                'user_id' => $userId,
+                'id' => Str::uuid()->toString(), 
+                'user_id' => $userId, 
                 'note' => $faker->randomFloat(1, 0, 5),
                 'permis_de_conduire_numero' => null,
                 'permis_de_conduire_date' => null,

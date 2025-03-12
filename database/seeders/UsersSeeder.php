@@ -1,10 +1,13 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 class UsersSeeder extends Seeder
 {
@@ -12,9 +15,11 @@ class UsersSeeder extends Seeder
     {
         $faker = Faker::create();
 
-      
+       
         for ($i = 0; $i < 20; $i++) {
-            $userId = DB::table('users')->insertGetId([
+            $userId = Str::uuid()->toString(); 
+            DB::table('users')->insert([
+                'id' => $userId, 
                 'nom' => $faker->lastName,
                 'prenom' => $faker->firstName,
                 'email' => $faker->unique()->safeEmail,
@@ -32,7 +37,8 @@ class UsersSeeder extends Seeder
             ]);
 
             DB::table('passagers')->insert([
-                'user_id' => $userId,
+                'id' => Str::uuid()->toString(), 
+                'user_id' => $userId, 
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -40,7 +46,9 @@ class UsersSeeder extends Seeder
 
         // Insérer 20 conducteurs
         for ($i = 0; $i < 20; $i++) {
-            $userId = DB::table('users')->insertGetId([
+            $userId = Str::uuid()->toString(); 
+            DB::table('users')->insert([
+                'id' => $userId, 
                 'nom' => $faker->lastName,
                 'prenom' => $faker->firstName,
                 'email' => $faker->unique()->safeEmail,
@@ -58,7 +66,8 @@ class UsersSeeder extends Seeder
             ]);
 
             DB::table('conducteurs')->insert([
-                'user_id' => $userId,
+                'id' => Str::uuid()->toString(), // Ajout d'un ID unique
+                'user_id' => $userId, 
                 'note' => $faker->randomFloat(1, 0, 5),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -66,4 +75,3 @@ class UsersSeeder extends Seeder
         }
     }
 }
-

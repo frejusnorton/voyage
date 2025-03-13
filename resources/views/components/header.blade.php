@@ -12,9 +12,8 @@
 				<div class="container d-flex align-items-center">
 					<!--begin::Heaeder menu toggle-->
 					<div class="d-flex topbar align-items-center d-lg-none ms-n2 me-3" title="Show aside menu">
-						<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
+						<div class=" btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
 							id="kt_header_menu_mobile_toggle">
-							<!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
 							<span class="svg-icon svg-icon-2x">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 									fill="none">
@@ -52,31 +51,33 @@
 								<!--begin::Menu-->
 								<div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
 									id="#kt_header_menu" data-kt-menu="true">
+
 									<div class="menu-item me-lg-1">
 										<a href="{{ route('home') }}" class="menu-link py-3">
-											<span class="menu-title fs-3">Acceuil</span>
+											<span class="menu-title fs-3 ">Acceuil</span>
 										</a>
 									</div>
+
 									<div class="menu-item me-lg-1">
 										<a href="{{ route('trajet') }}" class="menu-link py-3">
-											<span class="menu-title fs-3">Trajet</span>
+											<span class="menu-title fs-3 ">Trajet</span>
 										</a>
 									</div>
 
 									<div class="menu-item me-lg-1">
 										<a href="#a-propos" class="menu-link py-3">
-											<span class="menu-title fs-3">A propos</span>
+											<span class="menu-title fs-3 ">A propos</span>
 										</a>
 									</div>
 
 									<div class="menu-item me-lg-1">
 										<a href="#contact" class="menu-link py-3 fs-3">
-											<span class="menu-title">Contacts</span>
+											<span class="menu-title ">Contacts</span>
 										</a>
 									</div>
 
-
 								</div>
+
 								<!--end::Menu-->
 							</div>
 							<!--end::Menu wrapper-->

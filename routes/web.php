@@ -20,11 +20,12 @@ Route::get('conditions', [ConditionsController::class, 'index'])->name('conditio
 Route::match(['get', 'post'], '/trajet', [TrajetController::class, 'index'])->name('trajet');
 Route::match(['get', 'post'], '/trajet/{trajet}', [TrajetController::class, 'details'])->name('trajet.details');
 
+
 //NOUS CONTACTER
 Route::post('/trajet', [HomeController::class, 'contact'])->name('contact');
 
-  //USER PROFIL
-  Route::get('{user}', [ProfilController::class, 'show'])->name('profil.show');
+//USER PROFIL
+Route::get('profil/{user}', [ProfilController::class, 'show'])->name('profil.show');
 
 
 // ROUTES D'AUTHENTIFICATION ET ROUTES ACCESIBLE POUR L'UTILISATEUR NON CONNECTE
@@ -34,12 +35,10 @@ Route::middleware('guest')->group(function () {
     Route::get('connexion', [LoginController::class, 'showLoginForm'])->name('loginShow');
     Route::post('connexion', [LoginController::class, 'login'])->name('login');
 
+
     // Route pour la page d'inscription
     Route::get('inscription', [RegisterController::class, 'showRegistrationForm'])->name('registerShow');
     Route::post('inscription', [RegisterController::class, 'register'])->name('register');
-
-
-  
 });
 
 Route::middleware('auth')->group(function () {

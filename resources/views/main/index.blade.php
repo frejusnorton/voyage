@@ -53,7 +53,7 @@
 </head>
 
 
-<body id="kt_body" style="background-image: url(assets/media/patterns/header-bg.jpg)"
+<body id="kt_body" style="background-image: url(assets/media/patterns/header-bg.jpg)" 
     class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
 
     @include('components.header')

@@ -11,31 +11,29 @@
                 <div class="card-body py-15 py-lg-20">
 
                     <!--begin::Title-->
-                    <h1 class="fw-bolder fs-2hx text-gray-900 mb-4">
-                        Oups! Erreur 404
+                    <h1 class="fw-bolder fs-2qx text-gray-900 mb-4">
+                        Erreur système
                     </h1>
                     <!--end::Title-->
 
                     <!--begin::Text-->
                     <div class="fw-semibold fs-6 text-gray-500 mb-7">
-                        La page à laquelle vous essayer d'accéder n'existe pas
+                        Une erreur est survenue,veuillez réessayer dans un moment
                     </div>
                     <!--end::Text-->
 
-                    {{-- <!--begin::Illustration-->
-                    <div class="mb-3">
-                        <img src="/metronic8/demo2/assets/media/auth/404-error.png" class="mw-100 mh-300px theme-light-show"
+                    <!--begin::Illustration-->
+                    {{-- <div class="mb-11">
+                        <img src=" {{ asset('assets/media/auth/500-error.png') }} " class="mw-100 mh-300px theme-light-show"
                             alt="">
-                        <img src="/metronic8/demo2/assets/media/auth/404-error-dark.png"
+                        <img src="/metronic8/demo2/assets/media/auth/500-error-dark.png"
                             class="mw-100 mh-300px theme-dark-show" alt="">
                     </div> --}}
                     <!--end::Illustration-->
 
-                    <!--begin::Link-->
                     <div class="mb-0">
                         <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary">Retour</a>
                     </div>
-                    
                     <!--end::Link-->
 
                 </div>

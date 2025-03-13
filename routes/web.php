@@ -27,17 +27,14 @@ Route::middleware('guest')->group(function () {
 
 // ROUTES PROTÉGÉES (Accessible uniquement aux utilisateurs connectés)
 Route::middleware('auth')->group(function () {
-
     // PROFIL UTILISATEUR
     Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
 
     // MODIFICATION DES INFORMATIONS UTILISATEUR
     Route::get('compte', [UserController::class, 'index'])->name('user.index');
     Route::post('user/edit', [UserController::class, 'edit'])->name('user.edit');
-
     // TRAJETS
     Route::match(['get', 'post'], '/trajet/create', [TrajetController::class, 'create'])->name('trajet.create');
-
     // RÉSERVATION
     Route::match(['get','post'],'/reservation', [ReservationController::class, 'index'])->name('reservation');
 

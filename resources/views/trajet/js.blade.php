@@ -71,7 +71,7 @@
                 $("#trajet").html(data);
             },
             error: function (xhr, status, error) {
-          
+
             }
         });
     });
@@ -79,49 +79,62 @@
 
     // ALERTE DE CONFIRMATION Reservation
     $(document).on('click', '#reservation', function () {
-    const url = $(this).data('url');
-    const trajetId = $(this).data('trajet-id'); 
-    const userId = $(this).data('user-id'); 
-  
-    
-    Swal.fire({
-        title: "Voulez-vous vraiment réserver ce trajet ?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Oui, continuer",
-        cancelButtonText: "Annuler"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    trajet_id: trajetId, 
-                    user_id: userId,    
-                  
-                },
-                success: function (response) {
-                    Swal.fire(
-                        'Réservation réussie !',
-                        response.message, 
-                        'success'
-                    ).then(() => {
-                        window.location.href = response.redirect;  
-                    });
-                },
-                error: function (error) {
-                    Swal.fire(
-                        'Erreur',
-                        'Une erreur s\'est produite. Veuillez réessayer.',
-                        'error'
-                    );
-                }
-            });
-        }
+        const url = $(this).data('url');
+        const trajetId = $(this).data('trajet-id');
+        const userId = $(this).data('user-id');
+        const loginRoute = @json(route('login'));
+
+        Swal.fire({
+            title: "Voulez-vous vraiment réserver ce trajet ?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Oui, continuer",
+            cancelButtonText: "Annuler"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        trajet_id: trajetId,
+                        user_id: userId,
+
+                    },
+                    success: function (response) {
+
+                        Swal.fire(
+                            'Réservation réussie !',
+                            response.message,
+                            'success'
+                        ).then(() => {
+                            window.location.href = response.redirect;
+                        });
+                    },
+                    error: function (error) {
+                        if (error.status === 401) {
+                            Swal.fire({
+                                title: "Vous devez être connecté !",
+                                text: "Veuillez vous connecter pour réserver ce trajet.",
+                                icon: "info",
+                                confirmButtonText: "Se connecter"
+                            }).then(() => {
+                                window.location.href = "{{ route('login') }}";
+                            });
+                        } else {
+                            Swal.fire(
+                                'Erreur',
+                                'Une erreur s\'est produite. Veuillez réessayer.',
+                                'error'
+                            );
+                        }
+
+                    }
+                });
+            }
+        });
     });
-});
 
 </script>

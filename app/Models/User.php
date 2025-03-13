@@ -25,7 +25,7 @@ class User extends Authenticatable
             }
         });
     }
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -74,5 +74,9 @@ class User extends Authenticatable
     public function isConducteur()
     {
         return $this->conducteur()->exists();
+    }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 }

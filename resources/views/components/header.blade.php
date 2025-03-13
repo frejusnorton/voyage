@@ -751,7 +751,7 @@
 										@endguest
 									</div>
 									<!--begin::Menu-->
-									<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
+									<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-350px"
 										data-kt-menu="true">
 
 										@auth
@@ -779,7 +779,7 @@
 
 											<!-- Menu options for logged-in users -->
 											<div class="menu-item px-5 my-1 d-flex justify-between">
-												<a href="#" class="menu-link px-5 fs-3">Mes trajets</a>
+												<a href="{{ route('reservation') }}" class="menu-link px-5 fs-3">Mes réservations</a>
 											</div>
 											<div class="menu-item px-5 my-1 d-flex justify-between">
 												<a href="{{ route('user.index', ['user' => Auth::user()->id]) }}"

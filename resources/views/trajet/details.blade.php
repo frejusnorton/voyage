@@ -192,7 +192,7 @@
             <!-- Réservation -->
             @if($trajet->statut == 'disponible')
                 <div class="d-flex justify-content-end mb-3">
-                    <a href="{{ route('reservation.create', ['trajet' => $trajet->id]) }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('reservation', ['trajet' => $trajet->id]) }}" class="btn btn-primary btn-sm">
                         Réserver ce trajet
                     </a>
                 </div>

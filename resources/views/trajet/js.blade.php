@@ -24,12 +24,9 @@
                     if (menuInstance) {
                         menuInstance.hide();
                     }
-
-                    console.log(response)
                     $('#trajet').html(response);
                 },
                 error: function (xhr, status, error) {
-                    console.log(error);
                     $('#trajet').html('<p class = "class="text-muted fs-5"" >Une erreur est survenue,veuilllez réessayer</p>');
                 }
             });
@@ -51,7 +48,7 @@
         var search = $(this).val();
         var url = "{{ route('trajet') }}";
 
-     
+
         $("#trajet").html(`
         <div class="col-xs-12 text-center" style="padding-top: 3em;">
             <i class="fa fa-spin fa-spinner" style="color: lightgrey; font-size: 4em;"></i>
@@ -74,12 +71,57 @@
                 $("#trajet").html(data);
             },
             error: function (xhr, status, error) {
-                console.error("Erreur AJAX : ", error);
+          
             }
         });
     });
 
 
-
+    // ALERTE DE CONFIRMATION Reservation
+    $(document).on('click', '#reservation', function () {
+    const url = $(this).data('url');
+    const trajetId = $(this).data('trajet-id'); 
+    const userId = $(this).data('user-id'); 
+  
+    
+    Swal.fire({
+        title: "Voulez-vous vraiment réserver ce trajet ?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Oui, continuer",
+        cancelButtonText: "Annuler"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    trajet_id: trajetId, 
+                    user_id: userId,    
+                  
+                },
+                success: function (response) {
+                    Swal.fire(
+                        'Réservation réussie !',
+                        response.message, 
+                        'success'
+                    ).then(() => {
+                        window.location.href = response.redirect;  
+                    });
+                },
+                error: function (error) {
+                    Swal.fire(
+                        'Erreur',
+                        'Une erreur s\'est produite. Veuillez réessayer.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
 
 </script>

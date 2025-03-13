@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('trajet_id');
+            $table->enum('status', ['en attente', 'confirmé', 'annulé'])->default('en attente');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('trajet_id')->references('id')->on('trajets')->onDelete('cascade');
         });
     }
 

@@ -10,19 +10,17 @@ class HomeController extends Controller
     {
 
         $user = auth()->user();
-        if(  $user ){
+        if ($user) {
             $notifications = auth()->user()->notifications()->latest()->get();
-        }else {
-            $notifications = []; 
+        } else {
+            $notifications = [];
         }
 
         return view('home.index', [
             'notifications' => $notifications
         ]);
     }
-    
+
 
     public function contact() {}
-
-
 }

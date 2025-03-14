@@ -29,6 +29,11 @@ class Trajet extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
@@ -38,8 +43,11 @@ class Trajet extends Model
             }
         });
     }
-    
-    
+    public function conducteur()
+    {
+        return $this->belongsTo(User::class, 'user_id'); 
+    }
+
     public static function filter($search)
     {
         return self::when($search, function ($query) use ($search) {

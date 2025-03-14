@@ -11,8 +11,11 @@ class ProfilController extends Controller
 
 
         $trajets = $user->trajets()->paginate(5);  
+        
         $nombreTrajetsPublies = $user->trajets()->count();  
+
         $noteMoyenne = round($user->note, 1); 
+
         $isAuthenticated = auth()->check(); 
 
 

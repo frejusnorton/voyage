@@ -17,7 +17,6 @@ return new class extends Migration
             $table->uuid('trajet_id');
             $table->enum('status', ['en attente', 'confirmé', 'annulé'])->default('en attente');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('trajet_id')->references('id')->on('trajets')->onDelete('cascade');
         });

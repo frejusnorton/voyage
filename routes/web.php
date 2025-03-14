@@ -10,6 +10,7 @@ use App\Http\Controllers\TrajetController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ConditionsController;
+use App\Http\Controllers\ConducteurController;
 use App\Http\Controllers\ReservationController;
 
 // ACCUEIL & CONDITIONS
@@ -27,18 +28,25 @@ Route::middleware('guest')->group(function () {
 
 // ROUTES PROTÉGÉES (Accessible uniquement aux utilisateurs connectés)
 Route::middleware('auth')->group(function () {
+
     // PROFIL UTILISATEUR
     Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
 
     // MODIFICATION DES INFORMATIONS UTILISATEUR
     Route::get('compte', [UserController::class, 'index'])->name('user.index');
     Route::post('user/edit', [UserController::class, 'edit'])->name('user.edit');
+
+
     // TRAJETS
     Route::match(['get', 'post'], '/trajet/create', [TrajetController::class, 'create'])->name('trajet.create');
+
     // RÉSERVATION
-    Route::match(['get','post'],'/reservation', [ReservationController::class, 'index'])->name('reservation');
+    Route::match(['get', 'post'], '/reservation', [ReservationController::class, 'index'])->name('reservation');
 
+    //CONDUCTEUR
+    Route::get('conducteur', [ConducteurController::class, 'index'])->name('trajet.conducteur');
 
+    //PAIEMENT
     Route::get('/payment/{reservation}', [PaiementController::class, 'index'])->name('payment.index');
 
     // DÉCONNEXION
@@ -53,7 +61,7 @@ Route::match(['get', 'post'], '/trajet', [TrajetController::class, 'index'])->na
 Route::match(['get', 'post'], '/trajet/{trajet}', [TrajetController::class, 'details'])->name('trajet.details');
 
 
- // PROFIL UTILISATEUR
+// PROFIL UTILISATEUR
 Route::get('profil/{user}', [ProfilController::class, 'show'])->name('profil.show');
 
 // NOUS CONTACTER

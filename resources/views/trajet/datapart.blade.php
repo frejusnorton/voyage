@@ -105,7 +105,7 @@
                                         <div class="timeline-content ps-10">
                                             <span id="reservation" class="btn btn-primary btn-sm"
                                                 data-url="{{ route('reservation', ['trajet' => $trajet->id]) }}"
-                                                data-trajet-id="{{$trajet->id }}" data-user-id="{{$trajet->user->id}}">
+                                                data-trajet-id="{{$trajet->id }}" data-user-id="{{ auth()->id() }}">
                                                 Réserver ce trajet
                                             </span>
                                         </div>

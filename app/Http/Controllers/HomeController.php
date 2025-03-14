@@ -6,10 +6,18 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
-        return view('home.index');
-    }
-    public function contact(){
+    public function index()
+    {
+        $notifications = auth()->user()->notifications()->latest()->get();
+
         
+        return view('home.index', [
+            'notifications' => $notifications
+        ]);
     }
+    
+
+    public function contact() {}
+
+
 }

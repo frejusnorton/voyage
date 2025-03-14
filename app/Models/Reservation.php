@@ -25,6 +25,10 @@ class Reservation extends Model
             }
         });
     }
+    public function trajet()
+    {
+        return $this->belongsTo(Trajet::class);
+    }
 
     public function user()
     {

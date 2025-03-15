@@ -9,16 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        
-        $user = Auth::user();
-        $estPassager = DB::table('passagers')->where('user_id', $user->id)->exists();
-        $trajets = Trajet::where('user_id', $user->id)->paginate(5);
+    // public function index()
+    // {
+    //     $user = Auth::user();
+    //     $estPassager = DB::table('passagers')->where('user_id', $user->id)->exists();
+    //     $trajets = Trajet::where('user_id', $user->id)->paginate(5);
 
-        return view('user.index', [
-            'user' => $user,
-            'trajets' => $trajets,
-        ]);
-    }
+    //     return view('user.index', [
+    //         'user' => $user,
+    //         'trajets' => $trajets,
+    //     ]);
+    // }
 }

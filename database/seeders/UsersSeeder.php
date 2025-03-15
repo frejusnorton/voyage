@@ -15,16 +15,15 @@ class UsersSeeder extends Seeder
     {
         $faker = Faker::create();
 
-       
         for ($i = 0; $i < 20; $i++) {
-            $userId = Str::uuid()->toString(); 
+            $userId = Str::uuid()->toString();
             DB::table('users')->insert([
-                'id' => $userId, 
+                'id' => $userId,
                 'nom' => $faker->lastName,
                 'prenom' => $faker->firstName,
                 'email' => $faker->unique()->safeEmail,
                 'adresse' => $faker->address,
-                'telephone' => $faker->phoneNumber,
+                'telephone' => '0190775682',
                 'profil_img' => null,
                 'naissance' => $faker->date('Y-m-d', '2000-01-01'),
                 'sexe' => $faker->randomElement(['homme', 'femme']),
@@ -37,8 +36,8 @@ class UsersSeeder extends Seeder
             ]);
 
             DB::table('passagers')->insert([
-                'id' => Str::uuid()->toString(), 
-                'user_id' => $userId, 
+                'id' => Str::uuid()->toString(),
+                'user_id' => $userId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -46,14 +45,14 @@ class UsersSeeder extends Seeder
 
         // Insérer 20 conducteurs
         for ($i = 0; $i < 20; $i++) {
-            $userId = Str::uuid()->toString(); 
+            $userId = Str::uuid()->toString();
             DB::table('users')->insert([
-                'id' => $userId, 
+                'id' => $userId,
                 'nom' => $faker->lastName,
                 'prenom' => $faker->firstName,
                 'email' => $faker->unique()->safeEmail,
                 'adresse' => $faker->address,
-                'telephone' => $faker->phoneNumber,
+                'telephone' => '0190775682',
                 'profil_img' => null,
                 'naissance' => $faker->date('Y-m-d', '2000-01-01'),
                 'sexe' => $faker->randomElement(['homme', 'femme']),
@@ -66,8 +65,8 @@ class UsersSeeder extends Seeder
             ]);
 
             DB::table('conducteurs')->insert([
-                'id' => Str::uuid()->toString(), // Ajout d'un ID unique
-                'user_id' => $userId, 
+                'id' => Str::uuid()->toString(),
+                'user_id' => $userId,
                 'note' => $faker->randomFloat(1, 0, 5),
                 'created_at' => now(),
                 'updated_at' => now(),

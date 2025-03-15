@@ -16,8 +16,7 @@
         <div class="d-flex align-items-center justify-content-between ms-md-auto">
             <!--begin::Wrapper pour le filtre-->
             <div class="me-4">
-                <a href="#"
-                    class="btn btn-custom btn-active-white btn-flex btn-color-white btn-active-color-primary"
+                <a href="#" class="btn btn-custom btn-active-white btn-flex btn-color-white btn-active-color-primary"
                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
                     <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1 ">
@@ -34,8 +33,7 @@
 
             <!--begin::Wrapper pour le bouton Publier-->
             <div>
-                <a href="{{ route('trajet.create') }}" class="btn btn-bg-white btn-active-color-primary" {{--
-                    data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" --}} id="kt_toolbar_primary_button">Publiez
+                <a href="{{ route('trajet.create') }}" class="btn btn-bg-white btn-active-color-primary" id="">Publiez
                     un trajet</a>
             </div>
         </div>

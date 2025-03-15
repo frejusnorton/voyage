@@ -18,7 +18,7 @@
 
 @section('content')
     @if($reservations->isEmpty())
-        <div class="mt-10 text-center">
+        <div class="mt-10 fs-3 text-center">
             Aucune réservation disponible.
         </div>
     @else

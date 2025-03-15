@@ -12,15 +12,14 @@
                         <!--begin: Pic-->
                         <div class="me-7 mb-4">
                             <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                <img alt="Avatar"
-                                    src="{{ Auth::user()->image_url ? asset('storage/' . Auth::user()->image_url) : asset('assets/media/avatars/blank.png') }}" />
+                                <img alt="Photo de profil"
+                                    src="{{ Auth::user()->profil_img ? Auth::user()->profil_img : asset('assets/media/avatars/blank.png') }}" />
                                 <div
                                     class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px">
                                 </div>
                             </div>
                         </div>
                         <!--end::Pic-->
-
                         <!--begin::Info-->
                         <div class="flex-grow-1">
                             <!--begin::Title-->
@@ -93,20 +92,6 @@
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Wrapper-->
-
-                                <!--begin::Progress-->
-                                <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                                    <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                        <span class="fw-semibold fs-6 text-gray-500">Profile Compleation</span>
-                                        <span class="fw-bold fs-6">50%</span>
-                                    </div>
-
-                                    <div class="h-5px mx-3 w-100 bg-light mb-3">
-                                        <div class="bg-success rounded h-5px" role="progressbar" style="width: 50%;"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <!--end::Progress-->
                             </div>
                             <!--end::Stats-->
                         </div>
@@ -127,13 +112,38 @@
                     <!--end::Card title-->
 
                     <!--begin::Action-->
-                    <a href="#" class="btn btn-sm btn-primary align-self-center">Modifier</a>
+                    <a href="{{ route('passager.edit', ['user' => Auth::id()]) }}) }}"
+                        class="btn btn-sm btn-primary align-self-center">Modifier</a>
                     <!--end::Action-->
                 </div>
                 <!--begin::Card header-->
 
                 <!--begin::Card body-->
                 <div class="card-body p-9">
+
+                    <div class="row mb-7">
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-semibold fs-6">Photo de profil</label>
+                            <!--end::Label-->
+
+                            <div class="col-lg-8">
+                                <!--begin::Image input-->
+                                <div class="image-input image-input-outline" data-kt-image-input="true"
+                                    style="background-image: url('{{ Auth::user()->profil_img ? asset(Auth::user()->profil_img) : asset('/metronic8/demo2/assets/media/svg/avatars/blank.svg') }}')">
+                                    <!--begin::Preview existing avatar-->
+                                    <div class="image-input-wrapper w-125px h-125px"
+                                        style="background-image: url('{{ Auth::user()->profil_img ? asset(Auth::user()->profil_img) : asset('/metronic8/demo2/assets/media/avatars/300-1.jpg') }}')">
+                                    </div>
+                                </div>
+                                <!--end::Image input-->
+                            </div>
+
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                    </div>
+
                     <!--begin::Row-->
                     <div class="row mb-7">
                         <!--begin::Label-->
@@ -239,21 +249,7 @@
                         <!--end::Col-->
                     </div>
 
-                    <div class="row mb-7">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold fs-3 fs-3" >Photo de profil</label>
-                        <!--end::Label-->
 
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row">
-                            @isset($user->profil_img)
-                                <span class="fw-bold fs-6 text-gray-800">{{$user->profil_img}} </span>
-                            @else
-                                <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                            @endisset
-                        </div>
-                        <!--end::Col-->
-                    </div>
 
                     <div class="row mb-7">
                         <!--begin::Label-->
@@ -288,7 +284,8 @@
                             <label class="col-lg-4 fw-semibold fs-3">Date d'obtention du permis</label>
                             <div class="col-lg-8 fv-row">
                                 @isset($user->permis_de_conduire_date)
-                                    <span class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->permis_de_conduire_date)->format('d/m/Y') }}</span>
+                                    <span
+                                        class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->permis_de_conduire_date)->format('d/m/Y') }}</span>
                                 @else
                                     <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
@@ -308,7 +305,8 @@
                             <label class="col-lg-4 fw-semibold fs-3">Date d'obtention de la carte</label>
                             <div class="col-lg-8 fv-row">
                                 @isset($user->carte_identite_date)
-                                    <span class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->carte_identite_date)->format('d/m/Y') }}</span>
+                                    <span
+                                        class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->carte_identite_date)->format('d/m/Y') }}</span>
                                 @else
                                     <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
                                 @endisset
@@ -318,7 +316,7 @@
                             <!--begin::Label-->
                             <label class="col-lg-4 fw-semibold fs-3">Photo du permis</label>
                             <!--end::Label-->
-    
+
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
                                 @isset($user->photo_permis)
@@ -328,15 +326,15 @@
                                 @endisset
                             </div>
                             <!--end
-                                
-                                ::Col-->
+
+                                                                                                ::Col-->
                         </div>
 
                         <div class="row mb-7">
                             <!--begin::Label-->
                             <label class="col-lg-4 fw-semibold fs-3">Photo de la carte d'identité</label>
                             <!--end::Label-->
-    
+
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
                                 @isset($user->photo_cni)
@@ -347,8 +345,8 @@
                             </div>
                             <!--end::Col-->
                         </div>
-    
-    
+
+
                     @endif
                 </div>
                 <!--end::Card body-->
@@ -366,12 +364,11 @@
                 <!--begin::Content-->
                 <div id="kt_account_settings_deactivate" class="collapse show">
                     <!--begin::Form-->
-                    <form id="kt_account_deactivate_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        novalidate="novalidate">
-
+                    <form id="supprimer_compte" class="form fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
+                        action="{{ route('suppression', ['user' => $user->id]) }}">
+                        @csrf
                         <!--begin::Card body-->
                         <div class="card-body border-top p-9">
-
                             <!--begin::Notice-->
                             <div
                                 class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-9 p-6">
@@ -384,7 +381,7 @@
                                 <div class="d-flex flex-stack flex-grow-1 ">
                                     <!--begin::Content-->
                                     <div class="fw-semibold">
-                                        <h4 class="text-gray-900 fw-bold">Vous êtes en train de désactiver votre compte</h4>
+                                        <h4 class="text-gray-900 fw-bold">Vous êtes en train de supprimer votre compte</h4>
 
                                         <div class="fs-6 text-gray-700"><a class="fw-bold" href="#">En savoir plus</a></div>
                                     </div>
@@ -397,9 +394,10 @@
 
                             <!--begin::Form input row-->
                             <div class="form-check form-check-solid fv-row fv-plugins-icon-container">
-                                <input name="deactivate" class="form-check-input" type="checkbox" value="" id="deactivate">
+                                <input name="confirmation" class="form-check-input" type="checkbox"
+                                  >
                                 <label class="form-check-label fw-semibold ps-2 fs-6" for="deactivate">Je confirme la
-                                    désactivation de mon compte
+                                    suppression de mon compte
                                 </label>
                                 <div
                                     class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
@@ -411,8 +409,7 @@
 
                         <!--begin::Card footer-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            <button id="kt_account_deactivate_account_submit" type="submit"
-                                class="btn btn-danger fw-semibold">Désactiver mon compte </button>
+                            <button type="submit" class="btn btn-danger fw-semibold">Supprimer mon compte </button>
                         </div>
                         <!--end::Card footer-->
 
@@ -424,4 +421,7 @@
         </div>
         <!--end::Post-->
     </div>
+@endsection
+@section('scripts')
+    @include('passager.js')
 @endsection

@@ -16,15 +16,11 @@ class ProfilController extends Controller
 
         $noteMoyenne = round($user->note, 1); 
 
-        $isAuthenticated = auth()->check(); 
-
-
         return view('profil.show',[
             'user' => $user,
             'trajets' => $trajets,
             'nombreTrajetsPublies' => $nombreTrajetsPublies,
             'noteMoyenne' => $noteMoyenne,
-            "isAuthenticated" => $isAuthenticated ,
         ]);
     }
 

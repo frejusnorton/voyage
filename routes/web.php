@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\TrajetController;
@@ -11,7 +11,9 @@ use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\ConducteurController;
+use App\Http\Controllers\PassagerController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SupprimerCompteController;
 
 // ACCUEIL & CONDITIONS
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -32,9 +34,14 @@ Route::middleware('auth')->group(function () {
     // PROFIL UTILISATEUR
     Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
 
-    // MODIFICATION DES INFORMATIONS UTILISATEUR
-    Route::get('compte', [UserController::class, 'index'])->name('user.index');
-    Route::post('user/edit', [UserController::class, 'edit'])->name('user.edit');
+    // MODIFICATION DES INFORMATIONS DU PASSAGER
+    Route::get('compte/{user}', [PassagerController::class, 'index'])->name('passager.index');
+    Route::match(['get', 'post'], 'modifier/{user}', [PassagerController::class, 'edit'])->name('passager.edit');
+
+
+    // // MODIFICATION DES INFORMATIONS DU CONDUCTEUR
+    //  Route::get('compte/{user}', [ConducteurController::class, 'index'])->name('conducteur.index');
+    //  Route::post('user/edit', [ConducteurController::class, 'edit'])->name('conducteur.edit');
 
 
     // TRAJETS
@@ -49,11 +56,11 @@ Route::middleware('auth')->group(function () {
     //PAIEMENT
     Route::get('/payment/{reservation}', [PaiementController::class, 'index'])->name('payment.index');
 
+    //SUPPRESSION DE COMPTE
+    Route::post('supprimer/{user}', [SupprimerCompteController::class, 'deleteAccount'])->name('suppression');
+
     // DÉCONNEXION
-    Route::post('deconnexion', function () {
-        Auth::logout();
-        return redirect()->route('home');
-    })->name('logout');
+    Route::match(['get','post'],'deconnexion', [LoginController::class,'logout'])->name('logout');
 });
 
 // TRAJETS (Accessible à tous)

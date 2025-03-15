@@ -8,23 +8,19 @@
             <div class="card-body pt-9 pb-0">
                 <!--begin::Details-->
                 <div class="d-flex flex-wrap flex-sm-nowrap">
-                
+
                     <div class="me-7 mb-4">
                         <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            @if(auth()->check())
-                                @if(auth()->user()->profil_img)
-                                    <img class="h-30px w-30px rounded" src="{{ asset('storage/' . auth()->user()->profil_img) }}" alt="" />
-                                @else
-                                    <img class="h-60px w-60px rounded" src="{{ asset('assets/media/avatars/blank.png') }}" alt="" />
-                                @endif
-                                <span class="position-absolute top-0 end-0 translate-middle p-2 bg-success border border-white rounded-circle"></span>
-                            @else
-                                <img class="h-60px w-60px rounded" src="{{ asset('assets/media/avatars/blank.png') }}" alt="" />
-                                <span class="position-absolute top-0 end-0 translate-middle p-1 bg-danger border border-white rounded-circle"></span>
-                            @endif
+                            <img class="h-60px w-60px rounded"
+                                src="{{ $user->profil_img ? asset($user->profil_img) : asset('assets/media/avatars/blank.png') }}"
+                                alt="Photo de profil" />
+                            <span class="position-absolute top-0 end-0 translate-middle p-2 
+                         {{ $user->is_online ? 'bg-success' : 'bg-danger' }} 
+                         border border-white rounded-circle">
+                            </span>
                         </div>
                     </div>
-                  
+
                     <div class="flex-grow-1">
                         <!--begin::Title-->
                         <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
@@ -32,22 +28,21 @@
                             <div class="d-flex flex-column">
                                 <!--begin::Name-->
                                 <div class="d-flex align-items-center mb-2">
-                                    <span  class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{$user->nom}}
+                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{$user->nom}}
                                         {{$user->prenom}} </span>
-                                    <span ><i class="ki-duotone ki-verify fs-1 text-primary"><span
-                                                class="path1"></span><span class="path2"></span></i></span>
+                                    <span><i class="ki-duotone ki-verify fs-1 text-primary"><span class="path1"></span><span
+                                                class="path2"></span></i></span>
                                 </div>
                                 <!--end::Name-->
 
                                 <!--begin::Info-->
                                 <div class="d-flex flex-wrap fw-semibold fs-6 mb-4">
 
-                                    <span 
-                                        class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
                                         <i class="ki-duotone ki-geolocation fs-4 me-1"><span class="path1"></span><span
                                                 class="path2"></span></i> {{$user->address}}
                                     </span>
-                                    <span  class="d-flex align-items-center text-gray-500 text-hover-primary mb-2">
+                                    <span class="d-flex align-items-center text-gray-500 text-hover-primary mb-2">
                                         <i class="ki-duotone ki-sms fs-4"><span class="path1"></span><span
                                                 class="path2"></span></i> {{$user->email}}
                                     </span>

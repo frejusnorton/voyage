@@ -197,14 +197,17 @@
                     </a>
                 </div>
             @else
-                <div class="d-flex justify-content-between mb-3">
-                    <div class="fw-bold text-gray-800 fs-6">Statut</div>
-                    <div class="text-danger ps-10">
+                <div class="d-flex  mb-3">
+                    <div class="text-danger ">
                         <strong>Ce trajet n'est plus disponible</strong>
                     </div>
                 </div>
             @endif
-
+            <div class="d-flex my-4 mt-10">
+                <a href="{{ route('profil.contact', ['user' => $conducteur]) }}" class="btn btn-sm btn-primary me-3">
+                    Contacter {{ $conducteur->nom }} {{ $conducteur->prenom }}
+                </a>
+            </div>
         </div>
         <!--end::Card body-->
     </div>

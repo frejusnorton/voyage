@@ -190,26 +190,34 @@
             <!--end::Input group-->
 
             <!-- Réservation -->
-            @if($trajet->statut == 'disponible')
-                <div class="d-flex justify-content-end mb-3">
-                    <a href="{{ route('reservation', ['trajet' => $trajet->id]) }}" class="btn btn-primary btn-sm">
-                        Réserver ce trajet
-                    </a>
-                </div>
-            @else
-                <div class="d-flex  mb-3">
-                    <div class="text-danger ">
-                        <strong>Ce trajet n'est plus disponible</strong>
+            <div class="d-flex justify-content-between my-4 mt-10">
+                @if($trajet->statut == 'disponible')
+                    <div class="d-flex mb-3 w-50">
+                        <a id="reservation" class="btn text-primary "
+                            data-url="{{ route('reservation', ['trajet' => $trajet->id]) }}" data-trajet-id="{{ $trajet->id }}"
+                            data-user-id="{{ auth()->id() }}">
+                            Réserver
+                        </a>
                     </div>
-                </div>
-            @endif
-            <div class="d-flex my-4 mt-10">
-                <a href="{{ route('profil.contact', ['user' => $conducteur]) }}" class="btn btn-sm btn-primary me-3">
-                    Contacter {{ $conducteur->nom }} {{ $conducteur->prenom }}
+                @else
+                    <div class="d-flex mb-3">
+                        <div class="text-danger">
+                            <strong>Ce trajet n'est plus disponible</strong>
+                        </div>
+                    </div>
+                @endif
+
+                <a href="{{ route('profil.contact', ['user' => $conducteur]) }}" class="btn text-primary  ">
+                    Contacter
                 </a>
             </div>
+
+
         </div>
         <!--end::Card body-->
     </div>
 
+@endsection
+@section('scripts')
+    @include(('trajet.js'))
 @endsection

@@ -68,12 +68,20 @@ class TrajetController extends Controller
     {
         $conducteur = $trajet->user;
         $nombreTrajets = $conducteur->trajets()->count();
-     
-       
+
+
         return view('trajet.details', [
             'trajet' => $trajet,
             'conducteur' => $conducteur,
             'nombreTrajets' => $nombreTrajets,
         ]);
+    }
+
+    public function checkIfConducteur()
+    {
+        if (Auth::check() && auth()->user()->type === 'conducteur') {
+            return response()->json(['isConducteur' => true]);
+        }
+        return response()->json(['isConducteur' => false]);
     }
 }

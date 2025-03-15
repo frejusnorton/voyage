@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Trajet;
 use App\Models\Reservation;
+use App\Models\Ville;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -17,8 +18,8 @@ class ReservationController extends Controller
         $reservations = Reservation::with('trajet')
             ->where('user_id', auth()->id())
             ->paginate(10); {
-            
-                if ($request->ajax()) {
+
+            if ($request->ajax()) {
                 $request->validate([
                     'trajet_id' => 'required|uuid|exists:trajets,id',
                     'user_id' => 'required|uuid|exists:users,id',
@@ -54,6 +55,15 @@ class ReservationController extends Controller
         }
         return view('reservation.index', [
             'reservations' => $reservations,
+        ]);
+    }
+
+    public function annulerReservation(Reservation $reservation)
+    {
+        $reservation->status = 'annulé';
+        $reservation->save();
+        return response()->json([
+            'message' => 'Réservation annulée avec succès.',
         ]);
     }
 }

@@ -8,14 +8,15 @@
         <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
             style="background-image: url(assets/media/illustrations/sigma-1/14.png">
             <!--begin::Content-->
-            <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+            <div class="d-flex flex-center flex-column flex-column-fluid  pb-lg-20">
                 <!--begin::Logo-->
 
                 <!--end::Logo-->
                 <!--begin::Wrapper-->
                 <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
-                    <form class="form w-100" method="post" action="{{ route('register') }}">
+                    <form id="register-form" class="form w-100" method="post" action="{{ route('register') }}">
+                        @csrf
                         <!--begin::Heading-->
                         <div class="mb-10 text-center">
                             <!--begin::Title-->
@@ -46,14 +47,16 @@
                             <div class="col-xl-6">
                                 <label class="form-label fw-bolder text-dark fs-6">Nom</label>
                                 <input class="form-control form-control-lg form-control-solid" type="text" placeholder=""
-                                    name="first-name" autocomplete="off" />
+                                    name="nom" />
+                                <span class="text-danger error-nom"></span>
                             </div>
                             <!--end::Col-->
                             <!--begin::Col-->
                             <div class="col-xl-6">
                                 <label class="form-label fw-bolder text-dark fs-6">Prénom</label>
                                 <input class="form-control form-control-lg form-control-solid" type="text" placeholder=""
-                                    name="last-name" autocomplete="off" />
+                                    name="prenom" />
+                                <span class="text-danger error-prenom"></span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -62,7 +65,41 @@
                         <div class="fv-row mb-7">
                             <label class="form-label fw-bolder text-dark fs-6">Email</label>
                             <input class="form-control form-control-lg form-control-solid" type="email" placeholder=""
-                                name="email" autocomplete="off" />
+                                name="email" />
+                            <span class="text-danger error-email"></span>
+                        </div>
+
+                        <div class="fv-row mb-7">
+                            <label class="form-label fw-bolder text-dark fs-6">Téléphone</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">+229</span>
+                                <input type="tel" name="telephone"
+                                    class="form-control form-control-lg form-control-solid"
+                                    placeholder="Numéro de téléphone">
+                                    <span class="text-danger error-telephone"></span>
+                            </div>
+                            <div
+                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                            </div>
+                        </div>
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <label class="form-label fw-bolder text-dark fs-6">Sexe</label>
+                            <select class="form-control form-control-lg form-control-solid" name="sexe">
+                                <option value="homme">Homme</option>
+                                <option value="femme">Femme</option>
+                            </select>
+                            <span class="text-danger error-sexe"></span>
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <label class="form-label fw-bolder text-dark fs-6">Vous etes ?</label>
+                            <select class="form-control form-control-lg form-control-solid" name="type">
+                                <option value="passager">Passager</option>
+                            </select>
+                            <span class="text-danger error-type"></span>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -81,6 +118,7 @@
                                         <i class="bi bi-eye-slash fs-2"></i>
                                         <i class="bi bi-eye fs-2 d-none"></i>
                                     </span>
+                                    <span class="text-danger error-password"></span>
                                 </div>
                                 <!--end::Input wrapper-->
                                 <!--begin::Meter-->
@@ -94,7 +132,8 @@
                             </div>
                             <!--end::Wrapper-->
                             <!--begin::Hint-->
-                            <div class="text-muted">Utilisez 8 caractères ou plus avec un mélange de lettres, de chiffres et de symboles.
+                            <div class="text-muted">Utilisez 8 caractères ou plus avec un mélange de lettres
+                                minuscule,majuscule et de chiffre.
                             </div>
                             <!--end::Hint-->
                         </div>
@@ -104,6 +143,7 @@
                             <label class="form-label fw-bolder text-dark fs-6">Confirmer mot de passe</label>
                             <input class="form-control form-control-lg form-control-solid" type="password" placeholder=""
                                 name="confirm-password" autocomplete="off" />
+
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -116,8 +156,8 @@
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
-                        <div class="text-center">
-                            <button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
+                        <div class="">
+                            <button type="submit"  class="btn btn-lg btn-primary">
                                 <span class="indicator-label">S'inscrire</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

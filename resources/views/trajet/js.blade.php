@@ -42,8 +42,6 @@
             $('#filter_trajet').submit();
         });
     });
-
-
     $('#search').on('keyup', function (e) {
         var search = $(this).val();
         var url = "{{ route('trajet') }}";
@@ -75,8 +73,9 @@
             }
         });
     });
-
-
+    
+    
+    
     // ALERTE DE CONFIRMATION Reservation
     $(document).on('click', '#reservation', function () {
         const url = $(this).data('url');
@@ -136,5 +135,38 @@
             }
         });
     });
+
+
+    $(document).ready(function () {
+    $('#publier_trajet').on('click', function (e) {
+        e.preventDefault();
+       
+        $.ajax({
+            url: '{{ route("checkIfConducteur") }}',  
+            method: 'GET',
+            success: function (response) {
+                if (response.isConducteur) {
+                    window.location.href = '{{ route("trajet.create") }}';
+                } else {
+                    Swal.fire({
+                        title: 'Accès réservé',
+                        text: "Seuls les conducteurs peuvent publier des trajets.",
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            },
+            error: function () {
+                Swal.fire({
+                    title: 'Erreur',
+                    text: "Une erreur est survenue. Veuillez réessayer.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+});
+
 
 </script>

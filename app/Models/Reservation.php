@@ -15,7 +15,8 @@ class Reservation extends Model
         'trajet_id',
         'status',
     ];
-
+    protected $keyType = 'string'; 
+    public $incrementing = false;
     protected static function boot()
     {
         parent::boot();

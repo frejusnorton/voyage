@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-    @if($reservations->isEmpty())
+    @if ($reservations->isEmpty())
         <div class="mt-10 fs-3 text-center">
             Aucune réservation disponible.
         </div>
@@ -29,7 +29,7 @@
                     <div class="card-header d-flex justify-content-between align-items-center border-0 mt-4">
                         <h3 class="card-title">
                             <span class="fw-bold mb-2 text-gray-900">
-                                {{ $reservation->trajet->villeDepart->nom  }} → {{ $reservation->trajet->villeArrive->nom }}
+                                {{ $reservation->trajet->villeDepart->nom }} → {{ $reservation->trajet->villeArrive->nom }}
                             </span>
                         </h3>
                         <span class="badge bg-primary fs-6 py-2 px-3">
@@ -59,36 +59,37 @@
                                 </div>
                                 <div class="timeline-content fw-bold text-gray-800 ps-10">
                                     <span
-                                        class="badge badge-light-{{ $reservation->status == 'confirmé' ? 'success' : 'warning' }}">
+                                        class="badge badge-light-{{ $reservation->status == 'confirmé' ? 'success' : ($reservation->status == 'annulé' ? 'danger' : 'warning') }}">
                                         {{ ucfirst($reservation->status) }}
                                     </span>
                                 </div>
                             </div>
 
-                            @if($reservation->status == 'en attente')
-                            <div class="timeline-item d-flex align-items-center mb-4">
-                                <div class="timeline-label fw-bold text-gray-800 fs-6">Action</div>
-                                <div class="timeline-content ps-10 d-flex">
+                            @if ($reservation->status == 'en attente')
+                                <div class="timeline-item d-flex align-items-center mb-4">
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Action</div>
+                                    <div class="timeline-content ps-10 d-flex">
 
-                                    <a href="{{ route('payment.index', ['reservation' => $reservation->id]) }}" class="btn btn-success btn-sm d-flex align-items-center me-3">
-                                        <i class="fa fa-check-circle me-2"></i>
-                                        Confirmer
-                                    </a>
-                                    <!-- Bouton Annuler -->
-                                    <form action="#" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center">
-                                            <i class="fa fa-times-circle me-2"></i>
-                                            Annuler
-                                        </button>
-                                    </form>
+                                        <a href="{{ route('payment.index', ['reservation' => $reservation->id]) }}"
+                                            class="btn btn-success btn-sm d-flex align-items-center me-3">
+                                            <i class="fa fa-check-circle me-2"></i>
+                                            Confirmer
+                                        </a>
+                                        <!-- Bouton Annuler -->
+                                        <form action="#" method="POST">
+                                            <button id="annuler_reservation" type="submit"
+                                                data-reservation="{{ $reservation->id }}"
+                                                class="btn btn-danger btn-sm d-flex align-items-center">
+                                                <i class="fa fa-times-circle me-2"></i>
+                                                Annuler
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        @else
-                            <!-- Autres actions si besoin -->
-                        @endif
-                        
+                            @else
+                                <!-- Autres actions si besoin -->
+                            @endif
+
 
                         </div>
                     </div>
@@ -97,4 +98,8 @@
             </div>
         @endforeach
     @endif
+@endsection
+
+@section('scripts')
+    @include('reservation.js')
 @endsection

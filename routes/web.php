@@ -49,15 +49,19 @@ Route::middleware('auth')->group(function () {
 
     // RÉSERVATION
     Route::match(['get', 'post'], '/reservation', [ReservationController::class, 'index'])->name('reservation');
+    Route::post('annuler/{reservation}', [ReservationController::class, 'annulerReservation'])->name('reservation.annuler');
 
     //CONDUCTEUR
     Route::get('conducteur', [ConducteurController::class, 'index'])->name('trajet.conducteur');
+    Route::get('/check-if-conducteur', [TrajetController::class, 'checkIfConducteur'])->name('checkIfConducteur');
 
     //PAIEMENT
     Route::get('/payment/{reservation}', [PaiementController::class, 'index'])->name('payment.index');
 
     //SUPPRESSION DE COMPTE
     Route::post('supprimer/{user}', [SupprimerCompteController::class, 'deleteAccount'])->name('suppression');
+
+
 
     // DÉCONNEXION
     Route::match(['get','post'],'deconnexion', [LoginController::class,'logout'])->name('logout');

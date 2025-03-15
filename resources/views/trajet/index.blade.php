@@ -33,7 +33,7 @@
 
             <!--begin::Wrapper pour le bouton Publier-->
             <div>
-                <a href="{{ route('trajet.create') }}" class="btn btn-bg-white btn-active-color-primary" id="">Publiez
+                <a href="{{ route('trajet.create') }}" class="btn btn-bg-white btn-active-color-primary" id="publier_trajet">Publiez
                     un trajet</a>
             </div>
         </div>

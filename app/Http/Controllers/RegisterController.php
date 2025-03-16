@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -24,6 +25,7 @@ class RegisterController extends Controller
                 // dd($request-> all());
                 DB::beginTransaction();
                 $user = User::create([
+                    'id' => Str::uuid(), 
                     'nom' => $request->nom,
                     'prenom' => $request->prenom,
                     'email' => $request->email,
@@ -38,12 +40,14 @@ class RegisterController extends Controller
                 if ($request->has('type')) {
                     if ($request->type === 'passager') {
                         DB::table('passagers')->insert([
+                            'id' => Str::uuid(),
                             'user_id' => $user->id,
                             'created_at' => now(),
                             'updated_at' => now(),
                         ]);
                     } elseif ($request->type === 'conducteur') {
                         DB::table('conducteurs')->insert([
+                            'id' => Str::uuid(),
                             'user_id' => $user->id,
                             'created_at' => now(),
                             'updated_at' => now(),
@@ -59,11 +63,9 @@ class RegisterController extends Controller
                 ]);
             } catch (\Exception $e) {
                 DB::rollBack();
-        
                 Log::error('Erreur lors de l\'inscription : ' . $e->getMessage(), [
                     'stack' => $e->getTraceAsString()
                 ]);
-        
                 return response()->json([
                     'success' => false,
                     'message' => 'Une erreur est survenue, veuillez réessayer plus tard.'

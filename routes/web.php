@@ -1,19 +1,25 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
+use Illuminate\Mail\Events\MessageSent;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\TrajetController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\PassagerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\ConducteurController;
-use App\Http\Controllers\PassagerController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SupprimerCompteController;
+
+Route::post('/send-message', [MessageController::class, 'sendMessage']);
+Route::get('message', [MessageController::class, 'index']);
 
 // ACCUEIL & CONDITIONS
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -31,8 +37,8 @@ Route::middleware('guest')->group(function () {
 // ROUTES PROTÉGÉES (Accessible uniquement aux utilisateurs connectés)
 Route::middleware('auth')->group(function () {
 
-    // PROFIL UTILISATEUR
-    Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
+    // // PROFIL UTILISATEUR
+    // Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
 
     // MODIFICATION DES INFORMATIONS DU PASSAGER
     Route::get('compte/{user}', [PassagerController::class, 'index'])->name('passager.index');
@@ -64,7 +70,7 @@ Route::middleware('auth')->group(function () {
 
 
     // DÉCONNEXION
-    Route::match(['get','post'],'deconnexion', [LoginController::class,'logout'])->name('logout');
+    Route::match(['get', 'post'], 'deconnexion', [LoginController::class, 'logout'])->name('logout');
 });
 
 // TRAJETS (Accessible à tous)

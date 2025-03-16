@@ -76,8 +76,9 @@
                                 <input type="tel" name="telephone"
                                     class="form-control form-control-lg form-control-solid"
                                     placeholder="Numéro de téléphone">
-                                    <span class="text-danger error-telephone"></span>
+
                             </div>
+                            <span class="text-danger error-telephone"></span>
                             <div
                                 class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
                             </div>
@@ -98,6 +99,7 @@
                             <label class="form-label fw-bolder text-dark fs-6">Vous etes ?</label>
                             <select class="form-control form-control-lg form-control-solid" name="type">
                                 <option value="passager">Passager</option>
+                                <option value="conducteur">Conducteur</option>
                             </select>
                             <span class="text-danger error-type"></span>
                         </div>
@@ -121,14 +123,6 @@
                                     <span class="text-danger error-password"></span>
                                 </div>
                                 <!--end::Input wrapper-->
-                                <!--begin::Meter-->
-                                <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-                                </div>
-                                <!--end::Meter-->
                             </div>
                             <!--end::Wrapper-->
                             <!--begin::Hint-->
@@ -142,22 +136,24 @@
                         <div class="fv-row mb-5">
                             <label class="form-label fw-bolder text-dark fs-6">Confirmer mot de passe</label>
                             <input class="form-control form-control-lg form-control-solid" type="password" placeholder=""
-                                name="confirm-password" autocomplete="off" />
-
+                                name="password_confirmation" autocomplete="off" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row mb-10">
                             <label class="form-check form-check-custom form-check-solid form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="toc" value="1" />
+                                <input class="form-check-input" type="checkbox" name="conditions" value="1" />
                                 <span class="form-check-label fw-bold text-gray-700 fs-6">J'accepte
-                                    <a href="#" class="ms-1 link-primary">les conditions d'utilisations</a>.</span>
+                                    <a href="{{ route('conditions') }}" class="ms-1 link-primary">les conditions
+                                        d'utilisations</a>.</span>
                             </label>
+                            <span class="text-danger error-conditions"></span>
                         </div>
+                       
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="">
-                            <button type="submit"  class="btn btn-lg btn-primary">
+                            <button type="submit" class="btn btn-lg btn-primary">
                                 <span class="indicator-label">S'inscrire</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

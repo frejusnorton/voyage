@@ -47,7 +47,6 @@
         <!--end::Recherche-->
     </div>
     <!--end::Container-->
-
 @endsection
 
 @section('content')

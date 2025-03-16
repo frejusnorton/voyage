@@ -14,7 +14,8 @@
                             <img class="h-60px w-60px rounded"
                                 src="{{ $user->profil_img ? asset($user->profil_img) : asset('assets/media/avatars/blank.png') }}"
                                 alt="Photo de profil" />
-                            <span class="position-absolute top-0 end-0 translate-middle p-2 
+                            <span
+                                class="position-absolute top-0 end-0 translate-middle p-2 
                          {{ $user->is_online ? 'bg-success' : 'bg-danger' }} 
                          border border-white rounded-circle">
                             </span>
@@ -28,10 +29,10 @@
                             <div class="d-flex flex-column">
                                 <!--begin::Name-->
                                 <div class="d-flex align-items-center mb-2">
-                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{$user->nom}}
-                                        {{$user->prenom}} </span>
-                                    <span><i class="ki-duotone ki-verify fs-1 text-primary"><span class="path1"></span><span
-                                                class="path2"></span></i></span>
+                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $user->nom }}
+                                        {{ $user->prenom }} </span>
+                                    <span><i class="ki-duotone ki-verify fs-1 text-primary"><span
+                                                class="path1"></span><span class="path2"></span></i></span>
                                 </div>
                                 <!--end::Name-->
 
@@ -40,23 +41,23 @@
 
                                     <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
                                         <i class="ki-duotone ki-geolocation fs-4 me-1"><span class="path1"></span><span
-                                                class="path2"></span></i> {{$user->address}}
+                                                class="path2"></span></i> {{ $user->address }}
                                     </span>
                                     <span class="d-flex align-items-center text-gray-500 text-hover-primary mb-2">
                                         <i class="ki-duotone ki-sms fs-4"><span class="path1"></span><span
-                                                class="path2"></span></i> {{$user->email}}
+                                                class="path2"></span></i> {{ $user->email }}
                                     </span>
                                 </div>
                                 <!--end::Info-->
                             </div>
                             <!--end::User-->
                             <!--begin::Actions-->
-                            <div class="d-flex my-4">
-                                <a href="{{ route('profil.contact', ['user' => $user->id]) }}"
-                                    class="btn btn-sm btn-primary me-3">
-                                    Contacter {{ $user->nom }}
-                                </a>
-                            </div>
+                                <div class="d-flex my-4">
+                                    <a href="#" class="btn btn-sm btn-primary me-3">
+                                        Contacter {{ $user->nom }}
+                                    </a>
+                                </div>
+                            @include('components.chat')
                             <!--end::Actions-->
                         </div>
                         <!--end::Title-->
@@ -76,7 +77,7 @@
                                                     class="path1"></span><span class="path2"></span></i>
                                             <div class="fs-2 fw-bold counted" data-kt-countup="true"
                                                 data-kt-countup-value="4500" data-kt-countup-prefix="$"
-                                                data-kt-initialized="1">{{$nombreTrajetsPublies}}</div>
+                                                data-kt-initialized="1">{{ $nombreTrajetsPublies }}</div>
                                         </div>
                                         <!--end::Number-->
 
@@ -145,7 +146,7 @@
                 <form class="form">
                     <!--begin::Card body-->
                     <div class="card-body border-top px-9 py-9">
-                        @foreach($trajets as $trajet)
+                        @foreach ($trajets as $trajet)
                             <div class="card card-xl-stretch">
                                 <!-- Header -->
                                 <div class="card-header align-items-center border-0 mt-4 d-flex justify-content-between">
@@ -222,7 +223,7 @@
                             </div>
                         @endforeach
                         <div class="mt-6 ">
-                            {{$trajets->links('pagination.custom') }}
+                            {{ $trajets->links('pagination.custom') }}
                         </div>
                     </div>
                     <!--end::Card body-->

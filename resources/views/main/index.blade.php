@@ -64,6 +64,7 @@
 </head>
 
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
+    @include('components.cookie')
     <div class="gradient-background"></div>
     <div class="d-flex flex-column flex-root">
         <div class="page d-flex flex-row flex-column-fluid">

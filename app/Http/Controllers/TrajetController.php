@@ -79,6 +79,10 @@ class TrajetController extends Controller
 
     public function checkIfConducteur()
     {
+
+        if (!Auth::check()) {
+            return response()->json(['message' => 'Vous devez vous connecter'], 401);
+        }
         if (Auth::check() && auth()->user()->type === 'conducteur') {
             return response()->json(['isConducteur' => true]);
         }

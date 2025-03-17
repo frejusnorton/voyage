@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
+
+use Illuminate\Support\Facades\Route;
 use Illuminate\Mail\Events\MessageSent;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -15,15 +14,23 @@ use App\Http\Controllers\PassagerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\ConducteurController;
+use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SupprimerCompteController;
 
-Route::post('/send-message', [MessageController::class, 'sendMessage']);
-Route::get('message', [MessageController::class, 'index']);
+
+
+
+// Route::post('/send-message', [MessageController::class, 'sendMessage']);
+// Route::get('message', [MessageController::class, 'index']);
 
 // ACCUEIL & CONDITIONS
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('conditions', [ConditionsController::class, 'index'])->name('conditions');
+
+//AUTHENTIFICATION PAR GOOGLE 
+Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('redirectToGoogle');
+Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 
 // AUTHENTIFICATION (Accessible aux non-connectés)
 Route::middleware('guest')->group(function () {

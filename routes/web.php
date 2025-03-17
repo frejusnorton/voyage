@@ -45,7 +45,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     // // PROFIL UTILISATEUR
-    // Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
+     Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
 
     // MODIFICATION DES INFORMATIONS DU PASSAGER
     Route::get('compte/{user}', [PassagerController::class, 'index'])->name('passager.index');

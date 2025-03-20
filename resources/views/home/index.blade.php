@@ -6,6 +6,7 @@
     @include('components.cookie')
     @include('components.heroSection')
     @include('components.feature')
-    @include('components.a-propos')
+    @include('components.questions')
+    {{-- @include('components.a-propos') --}}
     @include('components.contact')
 @endsection

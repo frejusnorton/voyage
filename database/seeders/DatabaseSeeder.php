@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\Reservation;
 use Illuminate\Database\Seeder;
 
 
@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             VillesSeeder::class,
             ConducteurSeeder::class,
             TrajetSeeder::class,
+            ReservationSeeder::class,
         ]);
     }
     

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->time('heure_depart');
             $table->decimal('prix', 8, 2);
             $table->integer('nombre_personnes')->nullable();
-            $table->enum('statut', ['disponible', 'complet', 'annulé'])->default('disponible'); 
+            $table->enum('statut', ['disponible', 'complet', 'annule'])->default('disponible'); 
             $table->timestamps();
         });
     }

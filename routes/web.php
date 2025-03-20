@@ -45,7 +45,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     // // PROFIL UTILISATEUR
-     Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
+    Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
 
     // MODIFICATION DES INFORMATIONS DU PASSAGER
     Route::get('compte/{user}', [PassagerController::class, 'index'])->name('passager.index');
@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
     // RÉSERVATION
     Route::match(['get', 'post'], '/reservation', [ReservationController::class, 'index'])->name('reservation');
     Route::post('annuler/{reservation}', [ReservationController::class, 'annulerReservation'])->name('reservation.annuler');
+    Route::get('/reservations/recherche', [ReservationController::class, 'recherche'])->name('reservation.recherche');
 
     //CONDUCTEUR
     Route::get('conducteur', [ConducteurController::class, 'index'])->name('trajet.conducteur');

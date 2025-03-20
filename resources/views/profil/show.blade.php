@@ -14,10 +14,9 @@
                             <img class="h-60px w-60px rounded"
                                 src="{{ $user->profil_img ? asset($user->profil_img) : asset('assets/media/avatars/blank.png') }}"
                                 alt="Photo de profil" />
-                            <span
-                                class="position-absolute top-0 end-0 translate-middle p-2 
-                         {{ $user->is_online ? 'bg-success' : 'bg-danger' }} 
-                         border border-white rounded-circle">
+                            <span class="position-absolute top-0 end-0 translate-middle p-2 
+                             {{ $user->is_online ? 'bg-success' : 'bg-danger' }} 
+                             border border-white rounded-circle">
                             </span>
                         </div>
                     </div>
@@ -31,8 +30,8 @@
                                 <div class="d-flex align-items-center mb-2">
                                     <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $user->nom }}
                                         {{ $user->prenom }} </span>
-                                    <span><i class="ki-duotone ki-verify fs-1 text-primary"><span
-                                                class="path1"></span><span class="path2"></span></i></span>
+                                    <span><i class="ki-duotone ki-verify fs-1 text-primary"><span class="path1"></span><span
+                                                class="path2"></span></i></span>
                                 </div>
                                 <!--end::Name-->
 
@@ -52,11 +51,11 @@
                             </div>
                             <!--end::User-->
                             <!--begin::Actions-->
-                                <div class="d-flex my-4">
-                                    <a href="#" class="btn btn-sm btn-primary me-3">
-                                        Contacter {{ $user->nom }}
-                                    </a>
-                                </div>
+                            <div class="d-flex my-4">
+                                <a href="#" class="btn btn-sm btn-primary me-3">
+                                    Contacter {{ $user->nom }}
+                                </a>
+                            </div>
                             @include('components.chat')
                             <!--end::Actions-->
                         </div>
@@ -188,6 +187,27 @@
                                             </div>
                                             <div class="fw-mormal timeline-content text-muted ps-3">
                                                 {{ $trajet->villeArrive->nom }}
+                                            </div>
+                                        </div>
+                                        <!-- Date de départ -->
+                                        <div class="timeline-item d-flex align-items-center mb-3">
+                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Date </div>
+                                            <div class="timeline-badge mx-4">
+                                                <i class="fa fa-calendar-alt text-primary fs-4"></i>
+                                            </div>
+                                            <div class="timeline-content text-muted ps-3">
+                                                {{ \Carbon\Carbon::parse($trajet->heure_depart)->locale('fr')->isoFormat('dddd, D MMMM YYYY') }}
+                                            </div>
+                                        </div>
+
+                                        <!-- Heure de départ -->
+                                        <div class="timeline-item d-flex align-items-center mb-3">
+                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Heure</div>
+                                            <div class="timeline-badge mx-4">
+                                                <i class="fa fa-clock text-primary fs-4"></i>
+                                            </div>
+                                            <div class="timeline-content text-muted ps-3">
+                                                {{ \Carbon\Carbon::parse($trajet->heure_depart)->format('H:i') }}
                                             </div>
                                         </div>
 

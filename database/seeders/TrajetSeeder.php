@@ -38,7 +38,7 @@ class TrajetSeeder extends Seeder
                 'prix' => rand(2000, 10000),
                 'date_depart' => $dateDepart,
                 'nombre_personnes' => rand(1, 4),
-                'statut' => collect(['disponible', 'complet', 'annulé'])->random(),
+                'statut' => collect(['disponible', 'complet', 'annule'])->random(),
                 'description' => $description,
                 'created_at' => now(),
                 'updated_at' => now(),

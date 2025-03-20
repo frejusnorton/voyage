@@ -17,7 +17,7 @@ class ReservationController extends Controller
     {
         $reservations = Reservation::with('trajet')
             ->where('user_id', auth()->id())
-            ->paginate(10); {
+            ->paginate(9); {
 
             if ($request->ajax()) {
                 $request->validate([
@@ -25,7 +25,6 @@ class ReservationController extends Controller
                     'user_id' => 'required|uuid|exists:users,id',
                 ]);
                 DB::beginTransaction();
-
                 try {
                     $reservation = Reservation::create([
                         'user_id' => $request->user_id,
@@ -38,6 +37,7 @@ class ReservationController extends Controller
                         $auteurTrajet = $trajet->user;
                         $auteurTrajet->notify(new ReservationNotification($reservation));
                     }
+
                     DB::commit();
                     return response()->json([
                         'message' => 'Votre réservation a été bien enregistrée, veuillez payer pour confirmer.',
@@ -58,9 +58,33 @@ class ReservationController extends Controller
         ]);
     }
 
+    public function recherche(Request $request)
+    {
+        if ($request->ajax()) {
+            $user_id = $request->input('user'); 
+            $user = User::findOrFail($user_id); 
+    
+            $search = $request->input('search', '');
+    
+            $query = $user->reservations();
+    
+            if ($search) {
+                $query->where(function($q) use ($search) {
+                    $search = strtolower($search);
+                    $q->where('status', 'like', '%' . $search . '%');
+                });
+            }
+            $reservations = $query->paginate(9);
+            return view('reservation.datapart', [
+                'reservations' => $reservations
+            ]);
+        }
+    }
+    
+
     public function annulerReservation(Reservation $reservation)
     {
-        $reservation->status = 'annulé';
+        $reservation->status = 'annuler';
         $reservation->save();
         return response()->json([
             'message' => 'Réservation annulée avec succès.',

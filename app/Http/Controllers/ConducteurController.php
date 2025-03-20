@@ -14,7 +14,7 @@ class ConducteurController extends Controller
         if (!$user) {
             abort(403, 'Utilisateur non authentifié.');
         }
-        $trajets = $user->trajets()->paginate(10); 
+        $trajets = $user->trajets()->paginate(5); 
 
        
         return view("conducteur.trajet", [

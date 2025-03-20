@@ -62,7 +62,18 @@ class TrajetController extends Controller
     }
 
 
-    public function create() {}
+    public function create(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            dd($request->all());
+        }
+
+        $ville = Ville::all();
+        return view(
+            'trajet.create',
+            ['villes' => $ville]
+        );
+    }
 
     public function details(Trajet $trajet)
     {

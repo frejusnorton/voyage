@@ -48,8 +48,8 @@ class EditPassagerProfilRequest extends FormRequest
             'sexe.in' => 'Le sexe doit être l\'un des suivants : male, female, other.',
             'adresse.string' => 'L\'adresse doit être une chaîne de caractères.',
             'telephone.regex' => 'Le numéro de téléphone est invalide.',
-            'avatar.mimes' => "Le profil doit être au format .jpg, .jpeg ou .png.",
-            'avatar.max' => 'Le profil ne doit pas dépasser 2 Mo.',
+            'profil_img.mimes' => "Le profil doit être au format .jpg, .jpeg ou .png.",
+            'profil_img.max' => 'Le profil ne doit pas dépasser 2 Mo.',
             'naissance.before_or_equal' => 'La date de naissance ne peut pas être dans le futur.',
         ];
     }

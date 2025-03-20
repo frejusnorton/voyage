@@ -1,6 +1,6 @@
 <script>
-    $(document).ready(function() {
-        $('#filter_trajet').submit(function(e) {
+    $(document).ready(function () {
+        $('#filter_trajet').submit(function (e) {
             e.preventDefault();
             var formData = $(this).serialize();
 
@@ -18,7 +18,7 @@
                 url: '{{ route('trajet') }}',
                 method: 'GET',
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     var menuElement = document.querySelector("#kt_menu_6155af3f2f180");
                     var menuInstance = KTMenu.getInstance(menuElement);
                     if (menuInstance) {
@@ -26,7 +26,7 @@
                     }
                     $('#trajet').html(response);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     $('#trajet').html(
                         '<p class = "class="text-muted fs-5"" >Une erreur est survenue,veuilllez réessayer</p>'
                     );
@@ -35,7 +35,7 @@
         });
 
 
-        $(document).on('click', '.pagination a', function(e) {
+        $(document).on('click', '.pagination a', function (e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
             $('#trajet').data('current-page', page);
@@ -44,7 +44,7 @@
             $('#filter_trajet').submit();
         });
     });
-    $('#search').on('keyup', function(e) {
+    $('#search').on('keyup', function (e) {
         var search = $(this).val();
         var url = "{{ route('trajet') }}";
 
@@ -67,10 +67,10 @@
                 'search': search
             },
             type: 'GET',
-            success: function(data) {
+            success: function (data) {
                 $("#trajet").html(data);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
 
             }
         });
@@ -79,7 +79,7 @@
 
 
     // ALERTE DE CONFIRMATION Reservation
-    $(document).on('click', '#reservation', function() {
+    $(document).on('click', '#reservation', function () {
         const url = $(this).data('url');
         const trajetId = $(this).data('trajet-id');
         const userId = $(this).data('user-id');
@@ -104,7 +104,7 @@
                         user_id: userId,
 
                     },
-                    success: function(response) {
+                    success: function (response) {
 
                         Swal.fire(
                             'Réservation réussie !',
@@ -114,7 +114,7 @@
                             window.location.href = response.redirect;
                         });
                     },
-                    error: function(error) {
+                    error: function (error) {
                         if (error.status === 401) {
                             Swal.fire({
                                 title: "Vous devez être connecté !",
@@ -139,12 +139,12 @@
     });
 
 
-    $('#publier_trajet').on('click', function(e) {
+    $('#publier_trajet').on('click', function (e) {
         e.preventDefault();
         $.ajax({
             url: '{{ route('checkIfConducteur') }}',
             method: 'GET',
-            success: function(response) {
+            success: function (response) {
                 if (response.isConducteur) {
                     window.location.href = '{{ route('trajet.create') }}';
                 } else {
@@ -156,7 +156,7 @@
                     });
                 }
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status === 401) {
                     Swal.fire({
                         title: 'Connexion requise',
@@ -166,7 +166,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.location.href =
-                            '{{ route('login') }}'; 
+                                '{{ route('login') }}';
                         }
                     });
                 } else {
@@ -180,4 +180,8 @@
             }
         });
     });
+
+
+
+
 </script>

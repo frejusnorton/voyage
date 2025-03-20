@@ -124,7 +124,7 @@
 							@endguest
 						</div>
 						<!--begin::Menu-->
-						<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-300px"
+						<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-350px"
 							data-kt-menu="true">
 							@auth
 								<!--begin::Menu item (User info)-->

@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
 
 
     // TRAJETS
-    Route::match(['get', 'post'], '/trajet/create', [TrajetController::class, 'create'])->name('trajet.create');
+    Route::match(['get', 'post'], 'create/trajet', [TrajetController::class, 'create'])->name('trajet.create');
 
     // RÉSERVATION
     Route::match(['get', 'post'], '/reservation', [ReservationController::class, 'index'])->name('reservation');
@@ -75,8 +75,7 @@ Route::middleware('auth')->group(function () {
     //SUPPRESSION DE COMPTE
     Route::post('supprimer/{user}', [SupprimerCompteController::class, 'deleteAccount'])->name('suppression');
 
-
-
+     
     // DÉCONNEXION
     Route::match(['get', 'post'], 'deconnexion', [LoginController::class, 'logout'])->name('logout');
 });

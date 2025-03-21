@@ -1,8 +1,6 @@
 @extends('main.index')
 @section('title', 'Publier un trajet ')
 
-
-
 @section('content')
     <div class="card mb-5 mb-xl-10">
         <!--begin::Card header-->
@@ -26,9 +24,9 @@
                 <div class="card-body border-top p-9">
 
                     <!--begin::Input group-->
-                    <div class="row mb-6">
+                    {{-- <div class="row mb-6">
                         <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Ville de départ</label>
+                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Lieu de départ</label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
@@ -54,7 +52,7 @@
                     <!--begin::Input group-->
                     <div class="row mb-6">
                         <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Ville de d'arrivée</label>
+                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Lieu d'arrivée</label>
                         <div class="col-lg-8">
                             <div class="row">
                                 <div class="col-lg-12 fv-row fv-plugins-icon-container">
@@ -69,8 +67,45 @@
                             <!--end::Row-->
                         </div>
                         <!--end::Col-->
-                    </div>
+                    </div> --}}
                     <!--end::Input group-->
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Lieu de départ</label>
+                        <!--end::Label-->
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                    <input list="villes" name="ville_depart" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Ex : Pahou" required>
+                                    <datalist id="villes">
+                                        @foreach($villes as $ville)
+                                            <option value="{{ $ville->nom }}">{{ $ville->nom }}</option>
+                                        @endforeach
+                                    </datalist>
+                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!--begin::Input group pour la ville d'arrivée-->
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Lieu d'arrivée</label>
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                    <input list="villes" name="ville_arrive" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Ex : Lokossa" required>
+                                    <datalist id="villes">
+                                        @foreach($villes as $ville)
+                                            <option value="{{ $ville->nom }}">{{ $ville->nom }}</option>
+                                        @endforeach
+                                    </datalist>
+                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!--begin::Input group-->
                     <div class="row mb-6">
@@ -151,23 +186,21 @@
                         </div>
                         <!--end::Col-->
                     </div>
-                    <!--end::Input group-->
-
-
                 </div>
-                <!--end::Card body-->
-
-                <!--begin::Actions-->
+            
                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                     <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Publiez
                     </button>
                 </div>
-                <!--end::Actions-->
-                <input type="hidden">
             </form>
             <!--end::Form-->
         </div>
         <!--end::Content-->
     </div>
-
 @endsection
+
+@section('scripts')
+@include('trajet.js')
+@endsection
+
+

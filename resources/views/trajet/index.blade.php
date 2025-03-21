@@ -55,7 +55,6 @@
     </div>
 @endsection
 
-
 @section('scripts')
     @include('trajet.js')
 @endsection

@@ -3,6 +3,8 @@
         e.preventDefault();
 
         var reservation = $(this).data('reservation');
+
+
         Swal.fire({
             title: 'Êtes-vous sûr ?',
             text: "Vous allez annuler cette réservation.",
@@ -57,8 +59,8 @@
     $('#search').on('keyup', function (e) {
         var search = $(this).val();
         var user = $(this).data('user-id');
-     
-        
+
+
         var url = "{{ route('reservation.recherche') }}";
 
         $("#reservation").html(`
@@ -77,7 +79,7 @@
             url: url,
             data: {
                 'search': search,
-                'user': user 
+                'user': user
             },
             type: 'GET',
             success: function (data) {
@@ -88,4 +90,7 @@
             }
         });
     });
+
+ 
+
 </script>

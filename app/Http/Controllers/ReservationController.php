@@ -90,4 +90,6 @@ class ReservationController extends Controller
             'message' => 'Réservation annulée avec succès.',
         ]);
     }
+
+    
 }

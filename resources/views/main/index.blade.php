@@ -103,10 +103,14 @@
     <script src="assets/js/custom/apps/chat/chat.js"></script>
     <script src="assets/js/custom/modals/create-app.js"></script>
     <script src="assets/js/custom/modals/upgrade-plan.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
- 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>  
+      <script src="https://cdn.kkiapay.me/k.js"></script>
+
+
     @yield('scripts')
     <script>var hostUrl = "assets/";</script>
+
+
 </body>
 
 

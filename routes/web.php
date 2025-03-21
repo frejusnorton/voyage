@@ -71,9 +71,12 @@ Route::middleware('auth')->group(function () {
 
     //PAIEMENT
     Route::get('/payment/{reservation}', [PaiementController::class, 'index'])->name('payment.index');
+    Route::get('/paiement/callback/{reservation}',[PaiementController::class,'callback'])->name('paiement.callback');
 
     //SUPPRESSION DE COMPTE
     Route::post('supprimer/{user}', [SupprimerCompteController::class, 'deleteAccount'])->name('suppression');
+
+
 
      
     // DÉCONNEXION

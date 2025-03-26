@@ -53,6 +53,6 @@
         <p>Vous serez informé des mises à jour et votre utilisation continue du service vaut acceptation des nouvelles conditions.</p>
 
         <h4>8. Contact</h4>
-        <p>Si vous avez des questions, vous pouvez nous contacter à <a href="mailto:support@votresite.com">support@votresite.com</a>.</p>
+        <p>Si vous avez des questions, vous pouvez nous contacter à <a href="mailto:support@votresite.com">support@covoyages.laravel.cloud</a>.</p>
     </div>
 @endsection

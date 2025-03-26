@@ -79,7 +79,7 @@
                                                         class="path1"></span><span class="path2"></span></i>
                                                 <div class="fs-2 fw-bold counted" data-kt-countup="true"
                                                     data-kt-countup-value="4500" data-kt-countup-prefix="$"
-                                                    data-kt-initialized="1">00</div>
+                                                    data-kt-initialized="1">{{$trajets}}</div>
                                             </div>
                                             <!--end::Number-->
 

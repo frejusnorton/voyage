@@ -4,6 +4,7 @@
 @section('content')
     <div class="card card-xl-stretch">
         <!-- Header -->
+     
         <div class="card-header align-items-center border-0 mt-4 d-flex justify-content-between">
             <h3 class="card-title align-items-start flex-column">
                 <span class="fw-bold mb-2 text-gray-900">

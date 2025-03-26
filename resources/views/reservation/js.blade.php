@@ -91,6 +91,18 @@
         });
     });
 
- 
+    $(document).ready(function () {
+    $("[id^=annuler_reservation_]").each(function () {
+        var heureDepart = $(this).data("heure-depart");
+        var dateHeureDepart = new Date(heureDepart);
+        var now = new Date();
+        var diffInMinutes = (dateHeureDepart - now) / (1000 * 60);
+
+        if (diffInMinutes <= 60) {
+            $(this).prop("disabled", true).addClass("disabled");
+        }
+    });
+});
+
 
 </script>

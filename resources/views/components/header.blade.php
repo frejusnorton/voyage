@@ -157,12 +157,14 @@
 									</div>
 								@endif
 								@if (auth()->user()->type === 'conducteur')
+						
 									<div class="menu-item px-5 my-1 d-flex justify-between">
 
-										<a href="{{route('trajet.conducteur') }}" class="menu-link px-5 fs-3">
-											Mes trajets publiés
+										<a href="{{route('conducteur.espace') }}" class="menu-link px-5 fs-3">
+									        	Mon espace
 										</a>
 									</div>
+									
 								@endif
 
 								@if (auth()->user()->type === 'passager')

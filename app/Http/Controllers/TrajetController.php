@@ -8,6 +8,8 @@ use App\Models\Trajet;
 use App\Models\Conducteur;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TrajetCreateRequest;
 
@@ -17,10 +19,13 @@ class TrajetController extends Controller
     public function index(Request $request)
     {
 
+        $trajets = DB::table('trajets')
+            ->whereRaw("(CURRENT_DATE + heure_depart::interval) < NOW()")
+            ->update(['statut' => 'annule']);
+
         $villes = Ville::all();
         $search = $request->input('search', '');
         $query = Trajet::filter($search)->with(['villeDepart', 'villeArrive']);
-
         if ($request->filled('statut')) {
             $query->where('statut', $request->statut);
         }
@@ -42,6 +47,7 @@ class TrajetController extends Controller
             $query->where('prix', '<=', $request->montant);
         }
 
+        $query->orderByDesc(DB::raw("statut = 'disponible'"));
 
         if ($request->ajax()) {
             $trajets = $query->paginate(9);
@@ -49,7 +55,6 @@ class TrajetController extends Controller
                 'trajets' => $trajets
             ]);
         }
-
 
         $page = $request->input('page', 1);
         $trajets = $query->paginate(9, ['*'], 'page', $page);
@@ -66,7 +71,6 @@ class TrajetController extends Controller
 
     public function create(Request $request)
     {
-
         $ville = Ville::all();
 
         if ($request->isMethod('post')) {
@@ -77,7 +81,7 @@ class TrajetController extends Controller
                 'heure_depart' => 'required|date_format:H:i',
                 'prix' => 'required|numeric|min:500',
                 'description' => 'nullable|string|max:1000',
-                'nombre_personnes' => 'nullable|integer|min:1',
+                'nombre_personnes' => 'required|integer|min:1',
             ], [
                 'ville_depart.required' => 'Le lieu de départ est obligatoire.',
                 'ville_depart.string' => 'Le lieu de départ doit être une chaîne de caractères.',
@@ -95,7 +99,6 @@ class TrajetController extends Controller
                 'heure_depart.date_format' => 'L\'heure de départ doit être au format HH:MM.',
 
                 'nombre_personnes.required' => 'Le nombre de places disponibles est obligatoire.',
-                'nombre_personnes.integer' => 'Le nombre de places disponibles doit être un nombre entier.',
                 'nombre_personnes.min' => 'Il doit y avoir au moins une place disponible.',
 
                 'prix.required' => 'Le prix est obligatoire.',
@@ -107,23 +110,36 @@ class TrajetController extends Controller
 
             ]);
 
-            $villeDepart = Ville::firstOrCreate(['nom' => $request->input('ville_depart')]);
-            $villeArrive = Ville::firstOrCreate(['nom' => $request->input('ville_arrive')]);
+            DB::beginTransaction();
 
+            try {
+                $villeDepart = Ville::firstOrCreate(['nom' => $validatedData['ville_depart']]);
+                $villeArrive = Ville::firstOrCreate(['nom' => $validatedData['ville_arrive']]);
 
-            $trajet = new Trajet();
-            $trajet->id = (string) Str::uuid();
-            $trajet->description = $request->input('description');
-            $trajet->user_id = auth()->id();
-            $trajet->ville_depart_id = $villeDepart->id;
-            $trajet->ville_arrive_id = $villeArrive->id;
-            $trajet->date_depart = $request->input('date_depart');
-            $trajet->heure_depart = $request->input('heure_depart');
-            $trajet->prix = $request->input('prix');
-            $trajet->nombre_personnes = $request->input('nombre_personnes');
-            $trajet->statut = 'disponible';
-            $trajet->save();
+                $trajet = new Trajet();
+                $trajet->id = (string) Str::uuid();
+                $trajet->description = $validatedData['description'];
+                $trajet->user_id = auth()->id();
+                $trajet->ville_depart_id = $villeDepart->id;
+                $trajet->ville_arrive_id = $villeArrive->id;
+                $trajet->date_depart = $validatedData['date_depart'];
+                $trajet->heure_depart = $validatedData['heure_depart'];
+                $trajet->prix = $validatedData['prix'];
+                $trajet->nombre_personnes = $validatedData['nombre_personnes'];
+                $trajet->statut = 'disponible';
+                $trajet->save();
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Le trajet a été ajouté publié succès !',
+                    'redirect' => route('trajet'),
+                ], 201);
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return back()->withErrors(['error' => 'Une erreur est survenue. Veuillez réessayer.']);
+            }
         }
+
 
         return view(
             'trajet.create',

@@ -25,7 +25,6 @@ class PaiementController extends Controller
     {
 
         $transaction_id = $request->query('transaction_id');
-
         $response = Http::withHeaders([
             'x-api-key' => env('KKIAPAY_PUBLIC_KEY'),
             'Accept' => 'application/json'

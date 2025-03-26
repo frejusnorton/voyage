@@ -4,6 +4,8 @@
             <p class="text-muted fs-5">Aucun trajet disponible pour le moment.</p>
         </div>
     @else
+
+
         @foreach ($trajets as $trajet)
             <div class="col-xl-4">
                 <a href="{{ route('trajet.details', ['trajet' => $trajet->id]) }}" class="text-decoration-none">
@@ -19,8 +21,9 @@
                                     {{ $trajet->nombre_personnes }} places disponibles
                                 </span>
                             </h3>
-                            <span class="badge bg-primary fs-6 py-2 px-3">{{ number_format($trajet->prix, 0, ',', ' ') }}
-                                FCFA</span>
+                            <span class="badge bg-primary fs-6 py-2 px-3">
+                                {{ number_format($trajet->prix, 0, ',', ' ') }} FCFA
+                            </span>
                         </div>
                         <!-- End Header -->
 
@@ -51,12 +54,12 @@
 
                                 <!-- Date de départ -->
                                 <div class="timeline-item d-flex align-items-center mb-3">
-                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Date </div>
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Date</div>
                                     <div class="timeline-badge mx-4">
                                         <i class="fa fa-calendar-alt text-primary fs-4"></i>
                                     </div>
                                     <div class="timeline-content text-muted ps-10">
-                                        {{ \Carbon\Carbon::parse($trajet->heure_depart)->locale('fr')->isoFormat('dddd, D MMMM YYYY') }}
+                                        {{ \Carbon\Carbon::parse($trajet->date_depart)->translatedFormat('l d F Y') }}
                                     </div>
                                 </div>
 
@@ -78,8 +81,10 @@
                                         <i class="fa fa-info-circle text-primary fs-4"></i>
                                     </div>
                                     <div class="timeline-content fw-bold text-gray-800 ps-10">
-                                        <span
-                                            class="badge badge-light-{{ $trajet->statut == 'disponible' ? 'success' : ($trajet->statut == 'complet' ? 'danger' : 'warning') }}">
+                                        <span class="badge badge-light-{{ 
+                                                    $trajet->statut == 'disponible' ? 'success' :
+                    ($trajet->statut == 'complet' ? 'danger' :
+                        ($trajet->statut == 'annulé' ? 'danger' : 'danger')) }}">
                                             {{ ucfirst($trajet->statut) }}
                                         </span>
                                     </div>
@@ -100,21 +105,23 @@
 
                                 <!-- Réservation -->
                                 @if($trajet->statut == 'disponible')
-                                    <div class="timeline-item d-flex align-items-center mb-3">
-                                        <div class="timeline-label fw-bold text-gray-800 fs-6">Réserver</div>
-                                        <div class="timeline-content ps-10">
-                                            <span id="reservation" class="btn btn-primary btn-sm"
-                                                data-url="{{ route('reservation', ['trajet' => $trajet->id]) }}"
-                                                data-trajet-id="{{$trajet->id }}" data-user-id="{{ auth()->id() }}">
-                                                Réserver ce trajet
-                                            </span>
-                                        </div>
+                                <div class="timeline-item d-flex align-items-center mb-3">
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Réserver</div>
+                                    <div class="timeline-content ps-10">
+                                        <span id="reservation" 
+                                            class="btn btn-primary btn-sm @if(!$trajet->isReservable()) disabled @endif"
+                                            data-url="{{ route( 'reservation', ['trajet' => $trajet->id]) }}"
+                                            data-trajet-id="{{ $trajet->id }}" 
+                                            data-user-id="{{ auth()->id() }}">
+                                            Réserver ce trajet
+                                        </span>
                                     </div>
+                                </div>
                                 @else
                                     <div class="timeline-item d-flex align-items-center mb-3">
                                         <div class="timeline-label fw-bold text-gray-800 fs-6">Statut</div>
                                         <div class="timeline-content ps-10 text-danger">
-                                            <strong>Ce trajet n'est plus disponible </strong>
+                                            <strong>Ce trajet n'est plus disponible</strong>
                                         </div>
                                     </div>
                                 @endif
@@ -123,10 +130,8 @@
                         <!-- End Body -->
                     </div>
                 </a>
-                <!-- Fin du lien autour de la carte -->
             </div>
         @endforeach
-
     @endif
 
     <div class="mt-6 ">

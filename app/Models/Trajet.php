@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use function Laravel\Prompts\table;
 use Illuminate\Database\Eloquent\Model;
@@ -45,7 +46,7 @@ class Trajet extends Model
     }
     public function conducteur()
     {
-        return $this->belongsTo(User::class, 'user_id'); 
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public static function filter($search)
@@ -71,5 +72,12 @@ class Trajet extends Model
                         ->orWhereRaw('LOWER(prenom) LIKE ?', ['%' . $search . '%']);
                 });
         });
+    }
+
+    public function isReservable(): bool
+    {
+        $dateString = $this->date_depart . ' ' . $this->heure_depart;
+        $heureDepart = Carbon::createFromFormat('Y-m-d H:i:s', $dateString);
+        return Carbon::now()->addHour()->lessThan($heureDepart);
     }
 }

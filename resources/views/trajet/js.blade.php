@@ -138,7 +138,6 @@
         });
     });
 
-
     $('#publier_trajet').on('click', function (e) {
         e.preventDefault();
         $.ajax({
@@ -181,11 +180,10 @@
         });
     });
 
+
+
     $(document).ready(function () {
         $("#trajet_create").submit(function (e) {
-
-
-
             e.preventDefault();
             $.ajax({
                 url: "{{ route('trajet.create') }}",

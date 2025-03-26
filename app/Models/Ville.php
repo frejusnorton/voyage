@@ -9,6 +9,8 @@ class Ville extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nom'];
+
     public function trajetsDepart()
     {
         return $this->hasMany(Trajet::class, 'ville_depart_id');

@@ -1,5 +1,5 @@
 @extends('main.index')
-@section('title', "Mon espace")
+@section('title', "Mon réservations")
 
 @section('tolbar')
 
@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-@dump(Auth::user()->id)
-
+    @dump($user)
     <div class="content flex-row-fluid" id="kt_content">
 
         <!--begin::Navbar-->
@@ -144,8 +143,7 @@
                 <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                     <!--begin::Nav item-->
                     <li class="nav-item mt-2">
-                        <a class="nav-link text-active-primary ms-0 me-10 py-5 active"
-                            href="{{ route('conducteur.espace') }}">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5 " href="{{ route('conducteur.espace') }}">
                             Paramètre </a>
                     </li>
                     <!--end::Nav item-->
@@ -162,7 +160,7 @@
                             Sécurité </a>
                     </li>
                     <li class="nav-item mt-2">
-                        <a class="nav-link text-active-primary ms-0 me-10 py-5 "
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5 active "
                             href="{{ route('conducteur.reservation') }}">
                             Demande de réservation </a>
                     </li>
@@ -177,248 +175,82 @@
             <div class="card-header cursor-pointer">
                 <!--begin::Card title-->
                 <div class="card-title m-0">
-                    <h3 class="fw-bold m-0">Détails du profil</h3>
+                    <h3 class="fw-bold m-0">Demande de réservation</h3>
                 </div>
-                <!--end::Card title-->
-
-                <!--begin::Action-->
-                <a href="{{ route('passager.edit', ['user' => Auth::id()]) }}) }}"
-                    class="btn btn-sm btn-primary align-self-center">Modifier</a>
-                <!--end::Action-->
             </div>
             <!--begin::Card header-->
-
-            <!--begin::Card body-->
-            <div class="card-body p-9">
-
-                <div class="row mb-7">
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Photo de profil</label>
-                        <!--end::Label-->
-
-                        <div class="col-lg-8">
-                            <!--begin::Image input-->
-                            <div class="image-input image-input-outline" data-kt-image-input="true"
-                                style="background-image: url('{{ Auth::user()->profil_img ? asset(Auth::user()->profil_img) : asset('/metronic8/demo2/assets/media/svg/avatars/blank.svg') }}')">
-                                <!--begin::Preview existing avatar-->
-                                <div class="image-input-wrapper w-125px h-125px"
-                                    style="background-image: url('{{ Auth::user()->profil_img ? asset(Auth::user()->profil_img) : asset('/metronic8/demo2/assets/media/avatars/300-1.jpg') }}')">
+            <div class="card-body border-top px-9 py-9">
+                @foreach ($reservations as $reservation)
+                @php
+                    $trajet = $reservation->trajet; 
+                    $passager = $reservation->user; 
+                @endphp
+                <div class="col-12 col-md-6 col-xl-4 mb-4">
+                    <div class="card card-xl-stretch">
+                        <!-- Header -->
+                        <div class="card-header d-flex justify-content-between align-items-center border-0 mt-4">
+                            <h3 class="card-title">
+                                <span class="fw-bold mb-2 text-gray-900">
+                                    {{ $trajet->villeDepart->nom }} →
+                                    {{ $trajet->villeArrive->nom }}
+                                </span>
+                            </h3>
+                            <span class="badge bg-primary fs-6 py-2 px-3">
+                                {{ number_format($trajet->prix, 0, ',', ' ') }} FCFA
+                            </span>
+                        </div>
+            
+                        <!-- Body -->
+                        <div class="card-body pt-5">
+                            <div class="timeline-label">
+                                <!-- Date & Heure -->
+                                <div class="timeline-item d-flex align-items-center mb-4">
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Départ</div>
+                                    <div class="timeline-badge mx-4">
+                                        <i class="fa fa-calendar-alt text-primary fs-4"></i>
+                                    </div>
+                                    <div class="timeline-content text-muted ps-10">
+                                        {{ \Carbon\Carbon::parse($trajet->heure_depart)->locale('fr')->isoFormat('dddd, D MMMM YYYY HH:mm') }}
+                                    </div>
+                                </div>
+            
+                                <!-- Statut -->
+                                <div class="timeline-item d-flex align-items-center mb-4">
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Statut</div>
+                                    <div class="timeline-badge mx-4">
+                                        <i class="fa fa-info-circle text-primary fs-4"></i>
+                                    </div>
+                                    <div class="timeline-content fw-bold text-gray-800 ps-10">
+                                        <span
+                                            class="badge badge-light-{{ $reservation->status == 'confirmer' ? 'success' : ($reservation->status == 'annuler' ? 'danger' : 'warning') }}">
+                                            {{ ucfirst($reservation->status) }}
+                                        </span>
+                                    </div>
+                                </div>
+            
+                                <!-- Passager -->
+                                <div class="timeline-item d-flex align-items-center mb-4">
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Passager</div>
+                                    <div class="timeline-badge mx-4">
+                                        <i class="fa fa-user text-info fs-4"></i>
+                                    </div>
+                                    <div class="timeline-content text-muted ps-10">
+                                        {{ $passager->nom ?? 'Inconnu' }} {{ $passager->prenom ?? '' }}
+                                    </div>
                                 </div>
                             </div>
-                            <!--end::Image input-->
                         </div>
-
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-                </div>
-
-                <!--begin::Row-->
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">Nom</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 ">
-                        @isset($user->nom)
-                            <span class="fw-bold fs-6 text-gray-800 text-muted">{{$user->nom}} </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800 text-muted">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Row-->
-
-                <!--begin::Input group-->
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">Prénom</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->prenom)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->prenom}} </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group-->
-
-                <!--begin::Input group-->
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">E-mail</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->email)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->email}} </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group--> <!--begin::Input group-->
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">Sexe</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->sexe)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->sexe}} </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group-->
-                <!--begin::Input group-->
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">
-                        Téléphone
-
-                        <span class="ms-1" data-bs-toggle="tooltip" aria-label="Phone number must be active"
-                            data-bs-original-title="Phone number must be active" data-kt-initialized="1">
-                            <i class="ki-duotone ki-information fs-7"><span class="path1"></span><span
-                                    class="path2"></span><span class="path3"></span></i> </span>
-                    </label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 d-flex align-items-center">
-                        <span class="fw-bold fs-6 text-gray-800 me-2">{{$user->telephone}} </span>
-                    </div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group-->
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">Adresse</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-4 fw-semibold text-muted">
-                        @isset($user->adresse)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->adresse}} </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end::Col-->
-                </div>
-
-
-
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">Date de naissance</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->naissance)
-                            <span
-                                class="fw-bold fs-6 text-gray-800">{{\Carbon\Carbon::parse($user->naissance)->format('d/m/Y') }}
-                            </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end::Col-->
-                </div>
-
-
-                <div class="row mb-7">
-                    <label class="col-lg-4 fw-semibold text-muted">Permis de conduire</label>
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->permis_de_conduire_numero)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->permis_de_conduire_numero}}</span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
+                        <!-- End Body -->
                     </div>
                 </div>
-                <div class="row mb-7">
-                    <label class="col-lg-4 fw-semibold text-muted">Date d'obtention du permis</label>
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->permis_de_conduire_date)
-                            <span
-                                class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->permis_de_conduire_date)->format('d/m/Y') }}</span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
+            @endforeach
+            
+
+                <div class="mt-6">
+                    {{ $reservations->links('pagination.custom') }}
                 </div>
-                <div class="row mb-7">
-                    <label class="col-lg-4 fw-semibold text-muted">Carte d'identité</label>
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->carte_identite_numero)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->carte_identite_numero}}</span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                </div>
-                <div class="row mb-7">
-                    <label class="col-lg-4 fw-semibold text-muted">Date d'obtention de la carte</label>
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->carte_identite_date)
-                            <span
-                                class="fw-bold fs-6 text-gray-800">{{ \Carbon\Carbon::parse($user->carte_identite_date)->format('d/m/Y') }}</span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                </div>
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">Photo du permis</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->photo_permis)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->photo_permis}} </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end
-
-                                                                                                ::Col-->
-                </div>
-
-                <div class="row mb-7">
-                    <!--begin::Label-->
-                    <label class="col-lg-4 fw-semibold text-muted">Photo de la carte d'identité</label>
-                    <!--end::Label-->
-
-                    <!--begin::Col-->
-                    <div class="col-lg-8 fv-row">
-                        @isset($user->photo_cni)
-                            <span class="fw-bold fs-6 text-gray-800">{{$user->photo_cni}} </span>
-                        @else
-                            <span class="fw-bold fs-6 text-gray-800">Non renseigné</span>
-                        @endisset
-                    </div>
-                    <!--end::Col-->
-                </div>
-
-
-
             </div>
+
             <!--end::Card body-->
         </div>
 

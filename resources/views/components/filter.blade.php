@@ -16,7 +16,7 @@
                     <option></option>
                     <option value="disponible">Disponible</option>
                     <option value="complet">Complet</option>
-                    <option value="annulé">Annulé</option>
+                    <option value="annule">Annulé</option>
                 </select>
             </div>
 

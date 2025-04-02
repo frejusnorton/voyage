@@ -19,13 +19,14 @@ class TrajetController extends Controller
     public function index(Request $request)
     {
 
-        $trajets = DB::table('trajets')
-            ->whereRaw("(CURRENT_DATE + heure_depart::interval) < NOW()")
-            ->update(['statut' => 'annule']);
+        // $trajets = DB::table('trajets')
+        //     ->whereRaw("(CURRENT_DATE + heure_depart::interval) < NOW()")
+        //     ->update(['statut' => 'annule']);
 
         $villes = Ville::all();
         $search = $request->input('search', '');
         $query = Trajet::filter($search)->with(['villeDepart', 'villeArrive']);
+        
         if ($request->filled('statut')) {
             $query->where('statut', $request->statut);
         }

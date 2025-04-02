@@ -24,7 +24,6 @@
             <div class="row">
                 <!--begin::Col-->
                 <div class="col-md-6 pe-md-10 mb-10 mb-md-0">
-
                     <!--begin::Section-->
                     <div class="m-0">
                         <!--begin::Heading-->
@@ -40,7 +39,7 @@
                             <!--end::Icon-->
 
                             <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
+                            <h4 class="fw-bold cursor-pointer mb-0 text-primary">
                                 Dois-je créer un compte pour utiliser le service ?
                             </h4>
                             <!--end::Title-->
@@ -80,7 +79,7 @@
                             <!--end::Icon-->
 
                             <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
+                            <h4 class="text-primary fw-bold cursor-pointer mb-0">
                                 Puis-je annuler une réservation
                             </h4>
                             <!--end::Title-->
@@ -121,7 +120,7 @@
                             <!--end::Icon-->
 
                             <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
+                            <h4 class="text-primary fw-bold cursor-pointer mb-0">
                                 Comment puis-je être sûr que le conducteur est fiable ?
                             </h4>
                             <!--end::Title-->
@@ -162,7 +161,7 @@
                             <!--end::Icon-->
 
                             <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
+                            <h4 class="text-primary fw-bold cursor-pointer mb-0">
 
                                 Est-il obligatoire d’avoir une pièce d’identité vérifiée ?
                             </h4>
@@ -206,7 +205,7 @@
                             <!--end::Icon-->
 
                             <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
+                            <h4 class="text-primary fw-bold cursor-pointer mb-0">
                                 Que faire en cas de problème avec un trajet
                             </h4>
                             <!--end::Title-->
@@ -247,7 +246,7 @@
                             <!--end::Icon-->
 
                             <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
+                            <h4 class="text-primary fw-bold cursor-pointer mb-0">
                                 Comment sont fixés les prix des trajets ?
                             </h4>
                             <!--end::Title-->
@@ -289,7 +288,7 @@
                             <!--end::Icon-->
 
                             <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
+                            <h4 class="text-primary  fw-bold cursor-pointer mb-0">
                                 Y a-t-il des frais supplémentaires ?
                             </h4>
                             <!--end::Title-->
@@ -314,105 +313,12 @@
                         <!--end::Separator-->
                     </div>
                     <!--end::Section-->
-
-
-                    <!--begin::Section-->
-                    <div class="m-0">
-                        <!--begin::Heading-->
-                        <div class="d-flex align-items-center collapsible py-3 toggle collapsed mb-0"
-                            data-bs-toggle="collapse" data-bs-target="#kt_job_7_4">
-                            <!--begin::Icon-->
-                            <div class="btn btn-sm btn-icon mw-20px btn-active-color-primary me-5">
-                                <i class="ki-duotone ki-minus-square toggle-on text-primary fs-1"><span
-                                        class="path1"></span><span class="path2"></span></i>
-                                <i class="ki-duotone ki-plus-square toggle-off fs-1"><span class="path1"></span><span
-                                        class="path2"></span><span class="path3"></span></i>
-                            </div>
-                            <!--end::Icon-->
-
-                            <!--begin::Title-->
-                            <h4 class="text-gray-700 fw-bold cursor-pointer mb-0">
-                                How fast is the installation?
-                            </h4>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Heading-->
-
-                        <!--begin::Body-->
-                        <div id="kt_job_7_4" class="collapse  fs-6 ms-1">
-                            <!--begin::Text-->
-                            <div class="mb-4 text-gray-600 fw-semibold fs-6 ps-10">
-                                First, a disclaimer – the entire process of writing a blog post often takes more than a
-                                couple of hours, even if you can type eighty words as per minute and your writing skills
-                                are sharp. </div>
-                            <!--end::Text-->
-                        </div>
-                        <!--end::Content-->
-
-                    </div>
-                    <!--end::Section-->
-
                     <!--end::Accordion-->
                 </div>
                 <!--end::Col-->
             </div>
             <!--end::Row-->
         </div>
-        <!--end::Classic content-->
-
-
-
-        <!--begin::Card-->
-        <div class="card mb-4 bg-light text-center ">
-            <!--begin::Body-->
-            <div class="card-body py-12">
-                <!--begin::Icon-->
-                <a href="#" class="mx-4">
-                    <img src="/metronic8/demo2/assets/media/svg/brand-logos/facebook-4.svg" class="h-30px my-2" alt="">
-                </a>
-                <!--end::Icon-->
-
-                <!--begin::Icon-->
-                <a href="#" class="mx-4">
-                    <img src="/metronic8/demo2/assets/media/svg/brand-logos/instagram-2-1.svg" class="h-30px my-2"
-                        alt="">
-                </a>
-                <!--end::Icon-->
-
-                <!--begin::Icon-->
-                <a href="#" class="mx-4">
-                    <img src="/metronic8/demo2/assets/media/svg/brand-logos/github.svg" class="h-30px my-2" alt="">
-                </a>
-                <!--end::Icon-->
-
-                <!--begin::Icon-->
-                <a href="#" class="mx-4">
-                    <img src="/metronic8/demo2/assets/media/svg/brand-logos/behance.svg" class="h-30px my-2" alt="">
-                </a>
-                <!--end::Icon-->
-
-                <!--begin::Icon-->
-                <a href="#" class="mx-4">
-                    <img src="/metronic8/demo2/assets/media/svg/brand-logos/pinterest-p.svg" class="h-30px my-2" alt="">
-                </a>
-                <!--end::Icon-->
-
-                <!--begin::Icon-->
-                <a href="#" class="mx-4">
-                    <img src="/metronic8/demo2/assets/media/svg/brand-logos/twitter.svg" class="h-30px my-2" alt="">
-                </a>
-                <!--end::Icon-->
-
-                <!--begin::Icon-->
-                <a href="#" class="mx-4">
-                    <img src="/metronic8/demo2/assets/media/svg/brand-logos/dribbble-icon-1.svg" class="h-30px my-2"
-                        alt="">
-                </a>
-                <!--end::Icon-->
-            </div>
-            <!--end::Body-->
-        </div>
-        <!--end::Card-->
     </div>
     <!--end::Body-->
 </div>

@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
 
     //CONDUCTEUR
     Route::get('conducteur', [ConducteurController::class, 'index'])->name('trajet.conducteur');
+    Route::get('conducteur/reservation', [ConducteurController::class, 'reservation'])->name('conducteur.reservation');
     Route::get('conducteur/espace', [ConducteurController::class, 'espace'])->name('conducteur.espace');
     Route::get('/check-if-conducteur', [TrajetController::class, 'checkIfConducteur'])->name('checkIfConducteur');
 

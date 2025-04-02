@@ -12,7 +12,7 @@ class ListUsers extends Command
 
     public function handle()
     {
-        $users = User::select('id', 'nom', 'email', 'created_at')->get();
+        $users = User::select('id', 'nom','type', 'email', 'created_at')->get();
 
         if ($users->isEmpty()) {
             $this->info('Aucun utilisateur trouvé.');

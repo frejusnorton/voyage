@@ -12,14 +12,13 @@ class ListUsers extends Command
 
     public function handle()
     {
-        $users = User::select('id', 'nom','type', 'email', 'created_at')->get();
+        $users = User::select('id', 'nom', 'type', 'email', 'created_at')->get();
 
         if ($users->isEmpty()) {
             $this->info('Aucun utilisateur trouvé.');
             return;
         }
 
-        $this->table(['ID', 'Nom', 'Email', 'Créé le'], $users);
+        $this->table(['ID', 'Nom', 'Type', 'Email', 'Créé le'], $users);
     }
 }
-

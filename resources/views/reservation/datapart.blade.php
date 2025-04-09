@@ -32,6 +32,17 @@
                                     {{ \Carbon\Carbon::parse($reservation->trajet->heure_depart)->locale('fr')->isoFormat('dddd, D MMMM YYYY HH:mm') }}
                                 </div>
                             </div>
+                            <div class="timeline-item d-flex align-items-center mb-4">
+                                <div class="timeline-label fw-bold text-gray-800 fs-6">Chauffeur</div>
+                                <div class="timeline-badge mx-4">
+                                    <i class="fa fa-calendar-alt text-primary fs-4"></i>
+                                </div>
+                                <div class="timeline-content text-muted ps-10">
+                                    <a href="{{ route('profil.show', ['user' => $reservation->trajet->user->id]) }}">
+                                        {{ $reservation->trajet->user->nom }}
+                                        {{ $reservation->trajet->user->prenom }}</a>
+                                </div>
+                            </div>
 
                             <!-- Statut -->
                             <div class="timeline-item d-flex align-items-center mb-4">

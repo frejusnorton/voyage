@@ -90,8 +90,8 @@
                         <div id="kt_job_6_2" class="collapse  fs-6 ms-1">
                             <!--begin::Text-->
                             <div class="mb-4 text-gray-600 fw-semibold fs-6 ps-10">
-                                Oui, vous pouvez annuler votre réservation, mais des frais peuvent s’appliquer en
-                                fonction du délai d’annulation. Consultez nos conditions générales pour plus de détails.
+                                Oui, vous pouvez annuler votre réservation, mais des frais peuvent s'appliquer en
+                                fonction du délai d'annulation. Consultez nos conditions générales pour plus de détails.
                             </div>
                             <!--end::Text-->
                         </div>
@@ -131,7 +131,7 @@
                         <div id="kt_job_6_3" class="collapse  fs-6 ms-1">
                             <!--begin::Text-->
                             <div class="mb-4 text-gray-600 fw-semibold fs-6 ps-10">
-                                Chaque conducteur est vérifié via son profil et les avis laissés par d’autres passagers.
+                                Chaque conducteur est vérifié via son profil et les avis laissés par d'autres passagers.
                                 Vous pouvez consulter son historique et ses évaluations avant de réserver un trajet.
                             </div>
                             <!--end::Text-->
@@ -163,7 +163,7 @@
                             <!--begin::Title-->
                             <h4 class="text-primary fw-bold cursor-pointer mb-0">
 
-                                Est-il obligatoire d’avoir une pièce d’identité vérifiée ?
+                                Est-il obligatoire d'avoir une pièce d'identité vérifiée ?
                             </h4>
                             <!--end::Title-->
                         </div>
@@ -174,7 +174,7 @@
                             <!--begin::Text-->
                             <div class="mb-4 text-gray-600 fw-semibold fs-6 ps-10">
                                 Pour garantir la sécurité de tous, nous encourageons fortement la vérification
-                                d’identité. Certains trajets peuvent être réservés uniquement avec des utilisateurs
+                                d'identité. Certains trajets peuvent être réservés uniquement avec des utilisateurs
                                 vérifiés.
                             </div>
                             <!--end::Text-->
@@ -217,7 +217,7 @@
                             <!--begin::Text-->
                             <div class="mb-4 text-gray-600 fw-semibold fs-6 ps-10">
                                 Vous pouvez contacter notre support via la plateforme. Si un problème survient pendant
-                                le trajet, nous vous recommandons de signaler l’incident dès que possible.
+                                le trajet, nous vous recommandons de signaler l'incident dès que possible.
                             </div>
                             <!--end::Text-->
                         </div>
@@ -322,3 +322,6 @@
     </div>
     <!--end::Body-->
 </div>
+
+<!-- FAQ Section -->
+

@@ -61,15 +61,15 @@ class ReservationController extends Controller
     public function recherche(Request $request)
     {
         if ($request->ajax()) {
-            $user_id = $request->input('user'); 
-            $user = User::findOrFail($user_id); 
-    
+            $user_id = $request->input('user');
+            $user = User::findOrFail($user_id);
+
             $search = $request->input('search', '');
-    
+
             $query = $user->reservations();
-    
+
             if ($search) {
-                $query->where(function($q) use ($search) {
+                $query->where(function ($q) use ($search) {
                     $search = strtolower($search);
                     $q->where('status', 'like', '%' . $search . '%');
                 });
@@ -80,7 +80,7 @@ class ReservationController extends Controller
             ]);
         }
     }
-    
+
 
     public function annulerReservation(Reservation $reservation)
     {
@@ -90,6 +90,4 @@ class ReservationController extends Controller
             'message' => 'Réservation annulée avec succès.',
         ]);
     }
-
-    
 }

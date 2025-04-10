@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Notifications\ReservationNotification;
-
+use Illuminate\Support\Facades\Auth;
 class ReservationController extends Controller
 {
     public function index(Request $request)

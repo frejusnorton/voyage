@@ -2,341 +2,189 @@
 @section('title', 'Modifier mes informations')
 
 @section('content')
-    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start   ">
-        <!--begin::Post-->
-        <div class="content flex-row-fluid" id="kt_content">
-            <div class="card mb-5 mb-xl-10">
-                <div class="card-body pt-9 pb-0">
-                    <!--begin::Details-->
-                    <div class="d-flex flex-wrap flex-sm-nowrap">
-                        <!--begin: Pic-->
-                        <div class="me-7 mb-4">
-                            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                <img alt="Avatar"
-                                    src="{{ Auth::user()->profil_img ? Auth::user()->profil_img : asset('assets/media/avatars/blank.png') }}" />
-                                <div
-                                    class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px">
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::Pic-->
-
-                        <!--begin::Info-->
-                        <div class="flex-grow-1">
-                            <!--begin::Title-->
-                            <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                                <!--begin::User-->
-                                <div class="d-flex flex-column">
-                                    <!--begin::Name-->
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="text-gray-900 text-hover-primary fs-4 fw-bold me-1">{{$user->nom}}
-                                            {{$user->prenom}}</span>
-                                        <a href="#"><i class="ki-duotone ki-verify fs-1 text-primary"><span
-                                                    class="path1"></span><span class="path2"></span></i></a>
-                                    </div>
-                                    <!--end::Name-->
-
-                                    <!--begin::Info-->
-                                    <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-
-                                        <span href="#"
-                                            class="d-flex align-items-center text-gray-500 text-hover-primary mb-2 fs-4">
-                                            <i class="ki-duotone ki-sms fs-4"><span class="path1"></span><span
-                                                    class="path2"></span></i>{{$user->email}}
-                                        </span>
-
-                                    </div>
-                                    <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                        <span class="d-flex align-items-center text-gray-500 text-hover-primary mb-2">
-                                            <i class="ki-duotone ki-user fs-4"><span class="path1"></span><span
-                                                    class="path2"></span></i>
-                                            @if($user->type == 'passager')
-                                                <span class="fs-5 fw-bold">Passager</span>
-                                            @elseif($user->type == 'conducteur')
-                                                <span class="fs-5 fw-bold">Conducteur</span>
-                                            @else
-                                                Rôle inconnu
-                                            @endif
-                                        </span>
-                                    </div>
-                                    <!--end::Info-->
-                                </div>
-                                <!--end::User-->
-                            </div>
-                            <!--end::Title-->
-
-                            <!--begin::Stats-->
-                            <div class="d-flex flex-wrap flex-stack">
-                                <!--begin::Wrapper-->
-                                <div class="d-flex flex-column flex-grow-1 pe-8">
-                                    <!--begin::Stats-->
-                                    <div class="d-flex flex-wrap">
-                                        <!--begin::Stat-->
-                                        <div
-                                            class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <!--begin::Number-->
-                                            <div class="d-flex align-items-center">
-                                                <i class="ki-duotone ki-arrow-up fs-3 text-success me-2"><span
-                                                        class="path1"></span><span class="path2"></span></i>
-                                                <div class="fs-2 fw-bold counted" data-kt-countup="true"
-                                                    data-kt-countup-value="4500" data-kt-countup-prefix="$"
-                                                    data-kt-initialized="1">00</div>
-                                            </div>
-                                            <!--end::Number-->
-
-                                            <!--begin::Label-->
-                                            <div class="fw-semibold fs-6 text-gray-500">Mes trajets effectués</div>
-                                            <!--end::Label-->
-                                        </div>
-                                        <!--end::Stat-->
-                                    </div>
-                                    <!--end::Stats-->
-                                </div>
-                                <!--end::Wrapper-->
-                            </div>
-                            <!--end::Stats-->
-                        </div>
-                        <!--end::Info-->
+<div class="min-h-screen bg-gray-50 py-8 pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- En-tête du profil -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-8">
+            <div class="p-6 md:p-8">
+                <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                    <!-- Photo de profil -->
+                    <div class="relative">
+                        <img class="h-32 w-32 rounded-full object-cover" 
+                             src="{{ Auth::user()->profil_img ? Auth::user()->profil_img : asset('assets/media/avatars/blank.png') }}" 
+                             alt="Photo de profil">
+                        <div class="absolute bottom-0 right-0 h-6 w-6 bg-green-500 rounded-full border-4 border-white"></div>
                     </div>
-                    <!--end::Details-->
-                </div>
-            </div>
-            <!--end::Navbar-->
-            <!--begin::details View-->
-            <div class="card mb-5 mb-xl-10">
-                <!--begin::Card header-->
-                <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
-                    data-bs-target="#kt_account_profile_details" aria-expanded="true"
-                    aria-controls="kt_account_profile_details">
 
-                    <div class="card-title m-0">
-                        <h3 class="fw-bold m-0">Modifier mes informations</h3>
+                    <!-- Informations utilisateur -->
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <h2 class="text-2xl font-bold text-gray-900">{{$user->nom}} {{$user->prenom}}</h2>
+                            <span class="text-blue-500">
+                                <i class="fas fa-check-circle"></i>
+                            </span>
+                        </div>
+
+                        <div class="mt-2 flex flex-col space-y-2">
+                            <div class="flex items-center justify-center md:justify-start text-gray-600">
+                                <i class="fas fa-envelope mr-2"></i>
+                                <span>{{$user->email}}</span>
+                            </div>
+                            <div class="flex items-center justify-center md:justify-start text-gray-600">
+                                <i class="fas fa-user mr-2"></i>
+                                <span class="font-medium">
+                                    @if($user->type == 'passager')
+                                        Passager
+                                    @elseif($user->type == 'conducteur')
+                                        Conducteur
+                                    @else
+                                        Rôle inconnu
+                                    @endif
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <!--end::Card title-->
-                </div>
-                <!--begin::Card header-->
-
-                <!--begin::Content-->
-                <div id="kt_account_settings_profile_details" class="collapse show">
-                    <!--begin::Form-->
-                    <form id="edit_passager_profil" class="form fv-plugins-bootstrap5 fv-plugins-framework" method="post"
-                        action="{{ route('passager.edit', ['user' => $user->id]) }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-body border-top p-9">
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Photo de profil</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8">
-                                    <!--begin::Image input-->
-                                    <div class="image-input image-input-outline" data-kt-image-input="true"
-                                        style="background-image: url('{{ Auth::user()->profil_img ? asset(Auth::user()->profil_img) : asset('/metronic8/demo2/assets/media/svg/avatars/blank.svg') }}')">
-                                        <!--begin::Preview existing avatar-->
-                                        <div class="image-input-wrapper w-125px h-125px"
-                                            style="background-image: url('{{ Auth::user()->profil_img ? asset(Auth::user()->profil_img) : asset('/metronic8/demo2/assets/media/avatars/300-1.jpg') }}')">
-                                        </div>
-                                        <!--end::Preview existing avatar-->
-                                
-                                        <!--begin::Label-->
-                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar"
-                                            data-bs-original-title="Change avatar" data-kt-initialized="1">
-                                            <i class="ki-duotone ki-pencil fs-7"><span class="path1"></span><span class="path2"></span></i>
-                                            <!--begin::Inputs-->
-                                            <input type="file" name="profil_img" accept=".png, .jpg, .jpeg">
-                                            <input type="hidden" name="avatar_remove">
-                                            <!--end::Inputs-->
-                                        </label>
-                                        <!--end::Label-->
-                                
-                                        <!--begin::Cancel-->
-                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar"
-                                            data-bs-original-title="Cancel avatar" data-kt-initialized="1">
-                                            <i class="ki-duotone ki-cross fs-2"><span class="path1"></span><span class="path2"></span></i> </span>
-                                        <!--end::Cancel-->
-                                
-                                        <!--begin::Remove-->
-                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar"
-                                            data-bs-original-title="Remove avatar" data-kt-initialized="1">
-                                            <i class="ki-duotone ki-cross fs-2"><span class="path1"></span><span class="path2"></span></i> </span>
-                                        <!--end::Remove-->
-                                    </div>
-                                    <!--end::Image input-->
-                                </div>
-                                
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">Nom</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8">
-                                    <!--begin::Row-->
-                                    <div class="row">
-                                        <!--begin::Col-->
-                                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                            <input type="text" name="nom"
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                placeholder="Nom" value="{{$user->nom}}">
-                                            <div
-                                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">Prénom</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8">
-                                    <!--begin::Row-->
-                                    <div class="row">
-                                        <!--begin::Col-->
-                                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                            <input type="text" name="prenom"
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                placeholder="Prenom" value="{{$user->prenom}}">
-                                            <div
-                                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">Email</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8">
-                                    <!--begin::Row-->
-                                    <div class="row">
-                                        <!--begin::Col-->
-                                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                            <input type="email" name="email"
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                placeholder="Email" value="{{$user->email}}">
-                                            <div
-                                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Sexe</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8">
-                                    <!--begin::Row-->
-                                    <div class="row">
-                                        <!--begin::Col-->
-                                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                            <select name="sexe"
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">
-                                                <option value="homme" {{ $user->sexe == 'homme' ? 'selected' : '' }}>Homme
-                                                </option>
-                                                <option value="femme" {{ $user->sexe == 'femme' ? 'selected' : '' }}>Femme
-                                                </option>
-                                            </select>
-
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                    <span class="required">Téléphone</span>
-                                </label>
-
-                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                    <!--begin::Input group-->
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">+229</span>
-                                        <input type="tel" name="telephone"
-                                            class="form-control form-control-lg form-control-solid"
-                                            placeholder="Numéro de téléphone" value="{{ $user->telephone }}">
-                                    </div>
-                                    <!--end::Input group-->
-                                    <div
-                                        class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Adresse</label>
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                            <input type="text" name="adresse"
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                placeholder="Addresse" value="{{$user->adresse}}">
-                                            <div
-                                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Date de naissance</label>
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                            <input type="date" name="naissance"
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                placeholder="Date de naissance" value="{{ $user->naissance }}">
-                                            <div
-                                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            <button type="submit" class="btn btn-primary">Enregistrer
-                            </button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
+
+        <!-- Formulaire d'édition -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div class="p-6 md:p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-gray-900">Modifier mes informations</h3>
+                </div>
+                <form id="edit_passager_profil" method="post" action="{{ route('passager.edit', ['user' => $user->id]) }}" enctype="multipart/form-data" class="space-y-6">
+                    @csrf
+                    <!-- Photo de profil -->
+                    <div class="space-y-4">
+                        <label class="block text-sm font-medium text-gray-700">Photo de profil</label>
+                        <div class="flex items-center space-x-4">
+                            <div class="relative group">
+                                <img class="h-24 w-24 rounded-full object-cover ring-2 ring-gray-200 group-hover:ring-blue-500 transition-all duration-300" 
+                                     src="{{ Auth::user()->profil_img ? asset(Auth::user()->profil_img) : asset('assets/media/avatars/blank.png') }}" 
+                                     alt="Photo de profil actuelle">
+                                <label class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg cursor-pointer hover:bg-gray-50 transform hover:scale-110 transition-all duration-300">
+                                    <i class="fas fa-camera text-gray-600"></i>
+                                    <input type="file" name="profil_img" accept=".png, .jpg, .jpeg" class="hidden">
+                                </label>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                <p>Format accepté : JPG, PNG</p>
+                                <p>Taille maximale : 2MB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Informations personnelles -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-1">
+                            <label class="block text-sm font-medium text-gray-700">Nom</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-user text-gray-400"></i>
+                                </div>
+                                <input type="text" name="nom" value="{{$user->nom}}"
+                                       class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+                                       placeholder="Votre nom">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="block text-sm font-medium text-gray-700">Prénom</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-user text-gray-400"></i>
+                                </div>
+                                <input type="text" name="prenom" value="{{$user->prenom}}"
+                                       class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+                                       placeholder="Votre prénom">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="block text-sm font-medium text-gray-700">Email</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-envelope text-gray-400"></i>
+                                </div>
+                                <input type="email" name="email" value="{{$user->email}}"
+                                       class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+                                       placeholder="Votre email">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="block text-sm font-medium text-gray-700">Sexe</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-venus-mars text-gray-400"></i>
+                                </div>
+                                <select name="sexe" 
+                                        class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm appearance-none bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out">
+                                    <option value="homme" {{ $user->sexe == 'homme' ? 'selected' : '' }}>Homme</option>
+                                    <option value="femme" {{ $user->sexe == 'femme' ? 'selected' : '' }}>Femme</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="block text-sm font-medium text-gray-700">Téléphone</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-phone text-gray-400"></i>
+                                </div>
+                                <div class="flex rounded-lg shadow-sm">
+                                    <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">+229</span>
+                                    <input type="tel" name="telephone" value="{{ $user->telephone }}"
+                                           class="flex-1 block w-full pl-10 pr-3 py-2.5 rounded-r-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+                                           placeholder="Numéro de téléphone">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="block text-sm font-medium text-gray-700">Adresse</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-map-marker-alt text-gray-400"></i>
+                                </div>
+                                <input type="text" name="adresse" value="{{$user->adresse}}"
+                                       class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+                                       placeholder="Votre adresse">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="block text-sm font-medium text-gray-700">Date de naissance</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-calendar text-gray-400"></i>
+                                </div>
+                                <input type="date" name="naissance" value="{{ $user->naissance }}"
+                                       class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton de soumission -->
+                    <div class="flex justify-end pt-6">
+                        <button type="submit" 
+                                class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out transform hover:scale-105">
+                            <i class="fas fa-save mr-2"></i>
+                            Enregistrer les modifications
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 @endsection
+
 @section('scripts')
     @include('passager.js')
 @endsection

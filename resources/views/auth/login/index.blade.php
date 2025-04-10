@@ -1,92 +1,108 @@
 @extends('main.index')
-
-@section('title', 'Se connecter sur CoVoyage')
-
+@section('title', 'Connexion')
 @section('content')
-<div class="d-flex flex-column flex-root">
-    <!--begin::Authentication - Sign-in -->
-    <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/sigma-1/14.png">
-        <!--begin::Content-->
-        <div class="d-flex flex-center flex-column flex-column-fluid  pb-lg-20">
-            <!--begin::Logo-->
-          
-            <!--end::Logo-->
-            <!--begin::Wrapper-->
-            <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-                <!--begin::Form-->
-                <form  class="form w-100"   action="{{ route('login') }}" method="post" id="login-form">
-                    @csrf
-                    <!--begin::Heading-->
-                    <div class="text-center mb-10">
-                        <!--begin::Title-->
-                        <h1 class="text-dark mb-3">Se connecter sur Covoyage </h1>
-                        <!--end::Title-->
-                        <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">Vous etes nouveau ?
-                        <a href="{{ route('register') }}" class="link-primary fw-bolder">Créer un compte gratuitement</a></div>
-                        <!--end::Link-->
-                    </div>
-                    <!--begin::Heading-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-10">
-                        <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">Email</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" autocomplete="off" />
-                        <!--end::Input-->
-                        <span class="text-danger error-email"></span>
-
-                    </div>
-                  
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-10">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack mb-2">
-                            <!--begin::Label-->
-                            <label class="form-label fw-bolder text-dark fs-6 mb-0">Mot de passe</label>
-                            <!--end::Label-->
-                            <!--begin::Link-->
-                            <a href="#" class="link-primary fs-6 fw-bolder">Mot de passe oublié ?</a>
-                            <!--end::Link-->
-                        </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
-                        <!--end::Input-->
-                        <span class="text-danger error-password"></span>
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Actions-->
-                    <div class="text-center">
-                        <!--begin::Submit button-->
-                        <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-                            <span class="indicator-label">Se connecter</span>
-                            <span class="indicator-progress">Veuillez patientez
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
-                   
-                        <div class="text-center text-muted text-uppercase fw-bolder mb-5">OU</div>
-                   
-                        <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                        <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Continuer avec Google</a>
-                     
-                       
-                       
-                    </div>
-                    <!--end::Actions-->
-                </form>
-                <!--end::Form-->
-            </div>
-            <!--end::Wrapper-->
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <div class="text-center">
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                Connectez-vous à votre compte
+            </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Ou
+                <a href="{{ route('register') }}" class="font-medium text-blue-600 hover:text-blue-500">
+                    créez un compte gratuitement
+                </a>
+            </p>
         </div>
-        <!--end::Content-->
+
+        <form id="login-form" class="mt-8 space-y-6 bg-white p-8 rounded-lg shadow-lg" method="post" action="{{ route('login') }}">
+            @csrf
+            
+            <!-- Connexion avec Google -->
+            <div>
+                <a href="{{ route('redirectToGoogle') }}" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition duration-300">
+                    <img class="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                    Se connecter avec Google
+                </a>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-2 bg-white text-gray-500">OU</span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input id="email" name="email" type="email" 
+                    class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                    placeholder="Votre email">
+                <span class="text-red-500 text-sm error-email"></span>
+            </div>
+
+            <!-- Mot de passe -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                <div class="mt-1 relative">
+                    <input id="password" name="password" type="password" 
+                        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                        placeholder="Votre mot de passe">
+                    <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
+                <span class="text-red-500 text-sm error-password"></span>
+            </div>
+
+            <!-- Se souvenir de moi et mot de passe oublié -->
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input id="remember" name="remember" type="checkbox"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition duration-300">
+                    <label for="remember" class="ml-2 block text-sm text-gray-700">
+                        Se souvenir de moi
+                    </label>
+                </div>
+
+                <div class="text-sm">
+                    <span class="font-medium text-blue-600 hover:text-blue-500">
+                        Mot de passe oublié ?
+                    </span>
+                </div>
+            </div>
+
+            <!-- Bouton de connexion -->
+            <div>
+                <button type="submit" id="kt_sign_in_submit"
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    <span class="indicator-label">Se connecter</span>
+                    <span class="indicator-progress hidden">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Veuillez patienter...
+                    </span>
+                </button>
+            </div>
+        </form>
     </div>
-    <!--end::Authentication - Sign-in-->
 </div>
 @endsection
 
 @section('scripts')
-    @include('auth.login.js')
+@include('auth.login.js')
 @endsection

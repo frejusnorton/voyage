@@ -1,259 +1,212 @@
 @extends('main.index')
 @section('title', 'Paramètre de compte')
 @section('content')
-    <div class="content flex-row-fluid" id="kt_content">
-
-        <!--begin::Navbar-->
-        <div class="card mb-5 mb-xl-10">
-            <div class="card-body pt-9 pb-0">
-                <!--begin::Details-->
-                <div class="d-flex flex-wrap flex-sm-nowrap">
-
-                    <div class="me-7 mb-4">
-                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <img class="h-60px w-60px rounded"
-                                src="{{ $user->profil_img ? asset($user->profil_img) : asset('assets/media/avatars/blank.png') }}"
-                                alt="Photo de profil" />
-                            <span class="position-absolute top-0 end-0 translate-middle p-2 
-                                 {{ $user->is_online ? 'bg-success' : 'bg-danger' }} 
-                                 border border-white rounded-circle">
-                            </span>
-                        </div>
+<div class="min-h-screen bg-gray-50 py-8 pt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- En-tête du profil -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+            <div class="p-6">
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                    <!-- Photo de profil -->
+                    <div class="relative">
+                        <img class="h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg"
+                            src="{{ $user->profil_img ? asset($user->profil_img) : asset('assets/media/avatars/blank.png') }}"
+                            alt="Photo de profil">
+                        <span class="absolute bottom-2 right-2 w-4 h-4 rounded-full border-2 border-white {{ $user->is_online ? 'bg-green-500' : 'bg-red-500' }}"></span>
                     </div>
 
-                    <div class="flex-grow-1">
-                        <!--begin::Title-->
-                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                            <!--begin::User-->
-                            <div class="d-flex flex-column">
-                                <!--begin::Name-->
-                                <div class="d-flex align-items-center mb-2">
-                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $user->nom }}
-                                        {{ $user->prenom }} </span>
-                                    <span><i class="ki-duotone ki-verify fs-1 text-primary"><span class="path1"></span><span
-                                                class="path2"></span></i></span>
-                                </div>
-                                <!--end::Name-->
-
-                                <!--begin::Info-->
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4">
-
-                                    <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                        <i class="ki-duotone ki-geolocation fs-4 me-1"><span class="path1"></span><span
-                                                class="path2"></span></i> {{ $user->address }}
+                    <!-- Informations -->
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <div>
+                                <h1 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                                    {{ $user->nom }} {{ $user->prenom }}
+                                    <i class="fas fa-check-circle text-blue-500"></i>
+                                </h1>
+                                <div class="flex flex-wrap gap-4 mt-2 text-gray-600">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        {{ $user->address }}
                                     </span>
-                                    <span class="d-flex align-items-center text-gray-500 text-hover-primary mb-2">
-                                        <i class="ki-duotone ki-sms fs-4"><span class="path1"></span><span
-                                                class="path2"></span></i> {{ $user->email }}
+                                    <span class="flex items-center gap-2">
+                                        <i class="fas fa-envelope"></i>
+                                        {{ $user->email }}
                                     </span>
                                 </div>
-                                <!--end::Info-->
                             </div>
-                            <!--end::User-->
-                            <!--begin::Actions-->
-                            <div class="d-flex my-4">
-                                <a href="#" class="btn btn-sm btn-primary me-3">
-                                    Contacter {{ $user->nom }}
-                                </a>
-                            </div>
-                            @include('components.chat')
-                            <!--end::Actions-->
+                            <a href="#" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Contacter {{ $user->nom }}
+                            </a>
                         </div>
-                        <!--end::Title-->
 
-                        <!--begin::Stats-->
-                        <div class="d-flex flex-wrap flex-stack">
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <!--begin::Stats-->
-                                <div class="d-flex flex-wrap">
-                                    <!--begin::Stat-->
-                                    <div
-                                        class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <i class="ki-duotone ki-arrow-up fs-3 text-success me-2"><span
-                                                    class="path1"></span><span class="path2"></span></i>
-                                            <div class="fs-2 fw-bold counted" data-kt-countup="true"
-                                                data-kt-countup-value="4500" data-kt-countup-prefix="$"
-                                                data-kt-initialized="1">{{ $nombreTrajetsPublies }}</div>
-                                        </div>
-                                        <!--end::Number-->
-
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-500">Publications</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-
-                                    <!--begin::Stat-->
-                                    <!--begin::Stat-->
-                                    <div
-                                        class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Rating-->
-                                        <div class="d-flex align-items-center">
-                                            @for ($i = 1; $i <= 5; $i++)
-                                                @if ($i <= $noteMoyenne)
-                                                    <i class="fa fa-star text-warning fs-3"></i>
-                                                @elseif ($i - 0.5 == $noteMoyenne)
-                                                    <i class="fa fa-star-half-alt text-warning fs-3"></i>
-                                                @else
-                                                    <i class="fa fa-star text-gray-300 fs-3"></i>
-                                                @endif
-                                            @endfor
-                                            <span class="fs-2 fw-bold ms-2">{{ $noteMoyenne }}/5</span>
-                                        </div>
-
-                                        <!--end::Rating-->
-
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-500">Note des clients</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-
-                                    <!--end::Stat-->
+                        <!-- Statistiques -->
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-paper-plane text-green-500 text-xl"></i>
+                                    <span class="text-2xl font-bold text-gray-900">{{ $nombreTrajetsPublies }}</span>
                                 </div>
-                                <!--end::Stats-->
+                                <p class="text-gray-600 mt-1">Publications</p>
                             </div>
-                            <!--end::Wrapper-->
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $noteMoyenne)
+                                                <i class="fas fa-star text-yellow-400"></i>
+                                            @elseif ($i - 0.5 == $noteMoyenne)
+                                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                                            @else
+                                                <i class="far fa-star text-gray-300"></i>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <span class="text-2xl font-bold text-gray-900">{{ $noteMoyenne }}/5</span>
+                                </div>
+                                <p class="text-gray-600 mt-1">Note des clients</p>
+                            </div>
                         </div>
-                        <!--end::Stats-->
                     </div>
-                    <!--end::Info-->
                 </div>
-                <!--end::Details-->
-
             </div>
         </div>
-        <!--end::Navbar-->
-        {{-- Listes des trajets --}}
-        <div class="card mb-5 mb-xl-10">
-            <!--begin::Card header-->
-            <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
-                data-bs-target="#kt_account_travel_preferences" aria-expanded="true"
-                aria-controls="kt_account_travel_preferences">
-                <div class="card-title m-0">
-                    <h3 class="fw-bold m-0">Listes des trajets publié</h3>
-                </div>
+
+        <!-- Liste des trajets -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-gray-900">Liste des trajets publiés</h2>
             </div>
-            <!--begin::Card header-->
 
-            <!--begin::Content-->
-            <div id="kt_account_settings_travel_preferences" class="collapse show">
-                <!--begin::Form-->
-                <form class="form">
-                    <!--begin::Card body-->
-                    <div class="card-body border-top px-9 py-9">
-                        @foreach ($trajets as $trajet)
+            <div class="p-6">
+                <div class="grid grid-cols-1 gap-6">
+                    @foreach ($trajets as $trajet)
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition duration-300">
+                        <!-- En-tête du trajet -->
+                        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    {{ $trajet->villeDepart->nom }} → {{ $trajet->villeArrive->nom }}
+                                </h3>
+                                <p class="text-gray-600 text-sm mt-1">
+                                    {{ $trajet->nombre_personnes }} places disponibles
+                                </p>
+                            </div>
+                            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-xl font-semibold">
+                                {{ number_format($trajet->prix, 0, ',', ' ') }} FCFA
+                            </span>
+                        </div>
 
-                                            <div class="card card-xl-stretch">
-                                                <!-- Header -->
-                                                <div class="card-header align-items-center border-0 mt-4 d-flex justify-content-between">
-                                                    <h3 class="card-title align-items-start flex-column">
-                                                        <span class="fw-bold mb-2 text-gray-900">
-                                                            {{ $trajet->villeDepart->nom }} →
-                                                            {{ $trajet->villeArrive->nom }}
-                                                        </span>
-                                                        <span class="text-muted fw-semibold fs-7">
-                                                            {{ $trajet->nombre_personnes }} places disponibles
-                                                        </span>
-                                                    </h3>
-                                                    <span
-                                                        class="badge bg-primary fs-6 py-2 px-3">{{ number_format($trajet->prix, 0, ',', ' ') }}
-                                                        FCFA</span>
-                                                </div>
-                                                <!-- End Header -->
+                        <div class="p-4">
+                            <div class="space-y-4">
+                                <!-- Départ -->
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-yellow-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Départ</p>
+                                        <p class="text-gray-900">
+                                            {{ $trajet->villeDepart->nom }} - 
+                                            {{ \Carbon\Carbon::parse($trajet->heure_depart)->format('d/m/Y H:i') }}
+                                        </p>
+                                    </div>
+                                </div>
 
-                                                <!-- Body -->
-                                                <div class="card-body pt-5">
-                                                    <div class="timeline-label">
-                                                        <!-- Départ -->
-                                                        <div class="timeline-item d-flex align-items-center">
-                                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Départ</div>
-                                                            <div class="timeline-badge mx-4">
-                                                                <i class="fa fa-map-marker-alt text-warning fs-4"></i>
-                                                            </div>
-                                                            <div class="fw-mormal timeline-content text-muted ps-3">
-                                                                {{ $trajet->villeDepart->nom }} -
-                                                                {{ \Carbon\Carbon::parse($trajet->heure_depart)->format('d/m/Y H:i') }}
-                                                            </div>
-                                                        </div>
+                                <!-- Arrivée -->
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-green-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Arrivée</p>
+                                        <p class="text-gray-900">{{ $trajet->villeArrive->nom }}</p>
+                                    </div>
+                                </div>
 
-                                                        <!-- Arrivée -->
-                                                        <div class="timeline-item d-flex align-items-center">
-                                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Arrivée</div>
-                                                            <div class="timeline-badge mx-4">
-                                                                <i class="fa fa-map-marker-alt text-success fs-4"></i>
-                                                            </div>
-                                                            <div class="fw-mormal timeline-content text-muted ps-3">
-                                                                {{ $trajet->villeArrive->nom }}
-                                                            </div>
-                                                        </div>
-                                                        <!-- Date de départ -->
-                                                        <div class="timeline-item d-flex align-items-center mb-3">
-                                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Date </div>
-                                                            <div class="timeline-badge mx-4">
-                                                                <i class="fa fa-calendar-alt text-primary fs-4"></i>
-                                                            </div>
-                                                            <div class="timeline-content text-muted ps-3">
-                                                                {{ \Carbon\Carbon::parse($trajet->heure_depart)->locale('fr')->isoFormat('dddd, D MMMM YYYY') }}
-                                                            </div>
-                                                        </div>
+                                <!-- Date et heure -->
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <i class="fas fa-calendar-alt text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Date et heure</p>
+                                        <p class="text-gray-900">
+                                            {{ \Carbon\Carbon::parse($trajet->heure_depart)->locale('fr')->isoFormat('dddd, D MMMM YYYY') }}
+                                            à {{ \Carbon\Carbon::parse($trajet->heure_depart)->format('H:i') }}
+                                        </p>
+                                    </div>
+                                </div>
 
-                                                        <!-- Heure de départ -->
-                                                        <div class="timeline-item d-flex align-items-center mb-3">
-                                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Heure</div>
-                                                            <div class="timeline-badge mx-4">
-                                                                <i class="fa fa-clock text-primary fs-4"></i>
-                                                            </div>
-                                                            <div class="timeline-content text-muted ps-3">
-                                                                {{ \Carbon\Carbon::parse($trajet->heure_depart)->format('H:i') }}
-                                                            </div>
-                                                        </div>
+                                <!-- Statut -->
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                                        <i class="fas fa-info-circle text-purple-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Statut</p>
+                                        <span class="px-3 py-1 rounded-full text-sm font-medium
+                                            {{ $trajet->statut == 'disponible' ? 'bg-green-100 text-green-800' : 
+                                               ($trajet->statut == 'complet' ? 'bg-red-100 text-red-800' : 
+                                               'bg-yellow-100 text-yellow-800') }}">
+                                            {{ ucfirst($trajet->statut) }}
+                                        </span>
+                                    </div>
+                                </div>
 
-                                                        <!-- Statut -->
-                                                        <div class="timeline-item d-flex align-items-center">
-                                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Statut</div>
-                                                            <div class="timeline-badge mx-4">
-                                                                <i class="fa fa-info-circle text-primary fs-4"></i>
-                                                            </div>
-                                                            <div class="timeline-content fw-bold text-gray-800 ps-3">
-                                                                <span
-                                                                    class="badge badge-light-{{ $trajet->statut == 'disponible' ? 'success' : ($trajet->statut == 'complet' ? 'danger' : 'warning') }}">
-                                                                    {{ ucfirst($trajet->statut) }}
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                <!-- Publié par -->
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                                        <i class="fas fa-user text-gray-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Publié par</p>
+                                        <a href="{{ route('profil.show', ['user' => $trajet->user->id]) }}" 
+                                           class="text-blue-600 hover:text-blue-800 transition duration-300">
+                                            {{ $trajet->user->nom }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
 
-                                                        <!-- Publié par -->
-                                                        <div class="timeline-item d-flex align-items-center">
-                                                            <div class="timeline-label fw-bold text-gray-800 fs-6">Publié par</div>
-                                                            <div class="timeline-badge mx-4">
-                                                                <i class="fa fa-user text-success fs-4"></i>
-                                                            </div>
-                                                            <div class="timeline-content fw-mormal text-muted ps-3">
-                                                                <a href="{{ route('profil.show', ['user' => $trajet->user->id]) }}">
-                                                                    {{ $trajet->user->nom }}
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Body -->
-                                            </div>
-                        @endforeach
-                        <div class="mt-6 ">
+                <!-- Pagination -->
+                <div class="mt-8">
+                    <div class="flex justify-center">
+                        <div class="bg-white rounded-xl shadow-md p-2">
                             {{ $trajets->links('pagination.custom') }}
                         </div>
                     </div>
-                    <!--end::Card body-->
-                    <!--end::Form-->
-
+                </div>
             </div>
-            <!--end::Content-->
         </div>
-
-
     </div>
+</div>
+
+<style>
+    .pagination {
+        @apply flex items-center space-x-1;
+    }
+    .pagination li {
+        @apply inline-block;
+    }
+    .pagination a, .pagination span {
+        @apply px-4 py-2 rounded-lg transition-all duration-200;
+    }
+    .pagination a {
+        @apply bg-white text-gray-700 hover:bg-blue-600 hover:text-white hover:shadow-md;
+    }
+    .pagination .active span {
+        @apply bg-blue-600 text-white shadow-md;
+    }
+    .pagination .disabled span {
+        @apply bg-gray-100 text-gray-400 cursor-not-allowed;
+    }
+    .pagination .page-link {
+        @apply flex items-center justify-center w-10 h-10;
+    }
+</style>
 @endsection

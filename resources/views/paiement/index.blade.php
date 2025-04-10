@@ -2,108 +2,90 @@
 @section('title', 'Paiement')
 @section('content')
 
-    <div class="card mb-5 mb-xl-10">
-        <!--begin::Card header-->
-        <div class="card-header card-header-stretch pb-0">
-            <!--begin::Title-->
-            <div class="card-title">
-                <h3 class="m-0">Faire un paiement sur Covoyage</h3>
-            </div>
-            <!--end::Title-->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- En-tête -->
+    <div class="bg-white rounded-lg shadow-sm mb-8">
+        <div class="p-6 border-b border-gray-100">
+            <h3 class="text-xl font-semibold text-gray-900">Faire un paiement sur Covoyage</h3>
         </div>
-        <!--end::Card header-->
 
-        <!--begin::Tab content-->
-        <div id="kt_billing_payment_tab_content" class="card-body tab-content">
-            <!--begin::Tab panel-->
-            <div class="tab-pane fade show active">
-                <!--begin::Title-->
-                <h3 class="mb-5">Moyens de paiement</h3>
-                <!--end::Title-->
+        <div class="p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-6">Moyens de paiement</h3>
 
-                <!--begin::Row-->
-                <div class="row gx-9 gy-6">
-                    <!--begin::Col-->
-                    <div class="col-xl-6" data-kt-billing-element="card">
-                        <!--begin::Card-->
-                        <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                            <!--begin::Info-->
-                            <div class="d-flex flex-column py-2">
-                                <!--begin::Owner-->
-                                <div class="d-flex align-items-center fs-4 fw-bold mb-5 text-warning">
-                                    MTN MOMO
-                                    {{-- <img src="{{ asset('assets/media/illustrations/mtn.png') }}" alt=""
-                                        class="w-10 h-10 rounded-3"> --}}
-                                </div>
-                                <!--end::Owner-->
-
-                                <!--begin::Wrapper-->
-
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <div class="fs-4 fw-bold">Numéro de téléphone</div>
-                                        <div class="fs-6 fw-semibold text-gray-500">{{$phoneNumber}}</div>
-                                        <input type="email" class="form-control form-control-solid mt-10"
-                                            placeholder="Votre numéro de paiement" value="{{  $phoneNumber  }}" />
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Wrapper-->
-                            </div>
-
-                            <!--end::Info-->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Carte MTN MOMO -->
+                <div class="bg-white border border-dashed border-gray-300 rounded-lg p-6">
+                    <div class="flex flex-col">
+                        <div class="flex items-center text-yellow-600 font-bold text-lg mb-5">
+                            <i class="fas fa-mobile-alt mr-2"></i>
+                            MTN MOMO
                         </div>
-                        <!--end::Card-->
-                    </div>
-                    <!--end::Col-->
 
-
-
-                    <!--begin::Col-->
-                    <div class="col-xl-6">
-                        <!--begin::Notice-->
-                        <div
-                            class="notice d-flex bg-light-primary rounded border-primary border border-dashed h-lg-100 p-6">
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
-
-                                <!--begin::Content-->
-                                <div class="mb-3 mb-md-0 fw-semibold">
-                                    <h4 class="text-warning mb-5">Montant à payer {{$montant}}</h4>
-                                    <h4 class="text-gray-900 fw-bold">Avertissement : Veuillez vérifier les conditions avant
-                                        de confirmer le paiement</h4>
-
-
-
-                                    <div class="fs-6 text-gray-700 pe-7">
-                                        Avant de finaliser votre paiement, nous vous invitons à lire attentivement nos <a
-                                            href="#" class="fw-bold me-1">conditions d'utilisation</a> ainsi que notre <a
-                                            href="#" class="fw-bold me-1">politique de remboursement</a>. En procédant au
-                                        paiement, vous acceptez ces termes et conditions.
+                        <div class="space-y-4">
+                            <div>
+                                <div class="text-sm font-medium text-gray-900 mb-2">Numéro de téléphone</div>
+                                <div class="text-sm text-gray-500 mb-3">{{ $phoneNumber }}</div>
+                                
+                                <!-- Input avec préfixe -->
+                                <div class="relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm">+229</span>
+                                    </div>
+                                    <input type="text" 
+                                           name="phone" 
+                                           id="phone"
+                                           class="block w-full pl-12 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out"
+                                           placeholder="Votre numéro de paiement" 
+                                           value="{{ $phoneNumber }}"
+                                           pattern="[0-9]{12}"
+                                           maxlength="12"
+                                           required />
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-phone text-gray-400"></i>
                                     </div>
                                 </div>
-                                <!--end::Content-->
-
-
-                                <!--end::Action-->
+                                
+                                <!-- Message d'aide -->
+                                <p class="mt-2 text-xs text-gray-500">
+                                    Entrez votre numéro MTN MOMO (10 chiffres)
+                                </p>
                             </div>
-                            <!--end::Wrapper-->
                         </div>
-                        <!--end::Notice-->
                     </div>
-                    <div>
-                        <kkiapay-widget sandbox="true" amount="{{ $montant }}" key="{{ env('KKIAPAY_PUBLIC_KEY') }}"
-                            callback="{{ route('paiement.callback', ['reservation' => $reservation->id]) }}">
-                        </kkiapay-widget>
-                    </div>
-                    <!--end::Col-->
                 </div>
-                <!--end::Row-->
+
+                <!-- Avertissement -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <div class="space-y-4">
+                        <h4 class="text-yellow-600 font-semibold text-lg">
+                            Montant à payer : {{ number_format($montant, 0, ',', ' ') }} FCFA
+                        </h4>
+                        
+                        <h4 class="text-gray-900 font-bold">
+                            Avertissement : Veuillez vérifier les conditions avant de confirmer le paiement
+                        </h4>
+
+                        <div class="text-sm text-gray-700">
+                            Avant de finaliser votre paiement, nous vous invitons à lire attentivement nos 
+                            <a href="{{route('conditions')}}" class="font-semibold text-blue-600 hover:text-blue-800">conditions d'utilisation</a> 
+                            ainsi que notre 
+                            <a href="{{route('politique')}}" class="font-semibold text-blue-600 hover:text-blue-800">politique de remboursement</a>. 
+                            En procédant au paiement, vous acceptez ces termes et conditions.
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--end::Tab panel-->
 
-
+            <!-- Widget Kkiapay -->
+            <div class="mt-8">
+                <kkiapay-widget 
+                    sandbox="true" 
+                    amount="{{ $montant }}" 
+                    key="{{ env('KKIAPAY_PUBLIC_KEY') }}"
+                    callback="{{ route('paiement.callback', ['reservation' => $reservation->id]) }}">
+                </kkiapay-widget>
+            </div>
         </div>
-        <!--end::Tab content-->
     </div>
+</div>
 @endsection

@@ -1,64 +1,90 @@
-<div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_6155af3f2f180">
-    <div class="px-7 py-5">
-        <div class="fs-5 text-dark fw-bolder">Options</div>
-    </div>
-
-    <div class="separator border-gray-200"></div>
-
-    <form action="{{ route('trajet') }}" method="POST" id="filter_trajet">
-        @csrf
-        <div class="px-7 py-5">
-            <div class="mb-10">
-                <label class="form-label fw-bold">Statut</label>
-                <select class="form-select form-select-solid" name="statut" data-kt-select2="true"
-                    data-placeholder="Sélectionner une option" data-dropdown-parent="#kt_menu_6155af3f2f180"
-                    data-allow-clear="true">
-                    <option></option>
-                    <option value="disponible">Disponible</option>
-                    <option value="complet">Complet</option>
-                    <option value="annule">Annulé</option>
-                </select>
+<div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden opacity-0 transition-opacity duration-200" id="filterModal">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md transform transition-all duration-200 translate-y-4" id="filterModalContent">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-900">Options de filtrage</h3>
+                    <button id="closeFilterModal" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
             </div>
 
-            <div class="mb-10">
-                <label class="form-label fw-bold">Ville de départ</label>
-                <select class="form-select form-select-solid" name="ville_depart" data-kt-select2="true"
-                    data-placeholder="Sélectionner une option" data-dropdown-parent="#kt_menu_6155af3f2f180"
-                    data-allow-clear="true">
-                    <option></option>
-                    @foreach ($villes as $ville)
-                        <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
-                    @endforeach
-                </select>
-            </div>
+            <form action="{{ route('trajet') }}" method="POST" id="filter_trajet" class="p-6">
+                @csrf
+                <div class="space-y-6">
+                    {{-- <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
+                        <select class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200 bg-white" 
+                                name="statut">
+                            <option value="">Sélectionner un statut</option>
+                            <option value="disponible">Disponible</option>
+                            <option value="complet">Complet</option>
+                            <option value="annule">Annulé</option>
+                        </select>
+                    </div> --}}
 
-            <div class="mb-10">
-                <label class="form-label fw-bold">Ville d'arrivée</label>
-                <select class="form-select form-select-solid" name="ville_arrivee" data-kt-select2="true"
-                    data-placeholder="Sélectionner une option" data-dropdown-parent="#kt_menu_6155af3f2f180"
-                    data-allow-clear="true">
-                    <option></option>
-                    @foreach ($villes as $ville)
-                        <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
-                    @endforeach
-                </select>
-            </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ville de départ</label>
+                        <select class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200 bg-white" 
+                                name="ville_depart">
+                            <option value="">Sélectionner une ville</option>
+                            @foreach ($villes as $ville)
+                                <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            <div class="form-group mb-10">
-                <label for="datetime" class="form-label fw-bold">Date et heure du trajet</label>
-                <input type="datetime-local" class="form-control" id="datetime" name="datetime" >
-            </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ville d'arrivée</label>
+                        <select class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200 bg-white" 
+                                name="ville_arrivee">
+                            <option value="">Sélectionner une ville</option>
+                            @foreach ($villes as $ville)
+                                <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            <div class="form-group mb-10">
-                <label for="montant" class="form-label fw-bold">Montant du trajet (en FCFA)</label>
-                <input type="number" class="form-control" id="montant" name="montant" min="1000" max="50000" step="500"
-                    placeholder="Entrez le montant" >
-            </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Date et heure du trajet</label>
+                        <input type="datetime-local" 
+                               class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200 bg-white" 
+                               id="datetime" 
+                               name="datetime">
+                    </div>
 
-            <div class="d-flex justify-content-end mb-10">
-                <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2">Annuler</button>
-                <button type="submit" class="btn btn-sm btn-primary">Appliquer</button>
-            </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Montant du trajet (en FCFA)</label>
+                        <div class="relative">
+                            <input type="number" 
+                                   class="w-full pl-12 pr-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200 bg-white" 
+                                   id="montant" 
+                                   name="montant" 
+                                   min="1000" 
+                                   max="50000" 
+                                   step="500"
+                                   placeholder="Entrez le montant">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500">FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 pt-6">
+                        <button type="button" 
+                                id="closeFilterModal"
+                                class="px-6 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-200">
+                            Annuler
+                        </button>
+                        <button type="submit" 
+                                class="px-6 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200">
+                            Appliquer
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
+

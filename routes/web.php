@@ -26,7 +26,11 @@ use App\Http\Controllers\SupprimerCompteController;
 
 // ACCUEIL & CONDITIONS
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('conditions', [ConditionsController::class, 'index'])->name('conditions');
+
+
+Route::get('conditions', [ConditionsController::class, 'conditions'])->name('conditions');
+Route::get('politiques', [ConditionsController::class, 'politiques'])->name('politique');
+Route::get('cookie', [ConditionsController::class, 'cookie'])->name('cookies');
 
 //AUTHENTIFICATION PAR GOOGLE 
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('redirectToGoogle');
@@ -52,16 +56,11 @@ Route::middleware('auth')->group(function () {
     Route::match(['get', 'post'], 'modifier/{user}', [PassagerController::class, 'edit'])->name('passager.edit');
 
 
-    // // MODIFICATION DES INFORMATIONS DU CONDUCTEUR
-    //  Route::get('compte/{user}', [ConducteurController::class, 'index'])->name('conducteur.index');
-    //  Route::post('user/edit', [ConducteurController::class, 'edit'])->name('conducteur.edit');
-
-
     // TRAJETS
     Route::match(['get', 'post'], 'create/trajet', [TrajetController::class, 'create'])->name('trajet.create');
 
     // RÉSERVATION
-    Route::match(['get', 'post'], '/reservation', [ReservationController::class, 'index'])->name('reservation');
+    Route::match(['get', 'post'], '/resavation', [ReservationController::class, 'index'])->name('reservation');
     Route::post('annuler/{reservation}', [ReservationController::class, 'annulerReservation'])->name('reservation.annuler');
     Route::get('/reservations/recherche', [ReservationController::class, 'recherche'])->name('reservation.recherche');
 

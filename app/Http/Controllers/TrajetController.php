@@ -18,21 +18,14 @@ class TrajetController extends Controller
 {
     public function index(Request $request)
     {
-
-        // $trajets = DB::table('trajets')
-        //     ->whereRaw("(CURRENT_DATE + heure_depart::interval) < NOW()")
-        //     ->update(['statut' => 'annule']);
-
         $villes = Ville::all();
         $search = $request->input('search', '');
-        $query = Trajet::filter($search)->with(['villeDepart', 'villeArrive']);
-        
-        if ($request->filled('statut')) {
-            $query->where('statut', $request->statut);
-        }
+      
+        $query = Trajet::filter($search)
+            ->with(['villeDepart', 'villeArrive'])
+            ->where('statut', 'disponible');
 
         if ($request->filled('ville_depart')) {
-
             $query->where('ville_depart_id', $request->ville_depart);
         }
 
@@ -48,7 +41,7 @@ class TrajetController extends Controller
             $query->where('prix', '<=', $request->montant);
         }
 
-        $query->orderByDesc(DB::raw("statut = 'disponible'"));
+        $query->orderBy('date_depart', 'asc');
 
         if ($request->ajax()) {
             $trajets = $query->paginate(9);
@@ -61,7 +54,6 @@ class TrajetController extends Controller
         $trajets = $query->paginate(9, ['*'], 'page', $page);
 
         $isAuthenticatedAndConducteur = Auth::check() && Conducteur::where('user_id', Auth::id())->exists();
-
         return view('trajet.index', [
             'trajets' => $trajets,
             'villes' => $villes,
@@ -88,16 +80,16 @@ class TrajetController extends Controller
                 'ville_depart.string' => 'Le lieu de départ doit être une chaîne de caractères.',
                 'ville_depart.max' => 'Le lieu de départ ne peut pas dépasser 255 caractères.',
 
-                'ville_arrive.required' => 'Le lieu d’arrivée est obligatoire.',
-                'ville_arrive.string' => 'Le lieu  d’arrivée doit être une chaîne de caractères.',
-                'ville_arrive.max' => 'Le lieu  d’arrivée ne peut pas dépasser 255 caractères.',
+                'ville_arrive.required' => "Le lieu d'arrivée est obligatoire.",
+                'ville_arrive.string' => "Le lieu  d'arrivée doit être une chaîne de caractères.",
+                'ville_arrive.max' => "Le lieu  d'arrivée ne peut pas dépasser 255 caractères.",
 
-                'date_depart.required' => 'La date de départ est obligatoire.',
-                'date_depart.date' => 'La date de départ doit être une date valide.',
-                'date_depart.after_or_equal' => 'La date de départ doit être aujourd’hui ou une date future.',
+                'date_depart.required' => "La date de départ est obligatoire.",
+                'date_depart.date' => "La date de départ doit être une date valide.",
+                'date_depart.after_or_equal' => "La date de départ doit être aujourd'hui ou une date future.",
 
-                'heure_depart.required' => 'L\'heure de départ est obligatoire.',
-                'heure_depart.date_format' => 'L\'heure de départ doit être au format HH:MM.',
+                'heure_depart.required' => "L'heure de départ est obligatoire.",
+                'heure_depart.date_format' => "L'heure de départ doit être au format HH:MM.",
 
                 'nombre_personnes.required' => 'Le nombre de places disponibles est obligatoire.',
                 'nombre_personnes.min' => 'Il doit y avoir au moins une place disponible.',

@@ -1,181 +1,212 @@
 @extends('main.index')
-
-@section('title', "S'inscrire sur Covoyage")
+@section('title', 'Inscription')
 
 @section('content')
-    <div class="d-flex flex-column flex-root">
-        <!--begin::Authentication - Sign-up -->
-        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-            style="background-image: url(assets/media/illustrations/sigma-1/14.png">
-            <!--begin::Content-->
-            <div class="d-flex flex-center flex-column flex-column-fluid  pb-lg-20">
-                <!--begin::Logo-->
-
-                <!--end::Logo-->
-                <!--begin::Wrapper-->
-                <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-                    <!--begin::Form-->
-                    <form id="register-form" class="form w-100" method="post" action="{{ route('register') }}">
-                        @csrf
-                        <!--begin::Heading-->
-                        <div class="mb-10 text-center">
-                            <!--begin::Title-->
-                            <h1 class="text-dark mb-3">Créez votre compte gratuitement</h1>
-                            <!--end::Title-->
-                            <!--begin::Link-->
-                            <div class="text-gray-400 fw-bold fs-4">Vous avez déjà un coompte?
-                                <a href="{{ route('login') }}" class="link-primary fw-bolder">Se connecter ici</a>
-                            </div>
-                            <!--end::Link-->
-                        </div>
-                        <!--end::Heading-->
-                        <!--begin::Action-->
-                        <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
-                            <a href="{{ route('redirectToGoogle') }}">
-                                <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                                    class="h-20px me-3" />Se
-                                connecter avec Google
-                            </a>
-
-
-                        </button>
-                        <div class="d-flex align-items-center mb-10">
-                            <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-                            <span class="fw-bold text-gray-400 fs-7 mx-2">OU</span>
-                            <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-                        </div>
-                        <!--end::Separator-->
-                        <!--begin::Input group-->
-                        <div class="row fv-row mb-7">
-                            <!--begin::Col-->
-                            <div class="col-xl-6">
-                                <label class="form-label fw-bolder text-dark fs-6">Nom</label>
-                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder=""
-                                    name="nom" />
-                                <span class="text-danger error-nom"></span>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-xl-6">
-                                <label class="form-label fw-bolder text-dark fs-6">Prénom</label>
-                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder=""
-                                    name="prenom" />
-                                <span class="text-danger error-prenom"></span>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                            <input class="form-control form-control-lg form-control-solid" type="email" placeholder=""
-                                name="email" />
-                            <span class="text-danger error-email"></span>
-                        </div>
-
-                        <div class="fv-row mb-7">
-                            <label class="form-label fw-bolder text-dark fs-6">Téléphone</label>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1">+229</span>
-                                <input type="tel" name="telephone"
-                                    class="form-control form-control-lg form-control-solid"
-                                    placeholder="Numéro de téléphone">
-
-                            </div>
-                            <span class="text-danger error-telephone"></span>
-                            <div
-                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                            </div>
-                        </div>
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <label class="form-label fw-bolder text-dark fs-6">Sexe</label>
-                            <select class="form-control form-control-lg form-control-solid" name="sexe">
-                                <option value="homme">Homme</option>
-                                <option value="femme">Femme</option>
-                            </select>
-                            <span class="text-danger error-sexe"></span>
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <label class="form-label fw-bolder text-dark fs-6">Vous etes ?</label>
-                            <select class="form-control form-control-lg form-control-solid" name="type">
-                                <option value="passager">Passager</option>
-                                <option value="conducteur">Conducteur</option>
-                            </select>
-                            <span class="text-danger error-type"></span>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="mb-10 fv-row" data-kt-password-meter="true">
-                            <!--begin::Wrapper-->
-                            <div class="mb-1">
-                                <!--begin::Label-->
-                                <label class="form-label fw-bolder text-dark fs-6">Mot de passe</label>
-                                <!--end::Label-->
-                                <!--begin::Input wrapper-->
-                                <div class="position-relative mb-3">
-                                    <input class="form-control form-control-lg form-control-solid" type="password"
-                                        placeholder="" name="password" autocomplete="off" />
-                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
-                                        data-kt-password-meter-control="visibility">
-                                        <i class="bi bi-eye-slash fs-2"></i>
-                                        <i class="bi bi-eye fs-2 d-none"></i>
-                                    </span>
-                                    <span class="text-danger error-password"></span>
-                                </div>
-                                <!--end::Input wrapper-->
-                            </div>
-                            <!--end::Wrapper-->
-                            <!--begin::Hint-->
-                            <div class="text-muted">Utilisez 8 caractères ou plus avec un mélange de lettres
-                                minuscule,majuscule et de chiffre.
-                            </div>
-                            <!--end::Hint-->
-                        </div>
-                        <!--end::Input group=-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-5">
-                            <label class="form-label fw-bolder text-dark fs-6">Confirmer mot de passe</label>
-                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder=""
-                                name="password_confirmation" autocomplete="off" />
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-10">
-                            <label class="form-check form-check-custom form-check-solid form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="conditions" value="1" />
-                                <span class="form-check-label fw-bold text-gray-700 fs-6">J'accepte
-                                    <a href="{{ route('conditions') }}" class="ms-1 link-primary">les conditions
-                                        d'utilisations</a>.</span>
-                            </label>
-                            <span class="text-danger error-conditions"></span>
-                        </div>
-
-                        <!--end::Input group-->
-                        <!--begin::Actions-->
-                        <div class="">
-                            <button type="submit" class="btn btn-lg btn-primary">
-                                <span class="indicator-label">S'inscrire</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end::Form-->
-                </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Content-->
-
-        </div>
-        <!--end::Authentication - Sign-up-->
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <!-- Image de fond -->
+    <div class="absolute inset-0 z-0">
+      
     </div>
+
+    <div class="max-w-2xl w-full space-y-8 z-10 animate-fadeIn">
+        <!-- Logo et Titre -->
+        <div class="text-center animate-slideDown">
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                Créez votre compte gratuitement
+            </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Vous avez déjà un compte ?
+                <a href="{{ route('login') }}" class="font-medium text-blue-600 hover:text-blue-500">
+                    Se connecter ici
+                </a>
+            </p>
+        </div>
+
+        <!-- Formulaire -->
+        <form id="register-form" class="mt-8 space-y-6 bg-white p-8 rounded-lg shadow-lg animate-slideUp" method="post" action="{{ route('register') }}">
+            @csrf
+            
+            <!-- Connexion avec Google -->
+            <div class="animate-fadeIn">
+                <a href="{{ route('redirectToGoogle') }}" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition duration-300">
+                    <img class="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                    Se connecter avec Google
+                </a>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="relative animate-fadeIn">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-2 bg-white text-gray-500">OU</span>
+                </div>
+            </div>
+
+            <!-- Champs du formulaire -->
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 animate-fadeIn">
+                <!-- Nom -->
+                <div>
+                    <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
+                    <input id="nom" name="nom" type="text" required
+                        class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                        placeholder="Votre nom">
+                    <span class="text-red-500 text-sm error-nom"></span>
+                </div>
+
+                <!-- Prénom -->
+                <div>
+                    <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom</label>
+                    <input id="prenom" name="prenom" type="text" required
+                        class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                        placeholder="Votre prénom">
+                    <span class="text-red-500 text-sm error-prenom"></span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="animate-fadeIn">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input id="email" name="email" type="email" required
+                    class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                    placeholder="Votre email">
+                <span class="text-red-500 text-sm error-email"></span>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="animate-fadeIn">
+                <label for="telephone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+                        +229
+                    </span>
+                    <input type="tel" name="telephone" id="telephone" required
+                        class="flex-1 appearance-none rounded-r-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                        placeholder="Numéro de téléphone">
+                </div>
+                <span class="text-red-500 text-sm error-telephone"></span>
+            </div>
+
+            <!-- Sexe -->
+            <div class="animate-fadeIn">
+                <label for="sexe" class="block text-sm font-medium text-gray-700">Sexe</label>
+                <select id="sexe" name="sexe" required
+                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md transition duration-300">
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                </select>
+                <span class="text-red-500 text-sm error-sexe"></span>
+            </div>
+
+            <!-- Type d'utilisateur -->
+            <div class="animate-fadeIn">
+                <label for="type" class="block text-sm font-medium text-gray-700">Vous êtes ?</label>
+                <select id="type" name="type" required
+                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md transition duration-300">
+                    <option value="passager">Passager</option>
+                    <option value="conducteur">Conducteur</option>
+                </select>
+                <span class="text-red-500 text-sm error-type"></span>
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="animate-fadeIn">
+                <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                <div class="mt-1 relative">
+                    <input id="password" name="password" type="password" required
+                        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                        placeholder="Votre mot de passe">
+                    <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="mt-2 text-sm text-gray-500">Utilisez 8 caractères ou plus avec un mélange de lettres minuscule, majuscule et de chiffre.</p>
+                <span class="text-red-500 text-sm error-password"></span>
+            </div>
+
+            <!-- Confirmation mot de passe -->
+            <div class="animate-fadeIn">
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmer mot de passe</label>
+                <div class="mt-1 relative">
+                    <input id="password_confirmation" name="password_confirmation" type="password" required
+                        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
+                        placeholder="Confirmez votre mot de passe">
+                    <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Conditions d'utilisation -->
+            <div class="flex items-center animate-fadeIn">
+                <input id="conditions" name="conditions" type="checkbox" value="1" required
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition duration-300">
+                <label for="conditions" class="ml-2 block text-sm text-gray-700">
+                    J'accepte <a href="{{ route('conditions') }}" class="text-blue-600 hover:text-blue-500">les conditions d'utilisations</a>.
+                </label>
+            </div>
+            <span class="text-red-500 text-sm error-conditions"></span>
+
+            <!-- Bouton d'inscription -->
+            <div class="animate-fadeIn">
+                <button type="submit" id="kt_sign_up_submit"
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    <span class="indicator-label">S'inscrire</span>
+                    <span class="indicator-progress hidden">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Veuillez patienter...
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideDown {
+    animation: slideDown 0.5s ease-out;
+}
+
+.animate-slideUp {
+    animation: slideUp 0.5s ease-out;
+}
+</style>
 @endsection
 
 @section('scripts')
-    @include('auth.register.js')
+@include('auth.register.js')
 @endsection

@@ -1,87 +1,57 @@
-<div id="cookie-banner"
-    class="position-fixed top-50 start-50 translate-middle bg-white text-dark p-4 rounded shadow-lg d-none"
-    style="z-index: 1050; width: 90%; max-width: 500px; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between; align-items: start; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
-    
-    <div class="fs-5">
-        <p class="mb-3 mt-20 text-start">
-            Nous utilisons des cookies pour améliorer votre expérience sur notre site. En poursuivant votre navigation, 
-            vous acceptez notre <a href="{{ route('conditions') }}" class="text-primary fw-bold">politique de confidentialité</a> 
-            et l'utilisation des cookies.
-        </p>
-    </div>
-
-    <div class="mt-auto text-start w-100">
-        <button id="accept-cookies" class="btn btn-primary ">J'accepte</button>
-    </div>
-</div>
-
-
-<style>
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    #cookie-banner {
-        position: fixed;
-        top: 50%;
-        right: 0;
-        transform: translate(100%, -50%);
-        background: white;
-        text-align: center;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        width: 90%;
-        max-width: 500px;
-        min-height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1050;
-        opacity: 0;
-        transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-    }
-
-    #cookie-banner.show {
-        transform: translate(0, -50%);
-        opacity: 1;
-    }
-</style>
-
-<div id="cookie-banner" class="d-none">
-    <div class="text-center">
-        <p class="mb-3">Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre
-            politique de confidentialité.</p>
-        <button id="accept-cookies" class="btn btn-primary">Accepter</button>
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg transform translate-y-full transition-transform duration-500 ease-in-out z-50">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-gray-700">
+                <p class="mb-2">
+                    Nous utilisons des cookies pour améliorer votre expérience sur notre site. En poursuivant votre navigation, 
+                    vous acceptez notre <a href="{{ route('politique') }}" class="text-blue-600 hover:text-blue-800 font-semibold">politique de confidentialité</a> 
+                    et l'utilisation des cookies.
+                </p>
+            </div>
+            <div class="flex gap-4">
+                <button id="accept-cookies" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                    J'accepte
+                </button>
+                <button id="reject-cookies" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-300">
+                    Je refuse
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        if (!localStorage.getItem("cookiesAccepted")) {
-            const banner = document.getElementById("cookie-banner");
-            banner.classList.remove("d-none");
-            setTimeout(() => {
-                banner.classList.add("show");
-            }, 100);
-        }
+document.addEventListener("DOMContentLoaded", function() {
+    const banner = document.getElementById("cookie-banner");
+    const acceptButton = document.getElementById("accept-cookies");
+    const rejectButton = document.getElementById("reject-cookies");
 
-        document.getElementById("accept-cookies").addEventListener("click", function () {
-            localStorage.setItem("cookiesAccepted", "true");
-            const banner = document.getElementById("cookie-banner");
-            banner.style.transform = "translate(100%, -50%)"; // Cache la bannière avec une animation inverse
-            banner.style.opacity = "0";
-            setTimeout(() => {
-                banner.classList.add("d-none");
-            }, 600);
-        });
+    // Vérifie si l'utilisateur a déjà fait un choix
+    if (!localStorage.getItem("cookiesChoice")) {
+        // Affiche la bannière avec une animation
+        setTimeout(() => {
+            banner.classList.remove("translate-y-full");
+        }, 1000);
+    } else {
+        banner.classList.add("hidden");
+    }
+
+    // Gestion du clic sur "J'accepte"
+    acceptButton.addEventListener("click", function() {
+        localStorage.setItem("cookiesChoice", "accepted");
+        banner.classList.add("translate-y-full");
+        setTimeout(() => {
+            banner.classList.add("hidden");
+        }, 500);
     });
+
+    // Gestion du clic sur "Je refuse"
+    rejectButton.addEventListener("click", function() {
+        localStorage.setItem("cookiesChoice", "rejected");
+        banner.classList.add("translate-y-full");
+        setTimeout(() => {
+            banner.classList.add("hidden");
+        }, 500);
+    });
+});
 </script>

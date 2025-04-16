@@ -64,4 +64,8 @@ class ConducteurController extends Controller
             'nbresTrajet' => $nbresTrajet
         ]);
     }
+
+    public function contact(){
+        return view('conducteur.contact');
+    }
 }

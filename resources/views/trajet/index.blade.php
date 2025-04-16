@@ -2,7 +2,7 @@
 @section('title', 'Liste des trajets')
 
 @section('content')
-<div class="container mx-auto px-4 py-32">
+<div class="container mx-auto px-4 pt-20">
     <div class="flex justify-between items-center mb-8">
         <h1 class="text-xl md:text-2xl font-bold text-gray-900">Trajets</h1>
         <button onclick="openFilterModal()" 
@@ -15,7 +15,6 @@
     <div id="trajetdatapart">
         @include('trajet.datapart')
     </div>
-  
 </div>
 @endsection
 

@@ -1,18 +1,19 @@
 @extends('main.index')
 @section('title', 'Connexion')
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12  px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <div class="text-center">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-                Connectez-vous à votre compte
+               Se connnecter 
             </h2>
             <p class="mt-2 text-sm text-gray-600">
                 Ou
-                <a href="{{ route('register') }}" class="font-medium text-blue-600 hover:text-blue-500">
-                    créez un compte gratuitement
-                </a>
+               
             </p>
+            <p> <a href="{{ route('register') }}" class="font-medium text-blue-600 hover:text-blue-500">
+                créez un compte gratuitement
+            </a></p>
         </div>
 
         <form id="login-form" class="mt-8 space-y-6 bg-white p-8 rounded-lg shadow-lg" method="post" action="{{ route('login') }}">

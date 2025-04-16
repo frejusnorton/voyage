@@ -24,7 +24,5 @@ class ProfilController extends Controller
         ]);
     }
 
-    public function contact(){
-        
-    }
+   
 }

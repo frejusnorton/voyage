@@ -2,7 +2,13 @@
 	<div class="container mx-auto px-4">
 		<div class="flex justify-between items-center py-4">
 			<div class="flex items-center">
-				<a href="{{route('home')}}" class="text-2xl font-bold text-blue-600">Covoyage</span>
+				<a href="{{route('home')}}" class="flex items-center space-x-2 group">
+					<div class="relative">
+						<i class="fas fa-car text-3xl text-blue-600 transform group-hover:scale-110 transition-transform duration-300"></i>
+						<div class="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+					</div>
+					<span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent group-hover:from-pink-500 group-hover:to-blue-600 transition-all duration-300">Covoyage</span>
+				</a>
 			</div>
 			<nav class="hidden md:flex space-x-8">
 				<a href="{{route('home')}}" class="hover:text-blue-600 transition">Accueil</a>
@@ -121,6 +127,7 @@
 								<span>Trajet</span>
 							</a>
 						</li>
+						
 						
 					</ul>
 				</nav>

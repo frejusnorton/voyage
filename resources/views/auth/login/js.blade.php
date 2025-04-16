@@ -9,33 +9,48 @@
                 dataType: "json",
                 success: function (response) {
                     if (response.success) {
-                        Swal.fire({
-                            title: 'Succès!',
-                            text: response.message,
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
+                    
+                        const notification = $('<div>').addClass('notification-container');
+                        const notificationHtml = `
+                            <x-notification type="success" message="${response.message}" />
+                        `;
+                        notification.html(notificationHtml);
+                        $('body').append(notification);
+                        
+                        setTimeout(() => {
                             window.location.href = response.redirect;
-                        });
+                        }, 1000);
                     }
                 },
                 error: function (xhr) {
                     if (xhr.status == 401) {
-                        Swal.fire({
-                            title: 'Erreur',
-                            text: xhr.responseJSON?.message,
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
+                        const notification = $('<div>').addClass('notification-container');
+                        const notificationHtml = `
+                            <x-notification type="error" message="${xhr.responseJSON?.message}" />
+                        `;
+                        notification.html(notificationHtml);
+                        $('body').append(notification);
                     }
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
                         $.each(errors, function (key, value) {
-                            $(".error-" + key).text(value[0]);
+                            const errorDiv = $(`.error-${key}`);
+                            errorDiv.html(`
+                                <div class="mt-1 text-sm text-red-600 flex items-center">
+                                    <i class="fas fa-exclamation-circle mr-1"></i>
+                                    ${value[0]}
+                                </div>
+                            `);
                         });
-                    } 
+                    }
                 }
             });
+        });
+
+        // Nettoyer les erreurs quand l'utilisateur commence à taper
+        $('input').on('input', function() {
+            const fieldName = $(this).attr('name');
+            $(`.error-${fieldName}`).empty();
         });
     });
 </script>

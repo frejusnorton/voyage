@@ -1,22 +1,9 @@
 @extends('main.index')
 @section('title', "Conditions d'utilisations")
 
-@section('tolbar')
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-xxl d-flex flex-column flex-md-row align-items-md-center flex-wrap">
-        <!--begin::Page title-->
-        <div class="page-title d-flex flex-column me-md-3">
-            <!--begin::Title-->
-            <h1 class="d-flex text-white fw-bolder my-1 fs-3">Conditions d'utilisation</h1>
-            <!--end::Title-->
-        </div>
-    </div>
-
-@endsection
-
 @section('content')
-<div class="min-h-screen bg-gray-50 py-12">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class=" bg-gray-50 py-12 pt-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <!-- En-tête -->
         <div class="text-center mb-12">
             <h1 class=" text-xl md:text-4xl font-bold text-gray-900 mb-4">Conditions d'utilisation</h1>
@@ -24,7 +11,7 @@
         </div>
 
         <!-- Contenu -->
-        <div class="bg-white rounded-xl shadow-lg p-8">
+        <div class="bg-white   p-8">
             <!-- Introduction -->
             <div class="mb-8">
                 <h2 class="text-2xl font-semibold text-gray-900 mb-4">1. Introduction</h2>

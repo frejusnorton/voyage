@@ -48,8 +48,8 @@ Route::middleware('guest')->group(function () {
 // ROUTES PROTÉGÉES (Accessible uniquement aux utilisateurs connectés)
 Route::middleware('auth')->group(function () {
 
-    // // PROFIL UTILISATEUR
-    Route::get('contact/{user}', [ProfilController::class, 'contact'])->name('profil.contact');
+     // CONTACTER UN CONDUCTREUR
+    Route::get('contact/{user}', [ConducteurController::class, 'contact'])->name('conducteur.contact');
 
     // MODIFICATION DES INFORMATIONS DU PASSAGER
     Route::get('compte/{user}', [PassagerController::class, 'index'])->name('passager.index');

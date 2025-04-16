@@ -1,18 +1,13 @@
 @extends('main.index')
-@section('title', 'Inscription')
+@section('title', "S'inscrire gratuitement sur Covoyage")
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-    <!-- Image de fond -->
-    <div class="absolute inset-0 z-0">
-      
-    </div>
-
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-2 sm:px-2 lg:px-8 relative overflow-hidden">
     <div class="max-w-2xl w-full space-y-8 z-10 animate-fadeIn">
         <!-- Logo et Titre -->
-        <div class="text-center animate-slideDown">
+        <div class="text-center animate-slideDown pt-10">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-                Créez votre compte gratuitement
+                S'inscrire
             </h2>
             <p class="mt-2 text-sm text-gray-600">
                 Vous avez déjà un compte ?
@@ -23,9 +18,8 @@
         </div>
 
         <!-- Formulaire -->
-        <form id="register-form" class="mt-8 space-y-6 bg-white p-8 rounded-lg shadow-lg animate-slideUp" method="post" action="{{ route('register') }}">
+        <form id="register-form" class="pt-5 space-y-6 bg-white p-8 rounded-lg shadow-lg animate-slideUp" method="post" action="{{ route('register') }}">
             @csrf
-            
             <!-- Connexion avec Google -->
             <div class="animate-fadeIn">
                 <a href="{{ route('redirectToGoogle') }}" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition duration-300">
@@ -49,7 +43,7 @@
                 <!-- Nom -->
                 <div>
                     <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
-                    <input id="nom" name="nom" type="text" required
+                    <input id="nom" name="nom" type="text" 
                         class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
                         placeholder="Votre nom">
                     <span class="text-red-500 text-sm error-nom"></span>
@@ -58,7 +52,7 @@
                 <!-- Prénom -->
                 <div>
                     <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom</label>
-                    <input id="prenom" name="prenom" type="text" required
+                    <input id="prenom" name="prenom" type="text" 
                         class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
                         placeholder="Votre prénom">
                     <span class="text-red-500 text-sm error-prenom"></span>
@@ -68,7 +62,7 @@
             <!-- Email -->
             <div class="animate-fadeIn">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input id="email" name="email" type="email" required
+                <input id="email" name="email" type="email" 
                     class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
                     placeholder="Votre email">
                 <span class="text-red-500 text-sm error-email"></span>
@@ -81,7 +75,7 @@
                     <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                         +229
                     </span>
-                    <input type="tel" name="telephone" id="telephone" required
+                    <input type="tel" name="telephone" id="telephone" 
                         class="flex-1 appearance-none rounded-r-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
                         placeholder="Numéro de téléphone">
                 </div>
@@ -91,7 +85,7 @@
             <!-- Sexe -->
             <div class="animate-fadeIn">
                 <label for="sexe" class="block text-sm font-medium text-gray-700">Sexe</label>
-                <select id="sexe" name="sexe" required
+                <select id="sexe" name="sexe" 
                     class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md transition duration-300">
                     <option value="homme">Homme</option>
                     <option value="femme">Femme</option>
@@ -102,7 +96,7 @@
             <!-- Type d'utilisateur -->
             <div class="animate-fadeIn">
                 <label for="type" class="block text-sm font-medium text-gray-700">Vous êtes ?</label>
-                <select id="type" name="type" required
+                <select id="type" name="type" 
                     class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md transition duration-300">
                     <option value="passager">Passager</option>
                     <option value="conducteur">Conducteur</option>
@@ -114,7 +108,7 @@
             <div class="animate-fadeIn">
                 <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
                 <div class="mt-1 relative">
-                    <input id="password" name="password" type="password" required
+                    <input id="password" name="password" type="password" 
                         class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
                         placeholder="Votre mot de passe">
                     <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password">
@@ -132,7 +126,7 @@
             <div class="animate-fadeIn">
                 <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmer mot de passe</label>
                 <div class="mt-1 relative">
-                    <input id="password_confirmation" name="password_confirmation" type="password" required
+                    <input id="password_confirmation" name="password_confirmation" type="password" 
                         class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-300"
                         placeholder="Confirmez votre mot de passe">
                     <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password">
@@ -146,7 +140,7 @@
 
             <!-- Conditions d'utilisation -->
             <div class="flex items-center animate-fadeIn">
-                <input id="conditions" name="conditions" type="checkbox" value="1" required
+                <input id="conditions" name="conditions" type="checkbox" value="1" 
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition duration-300">
                 <label for="conditions" class="ml-2 block text-sm text-gray-700">
                     J'accepte <a href="{{ route('conditions') }}" class="text-blue-600 hover:text-blue-500">les conditions d'utilisations</a>.

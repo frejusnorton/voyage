@@ -10,10 +10,10 @@
     @else
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($trajets as $trajet)
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden transform hover:scale-105 transition duration-300 animate-on-scroll opacity-0 translate-y-4">
+                <div class="border border-gray-300 bg-white rounded-2xl shadow-sm overflow-hidden">
                     <a href="{{ route('trajet.details', ['trajet' => $trajet->id]) }}" class="block">
                         <!-- En-tête de la carte -->
-                        <div class=" p-2 md:p-6 border-b border-gray-100">
+                        <div class="p-2 md:p-6 border-b border-gray-100">
                             <div class="flex justify-between items-start">
                                 <div>
                                     <h3 class="text-xl font-bold text-gray-900 mb-2">
@@ -24,7 +24,7 @@
                                         {{ $trajet->nombre_personnes }} places disponibles
                                     </p>
                                 </div>
-                                <div class="bg-blue-500 text-white p-2 rounded-lg font-semibold">
+                                <div class="text-sm bg-blue-500 text-white p-2 rounded-lg font-semibold">
                                     {{ number_format($trajet->prix, 0, ',', ' ') }} FCFA
                                 </div>
                             </div>
@@ -103,12 +103,12 @@
                             @if($trajet->statut == 'disponible')
                                 <div class="mt-6">
                                     <button id="reservation" 
-                                        class=" bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition
-                                        "
+                                        class="group flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                                         data-url="{{ route('reservation', ['trajet' => $trajet->id]) }}"
                                         data-trajet-id="{{ $trajet->id }}" 
                                         data-user-id="{{ auth()->id() }}">
-                                        Réserver ce trajet
+                                        <i class="fas fa-calendar-check text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+                                        <span>Réserver</span>
                                     </button>
                                 </div>
                             @else
@@ -121,9 +121,8 @@
                 </div>
             @endforeach
         </div>
-
         <!-- Pagination améliorée -->
-        <div class="mt-12">
+        <div class="mt-5">
             <div class="flex justify-center">
                 <div class="bg-white rounded-xl shadow-md p-2">
                     {{ $trajets->links('pagination.custom') }}

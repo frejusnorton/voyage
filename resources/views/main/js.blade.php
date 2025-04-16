@@ -50,6 +50,11 @@
             const $content = $(`#faqContent${id}`);
             const $icon = $(`#faqIcon${id}`);
             
+            // Fermer toutes les autres FAQ
+            $('.faq-content').not($content).addClass('hidden');
+            $('.faq-icon').not($icon).removeClass('rotate-180');
+            
+            // Basculer la FAQ actuelle
             $content.toggleClass('hidden');
             $icon.toggleClass('rotate-180');
         }

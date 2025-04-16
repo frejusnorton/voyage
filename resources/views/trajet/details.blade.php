@@ -1,14 +1,13 @@
 @extends('main.index')
 
 @section('content')
-<div class="container mx-auto px-4 py-8">
-    <!-- Carte principale du trajet -->
+<div class="container mx-auto px-4 py-8 pt-16 md:pt-32">
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
         <!-- En-tête -->
         <div class="p-6 border-b border-gray-200">
             <div class="flex justify-between items-start">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                    <h2 class="text-xl font-bold text-gray-900 mb-2">
                         {{ $trajet->villeDepart->nom }} → {{ $trajet->villeArrive->nom }}
                     </h2>
                     <p class="text-gray-600">
@@ -16,7 +15,7 @@
                         {{ $trajet->nombre_personnes }} places disponibles
                     </p>
                 </div>
-                <div class="bg-blue-600 text-white px-4 py-2 rounded-full font-semibold">
+                <div class="text-sm bg-blue-500 text-white p-2 rounded-lg font-semibold">
                     {{ number_format($trajet->prix, 0, ',', ' ') }} FCFA
                 </div>
             </div>
@@ -183,7 +182,7 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('profil.contact', ['user' => $conducteur]) }}" 
+                    <a href="{{ route('conducteur.contact', ['user' => $conducteur]) }}" 
                        class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition">
                         Contacter
                     </a>

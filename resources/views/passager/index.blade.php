@@ -2,6 +2,7 @@
 @section('title', 'Paramètre de compte')
 
 @section('content')
+
 <div class="min-h-screen bg-gray-50 py-8 pt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- En-tête du profil -->
@@ -43,15 +44,13 @@
                                 </span>
                             </div>
                         </div>
-
                         <!-- Statistiques -->
                         <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                             <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
                                 <div class="flex items-center">
-                                    <i class="fas fa-route text-green-500 mr-2"></i>
                                     <div>
-                                        <p class="text-2xl font-bold text-gray-900">{{$trajets}}</p>
-                                        <p class="text-sm text-gray-500">Trajets effectués</p>
+                                        <p class="text-sm text-gray-500">Nombres de réservations</p>
+                                        <p class="text-2xl font-bold text-gray-900">{{$nombreTotal}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -76,19 +75,19 @@
                     <!-- Informations personnelles -->
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Nom</label>
+                            <label class="block text-lg font-medium text-gray-700">Nom</label>
                             <p class="mt-1 text-gray-900">{{$user->nom ?? 'Non renseigné'}}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Prénom</label>
+                            <label class="block text-lg font-medium text-gray-700">Prénom</label>
                             <p class="mt-1 text-gray-900">{{$user->prenom ?? 'Non renseigné'}}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Email</label>
+                            <label class="block text-lg font-medium text-gray-700">Email</label>
                             <p class="mt-1 text-gray-900">{{$user->email ?? 'Non renseigné'}}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Sexe</label>
+                            <label class="block text-lg font-medium text-gray-700">Sexe</label>
                             <p class="mt-1 text-gray-900">{{$user->sexe ?? 'Non renseigné'}}</p>
                         </div>
                     </div>
@@ -96,15 +95,15 @@
                     <!-- Informations de contact -->
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Téléphone</label>
+                            <label class="block text-lg font-medium text-gray-700">Téléphone</label>
                             <p class="mt-1 text-gray-900">{{$user->telephone ?? 'Non renseigné'}}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Adresse</label>
+                            <label class="block text-lg font-medium text-gray-700">Adresse</label>
                             <p class="mt-1 text-gray-900">{{$user->adresse ?? 'Non renseigné'}}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Date de naissance</label>
+                            <label class="block text-lg font-medium text-gray-700">Date de naissance</label>
                             <p class="mt-1 text-gray-900">
                                 @isset($user->naissance)
                                     {{\Carbon\Carbon::parse($user->naissance)->format('d/m/Y')}}

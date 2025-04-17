@@ -19,9 +19,6 @@
     <!-- Alpine.js -->
     <script src="//unpkg.com/alpinejs" defer></script>
 
-<!-- Notification Blade Component -->
-    
-    <!-- Styles CSS -->
     <style>
         .pagination {
             @apply flex items-center space-x-1;
@@ -109,19 +106,16 @@
         }
     </style>
 </head>
-<body>
- 
-    @include('components.cookie')
-    @include('components.header')
-    @yield('content')
-    @include('components.footer')
-    
-    <!-- Script pour le paiement KKiapay -->
-    <script src="https://cdn.kkiapay.me/k.js"></script>
-    
-    <!-- Inclusion du fichier JavaScript principal -->
-    @include('main.js')
-    @yield('scripts')
-   
+<body class="bg-gray-50">
+    @include('components.loading')
+    <div id="app">
+        @include('components.header')
+        <main>
+            @yield('content')
+        </main>
+        @include('components.footer')
+    </div>
+    @include('main.js')   
+    @yield('scripts')   
 </body>
 </html>

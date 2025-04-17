@@ -11,7 +11,7 @@ use App\Http\Requests\EditPassagerProfilRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-
+use App\Models\Reservation;
 class PassagerController extends Controller
 {
     /**
@@ -22,11 +22,11 @@ class PassagerController extends Controller
     public function index(): View
     {
         $user = Auth::user();
-        $trajets = Trajet::where('user_id', $user->id)->paginate(5);
-
+        $nombreTotal = Reservation::where('user_id', $user->id)->count();
         return view('passager.index', [
             'user' => $user,
-            'trajets' => $trajets,
+            'nombreTotal' => $nombreTotal,
+           
         ]);
     }
 
@@ -47,9 +47,8 @@ class PassagerController extends Controller
         try {
             $validatedData = $request->validated();
             
-            // Gestion de l'image de profil
+         
             if ($request->hasFile('profil_img')) {
-                // Suppression de l'ancienne image si elle existe
                 if ($user->profil_img && Storage::disk('public')->exists(str_replace('/storage/', '', $user->profil_img))) {
                     Storage::disk('public')->delete(str_replace('/storage/', '', $user->profil_img));
                 }
@@ -58,7 +57,6 @@ class PassagerController extends Controller
                 $validatedData['profil_img'] = Storage::url($profilPath);
             }
 
-            // Mise à jour de l'utilisateur via fill + save au lieu d'assignations individuelles
             $user->fill([
                 'profil_img' => $validatedData['profil_img'] ?? $user->profil_img,
                 'nom' => $validatedData['nom'] ?? $user->nom,

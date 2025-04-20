@@ -133,7 +133,6 @@ class TrajetController extends Controller
             }
         }
 
-
         return view(
             'trajet.create',
             [

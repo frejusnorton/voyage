@@ -1,7 +1,7 @@
 @extends('main.index')
 
 @section('content')
-<div class="container mx-auto px-4 py-12">
+<div class="container mx-auto px-4 py-12 pt-20">
     <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div class="p-8">
             <div class="text-center mb-8">

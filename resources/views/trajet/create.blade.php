@@ -1,160 +1,103 @@
 @extends('main.index')
-@section('title', 'Publier un trajet ')
+@section('title', 'Publier un trajet')
 
 @section('content')
-    <div class="card mb-5 mb-xl-10">
-        <!--begin::Card header-->
-        <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
-            data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
-            <!--begin::Card title-->
-            <div class="card-title m-0">
-                <h3 class="fw-bold m-0">Publier un trajet</h3>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20">
+    <!-- En-tête -->
+    <div class="bg-white rounded-xl shadow-sm mb-8">
+        <div class="p-6 border-b border-gray-100">
+            <h3 class="text-xl font-semibold text-gray-900">Publier un trajet</h3>
+        </div>
+
+        <!-- Formulaire -->
+        <form class="p-6" method="post" id="trajet_create" action="{{ route('trajet.create') }}">
+            @csrf
+            <!-- Ville de départ -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Lieu de départ</label>
+                <div class="relative">
+                    <input list="villes" name="ville_depart" 
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                           placeholder="Ex : Pahou">
+                    <datalist id="villes">
+                        @foreach($villes as $ville)
+                            <option value="{{ $ville->nom }}">{{ $ville->nom }}</option>
+                        @endforeach
+                    </datalist>
+                </div>
             </div>
-            <!--end::Card title-->
-        </div>
-        <!--begin::Card header-->
 
-        <!--begin::Content-->
-        <div class="collapse show">
-            <!--begin::Form-->
-            <form class="form fv-plugins-bootstrap5 fv-plugins-framework" method="post" id="trajet_create"
-                action="{{ route('trajet.create') }}">
-                @csrf
-                <!--begin::Card body-->
-                <div class="card-body border-top p-9">
-                    <!--end::Input group-->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Lieu de départ</label>
-                        <!--end::Label-->
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="col-lg-12 fv-row fv-plugins-icon-container">
-                                    <input list="villes" name="ville_depart" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Ex : Pahou" >
-                                    <datalist id="villes">
-                                        @foreach($villes as $ville)
-                                            <option value="{{ $ville->nom }}">{{ $ville->nom }}</option>
-                                        @endforeach
-                                    </datalist>
-                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <!--begin::Input group pour la ville d'arrivée-->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Lieu d'arrivée</label>
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="col-lg-12 fv-row fv-plugins-icon-container">
-                                    <input list="villes" name="ville_arrive" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Ex : Lokossa" >
-                                    <datalist id="villes">
-                                        @foreach($villes as $ville)
-                                            <option value="{{ $ville->nom }}">{{ $ville->nom }}</option>
-                                        @endforeach
-                                    </datalist>
-                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--begin::Input group-->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">Description</label>
-                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                            <textarea name="description" class="form-control form-control-lg form-control-solid"
-                                placeholder="Ex : Nous démarrons devant l'école public Godomey ! Soyez à l'heure"></textarea>
-                            <div
-                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                            </div>
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-
-                    <!--begin::Input group-->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                            <span class="required">Prix</span>
-                        </label>
-                        <!--end::Label-->
-
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                            <input type="number" name="prix" class="form-control form-control-lg form-control-solid"
-                                placeholder="Entrez le prix" step="0.01" min="0">
-                            <div
-                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                            </div>
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-
-                    <!--begin::Input group - Date de départ -->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Date de départ</label>
-                        <!--end::Label-->
-
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row">
-                            <input type="date" name="date_depart"
-                                class="form-control form-control-lg form-control-solid">
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-
-                    <!--begin::Input group - Heure de départ -->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Heure de départ</label>
-                        <!--end::Label-->
-
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row">
-                            <input type="time" name="heure_depart"
-                                class="form-control form-control-lg form-control-solid">
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-
-
-                    <!--begin::Input group - Nombre de places -->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Nombre de places</label>
-                        <!--end::Label-->
-
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row">
-                            <input type="number" name="nombre_personnes"
-                                class="form-control form-control-lg form-control-solid" placeholder="Ex : 4" min="1">
-                        </div>
-                        <!--end::Col-->
-                    </div>
+            <!-- Ville d'arrivée -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Lieu d'arrivée</label>
+                <div class="relative">
+                    <input list="villes" name="ville_arrive" 
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                           placeholder="Ex : Lokossa">
                 </div>
-            
-                <div class="card-footer d-flex justify-content-end py-6 px-9">
-                    <button type="submit" class="btn btn-primary" >Publiez
-                    </button>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea name="description" 
+                          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                          rows="3"
+                          placeholder="Ex : Nous démarrons devant l'école public Godomey ! Soyez à l'heure"></textarea>
+            </div>
+
+            <!-- Prix -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Prix (FCFA)</label>
+                <div class="relative">
+                    <input type="number" name="prix" 
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                           placeholder="Entrez le prix"
+                           step="0.01" 
+                           min="0">
                 </div>
-            </form>
-            <!--end::Form-->
-        </div>
-        <!--end::Content-->
+            </div>
+
+            <!-- Date et heure -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Date de départ -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Date de départ</label>
+                    <input type="date" name="date_depart"
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <!-- Heure de départ -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Heure de départ</label>
+                    <input type="time" name="heure_depart"
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+            </div>
+
+            <!-- Nombre de places -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de places</label>
+                <input type="number" name="nombre_personnes"
+                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                       placeholder="Ex : 4"
+                       min="1">
+            </div>
+
+            <!-- Bouton de soumission -->
+            <div class="flex justify-end">
+                <button type="submit" 
+                        class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                    Publier le trajet
+                </button>
+            </div>
+        </form>
     </div>
+</div>
 @endsection
 
 @section('scripts')
-  @include('trajet.js')
+    @include('trajet.js')
 @endsection
 
 

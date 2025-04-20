@@ -1,9 +1,9 @@
-  <!-- Avis -->
-  <section id="avis" class="py-20">
+<!-- Avis -->
+<section id="avis" class="py-20">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeIn">Ce que disent nos voyageurs</h2>
-            <p class="text-xl text-gray-600 animate-fadeIn">Découvrez les expériences de nos utilisateurs</p>
+            <p class="text-xl text-gray-600 animate-fadeIn">Découvrez les témoignages de nos utilisateurs satisfaits</p>
         </div>
         <div class="grid md:grid-cols-2 gap-8">
             <div class="bg-white p-8 rounded-xl shadow-lg transform transition-all duration-500 hover:scale-105 animate-slideInLeft">
@@ -16,11 +16,11 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-6">"Service exceptionnel ! Les conducteurs sont très professionnels et les trajets sont très confortables. Je recommande vivement !"</p>
+                <p class="text-gray-600 mb-6">"J'ai utilisé l'application pour mes déplacements quotidiens et je suis vraiment impressionnée par la qualité du service. Les chauffeurs sont professionnels, et les trajets sont toujours agréables et ponctuels."</p>
                 <div class="flex items-center">
-                    <img src="https://img.freepik.com/photos-gratuite/portrait-femme-africaine-souriante_23-2149382421.jpg" alt="Aïcha" class="w-12 h-12 rounded-full mr-4">
+                    <img src="https://img.freepik.com/photos-gratuite/portrait-femme-africaine-souriante_23-2149382421.jpg" alt="Sophie" class="w-12 h-12 rounded-full mr-4">
                     <div>
-                        <h4 class="font-semibold">Aïcha B.</h4>
+                        <h4 class="font-semibold">Sophie K.</h4>
                         <p class="text-sm text-gray-500">Voyageuse régulière</p>
                     </div>
                 </div>
@@ -35,11 +35,11 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-6">"Une application très pratique pour mes déplacements quotidiens. Le service client est réactif et les prix sont très compétitifs."</p>
+                <p class="text-gray-600 mb-6">"L'application a transformé mes trajets quotidiens. Le service client est très réactif et les prix sont tout à fait abordables pour la qualité de service proposée."</p>
                 <div class="flex items-center">
-                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Mamadou" class="w-12 h-12 rounded-full mr-4">
+                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Oumar" class="w-12 h-12 rounded-full mr-4">
                     <div>
-                        <h4 class="font-semibold">Mamadou T.</h4>
+                        <h4 class="font-semibold">Oumar D.</h4>
                         <p class="text-sm text-gray-500">Conducteur partenaire</p>
                     </div>
                 </div>
@@ -55,12 +55,12 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-6">"Une application très pratique pour mes déplacements quotidiens. Le service client est réactif et les prix sont très compétitifs."</p>
+                <p class="text-gray-600 mb-6">"Un service très pratique ! Je n'ai plus à m'inquiéter de mes trajets grâce à cette application. Les chauffeurs sont très professionnels et toujours à l'heure."</p>
                 <div class="flex items-center">
-                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Mamadou" class="w-12 h-12 rounded-full mr-4">
+                    <img src="https://img.freepik.com/photos-gratuite/portrait-femme-africaine-souriante_23-2149382421.jpg" alt="Amélie" class="w-12 h-12 rounded-full mr-4">
                     <div>
-                        <h4 class="font-semibold">Mamadou T.</h4>
-                        <p class="text-sm text-gray-500">Conducteur partenaire</p>
+                        <h4 class="font-semibold">Amélie L.</h4>
+                        <p class="text-sm text-gray-500">Voyageuse fréquente</p>
                     </div>
                 </div>
             </div>
@@ -75,11 +75,11 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-6">"Une application très pratique pour mes déplacements quotidiens. Le service client est réactif et les prix sont très compétitifs."</p>
+                <p class="text-gray-600 mb-6">"Le service client est impeccable. J'ai eu une petite difficulté avec ma réservation, mais l'équipe a résolu tout ça rapidement et avec professionnalisme."</p>
                 <div class="flex items-center">
-                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Mamadou" class="w-12 h-12 rounded-full mr-4">
+                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Alioune" class="w-12 h-12 rounded-full mr-4">
                     <div>
-                        <h4 class="font-semibold">Mamadou T.</h4>
+                        <h4 class="font-semibold">Alioune S.</h4>
                         <p class="text-sm text-gray-500">Conducteur partenaire</p>
                     </div>
                 </div>
@@ -94,12 +94,12 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-6">"Une application très pratique pour mes déplacements quotidiens. Le service client est réactif et les prix sont très compétitifs."</p>
+                <p class="text-gray-600 mb-6">"Je recommande vivement cette application. Elle rend mes trajets en ville beaucoup plus agréables et sécurisés. Un vrai gain de temps !"</p>
                 <div class="flex items-center">
-                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Mamadou" class="w-12 h-12 rounded-full mr-4">
+                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Ibrahime" class="w-12 h-12 rounded-full mr-4">
                     <div>
-                        <h4 class="font-semibold">Mamadou T.</h4>
-                        <p class="text-sm text-gray-500">Conducteur partenaire</p>
+                        <h4 class="font-semibold">Ibrahime N.</h4>
+                        <p class="text-sm text-gray-500">Client satisfait</p>
                     </div>
                 </div>
             </div>
@@ -113,12 +113,12 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-6">"Une application très pratique pour mes déplacements quotidiens. Le service client est réactif et les prix sont très compétitifs."</p>
+                <p class="text-gray-600 mb-6">"Une des meilleures applications de transport que j'ai utilisées. Rapide, efficace, et une interface agréable. Je la recommande à tous mes amis."</p>
                 <div class="flex items-center">
-                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Mamadou" class="w-12 h-12 rounded-full mr-4">
+                    <img src="https://img.freepik.com/photos-gratuite/portrait-homme-africain-souriant_23-2149382420.jpg" alt="Koffi" class="w-12 h-12 rounded-full mr-4">
                     <div>
-                        <h4 class="font-semibold">Mamadou T.</h4>
-                        <p class="text-sm text-gray-500">Conducteur partenaire</p>
+                        <h4 class="font-semibold">Koffi D.</h4>
+                        <p class="text-sm text-gray-500">Utilisateur régulier</p>
                     </div>
                 </div>
             </div>

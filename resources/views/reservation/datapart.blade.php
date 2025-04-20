@@ -1,3 +1,4 @@
+
 <div class="container mx-auto px-2 md:px-4 py-8" id="reservation">
 @if ($reservations->isEmpty())
     <div class="min-h-[200px] flex items-center justify-center">

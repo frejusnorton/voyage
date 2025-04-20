@@ -53,7 +53,6 @@ class RegisterController extends Controller
                     }
                 }
                 DB::commit();
-        
                 return response()->json([
                     'success' => true,
                     'message' => 'Inscription réussie ! Redirection en cours...',
@@ -71,7 +70,6 @@ class RegisterController extends Controller
             }
         }
         
-
         return redirect()->route('login')->with('success', 'Inscription réussie ! Connectez-vous.');
     }
 }

@@ -1,14 +1,16 @@
 <script>
+    let url = "{{ route('login', [], true) }}";
+    console.log(url,'ici');
     $(document).ready(function () {
         $("#login-form").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('login', [], true) }}", 
+                url: url,
                 type: "POST",
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function (response) {
-                    console.log(url);
+
                     if (response.success) {
                         const notification = $('<div>').addClass('notification-container');
                         const notificationHtml = `
@@ -16,7 +18,7 @@
                         `;
                         notification.html(notificationHtml);
                         $('body').append(notification);
-                        
+
                         setTimeout(() => {
                             window.location.href = response.redirect;
                         }, 500);

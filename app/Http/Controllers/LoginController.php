@@ -25,10 +25,10 @@ class LoginController extends Controller
         ]);
 
         try {
+          
             if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']])) {
                 $user = Auth::user();
                 $user->update(['is_online' => true]);
-
                 return response()->json([
                     'success' => true,
                     'message' => 'Connexion réussie !',

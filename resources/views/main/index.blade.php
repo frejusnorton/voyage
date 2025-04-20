@@ -5,20 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Inclusion de jQuery avant tout autre script qui l'utilise -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Alpine.js -->
     <script src="//unpkg.com/alpinejs" defer></script>
-
     <style>
         .pagination {
             @apply flex items-center space-x-1;
@@ -107,7 +100,7 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    @include('components.loading')
+    {{-- @include('components.loading') --}}
     <div id="app">
         @include('components.header')
         <main>
@@ -115,7 +108,9 @@
         </main>
         @include('components.footer')
     </div>
+   
     @include('main.js')   
     @yield('scripts')   
+    <script src="https://cdn.kkiapay.me/k.js" defer></script>
 </body>
 </html>

@@ -3,13 +3,12 @@
         $("#login-form").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('login') }}",
+                url: "{{ route('login', [], true) }}", 
                 type: "POST",
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function (response) {
                     if (response.success) {
-                    
                         const notification = $('<div>').addClass('notification-container');
                         const notificationHtml = `
                             <x-notification type="success" message="${response.message}" />
@@ -19,7 +18,7 @@
                         
                         setTimeout(() => {
                             window.location.href = response.redirect;
-                        }, 1000);
+                        }, 500);
                     }
                 },
                 error: function (xhr) {
@@ -47,11 +46,9 @@
             });
         });
 
-        // Nettoyer les erreurs quand l'utilisateur commence à taper
-        $('input').on('input', function() {
+        $('input').on('input', function () {
             const fieldName = $(this).attr('name');
             $(`.error-${fieldName}`).empty();
         });
     });
 </script>
-

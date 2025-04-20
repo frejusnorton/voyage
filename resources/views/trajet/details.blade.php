@@ -1,5 +1,5 @@
 @extends('main.index')
-
+@section('title','Détails du trajet')
 @section('content')
 <div class="container mx-auto px-4 py-8 pt-16 md:pt-32">
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">

@@ -20,7 +20,7 @@
 					<button onclick="toggleUserMenu()" class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition">
 						@auth
 							@if(Auth::user()->profil_img)
-								<img src="{{ asset('storage/profil/' . Auth::user()->profil_img) }}" alt="Profil" class="w-8 h-8 rounded-full object-cover">
+								<img src="{{ Auth::user()->profil_img  }}" alt="Profil" class="w-8 h-8 rounded-full object-cover">
 							@else
 								<i class="fas fa-user-circle text-2xl"></i>
 							@endif
@@ -39,22 +39,20 @@
 								<i class="fas fa-user-plus mr-2"></i>Inscription
 							</a>
 						@endguest
-					
 						@auth
-							
 							@if(Auth::user()->type === 'passager')
-							<li>
+							<span>
 								<a href="{{ route('passager.index', Auth::user()->id) }}" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
 									<i class="fas fa-user w-6"></i>
 									<span>Mon compte</span>
 								</a>
-							</li>
-							<li>
+							</span>
+							<span>
 								<a href="{{ route('reservation') }}" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
 									<i class="fas fa-user w-6"></i>
 									<span>Mes réservations</span>
 								</a>
-							</li>
+							</span>
 							@else
 							<span>
 								<a href="{{ route('conducteur.espace', Auth::user()->id) }}" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">

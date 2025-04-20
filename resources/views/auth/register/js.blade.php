@@ -57,29 +57,6 @@
                 this.querySelector('svg').classList.toggle('text-blue-500');
             });
         });
-
-        // Gestion du formulaire
-        const form = document.getElementById('register-form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                const submitButton = document.getElementById('kt_sign_up_submit');
-                const indicatorLabel = submitButton.querySelector('.indicator-label');
-                const indicatorProgress = submitButton.querySelector('.indicator-progress');
-
-                // Afficher l'indicateur de chargement
-                indicatorLabel.classList.add('hidden');
-                indicatorProgress.classList.remove('hidden');
-                submitButton.disabled = true;
-
-                // Animation du bouton
-                submitButton.classList.add('opacity-75');
-            });
-        }
-
-        // Animations au chargement de la page
-        const elements = document.querySelectorAll('.animate-fadeIn, .animate-slideDown, .animate-slideUp');
-        elements.forEach((element, index) => {
-            element.style.animationDelay = `${index * 0.1}s`;
-        });
+        
     });
 </script>

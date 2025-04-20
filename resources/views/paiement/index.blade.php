@@ -2,13 +2,12 @@
 @section('title', 'Paiement')
 @section('content')
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20 ">
     <!-- En-tête -->
     <div class="bg-white rounded-lg shadow-sm mb-8">
         <div class="p-6 border-b border-gray-100">
             <h3 class="text-xl font-semibold text-gray-900">Faire un paiement sur Covoyage</h3>
         </div>
-
         <div class="p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-6">Moyens de paiement</h3>
 
@@ -75,8 +74,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Widget Kkiapay -->
             <div class="mt-8">
                 <kkiapay-widget 
                     sandbox="true" 

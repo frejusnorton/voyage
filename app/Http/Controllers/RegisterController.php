@@ -22,7 +22,6 @@ class RegisterController extends Controller
     {
         if ($request->ajax()) {
             try {
-                // dd($request-> all());
                 DB::beginTransaction();
                 $user = User::create([
                     'id' => Str::uuid(), 
@@ -32,7 +31,6 @@ class RegisterController extends Controller
                     'adresse' => $request->adresse ?? null,
                     'type' => $request->type,
                     'telephone' => $request->telephone,
-                    'naissance' => $request->naissance ?? null,
                     'sexe' => $request->sexe,
                     'password' => Hash::make($request->password),
                 ]);

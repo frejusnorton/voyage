@@ -11,10 +11,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         const loadingOverlay = document.getElementById('loading-overlay');
         const appContent = document.getElementById('app');
-        
         // Cacher le contenu de l'application par défaut
         appContent.classList.add('hidden');
-        
         // Afficher le loading
         window.showLoading = function() {
             loadingOverlay.classList.remove('hidden');

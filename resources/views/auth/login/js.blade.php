@@ -8,6 +8,7 @@
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function (response) {
+                    console.log(url);
                     if (response.success) {
                         const notification = $('<div>').addClass('notification-container');
                         const notificationHtml = `

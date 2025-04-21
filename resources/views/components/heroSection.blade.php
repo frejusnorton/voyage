@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="relative">
-                            <img src="https://img.freepik.com/photos-gratuite/jeune-femme-africaine-souriante-conduisant-voiture_23-2148884564.jpg" alt="Conductrice" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover">
+                            <img src="{{asset('assets/media/covoiturage.jpg')}}" alt="Voyageurs" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover">
                             <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
                                 <div class="flex items-center">
                                     <div class="flex -space-x-2">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="relative">
-                            <img src="https://img.freepik.com/photos-gratuite/groupe-jeunes-africains-voyageant-ensemble_23-2149403607.jpg" alt="Groupe voyageant" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover">
+                            <img src="{{asset('assets/media/covoiturage.jpg')}}" alt="Voyageurs" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover">
                             <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
                                 <div class="flex items-center">
                                     <div class="flex -space-x-2">
@@ -106,7 +106,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Contrôles du carrousel -->
             <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 <button class="carousel-dot active w-3 h-3 rounded-full bg-white" data-slide="0"></button>

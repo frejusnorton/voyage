@@ -1,5 +1,5 @@
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialisation des animations
         const cards = document.querySelectorAll('.animate-on-scroll');
         const observer = new IntersectionObserver((entries) => {
@@ -152,7 +152,7 @@
             });
         });
 
-        
+
 
         $('#publier_trajet').on('click', function (e) {
             e.preventDefault();
@@ -199,6 +199,13 @@
         $(document).ready(function () {
             $("#trajet_create").submit(function (e) {
                 e.preventDefault();
+
+                // Désactiver le bouton + afficher spinner + changer le texte
+                const $btn = $("#submit-trajet-btn");
+                $btn.prop("disabled", true);
+                $("#spinner").removeClass("hidden");
+                $("#submit-text").text("Patientez...");
+
                 $.ajax({
                     url: "{{ route('trajet.create') }}",
                     type: "POST",
@@ -214,9 +221,13 @@
                             }).then(() => {
                                 window.location.href = response.redirect;
                             });
+                        } else {
+                            resetButton();
                         }
                     },
                     error: function (xhr) {
+                        resetButton();
+
                         if (xhr.status == 401) {
                             Swal.fire({
                                 title: 'Erreur',
@@ -225,24 +236,31 @@
                                 confirmButtonText: 'OK'
                             });
                         }
+
                         if (xhr.status === 422) {
                             let errors = xhr.responseJSON.errors;
                             $.each(errors, function (key, value) {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Erreur ',
+                                    title: 'Erreur',
                                     text: value[0],
                                     confirmButtonText: 'OK'
                                 });
                             });
                         }
-
                     }
                 });
+
+                function resetButton() {
+                    $btn.prop("disabled", false);
+                    $("#spinner").addClass("hidden");
+                    $("#submit-text").text("Publier le trajet");
+                }
             });
         });
 
-        $(document).ready(function() {
+
+        $(document).ready(function () {
             // Fonction pour ouvrir la modal de filtrage
             function openFilterModal() {
                 $('#filterModal').removeClass('hidden');
@@ -262,17 +280,17 @@
             }
 
             // Gestionnaire d'événements pour fermer la modal en cliquant en dehors
-            $(document).on('click', function(event) {
+            $(document).on('click', function (event) {
                 const $modal = $('#filterModal');
                 const $modalContent = $('#filterModalContent');
-                
+
                 if ($(event.target).is($modal) && !$modalContent.is(event.target) && !$modalContent.has(event.target).length) {
                     closeFilterModal();
                 }
             });
 
             // Gestionnaire d'événements pour le bouton de fermeture
-            $('#closeFilterModal').on('click', function() {
+            $('#closeFilterModal').on('click', function () {
                 closeFilterModal();
             });
 

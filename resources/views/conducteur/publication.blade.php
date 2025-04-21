@@ -80,7 +80,7 @@
         <!-- Liste des publications -->
         <div class="bg-white rounded-xl shadow-sm mb-8">
             <div class="p-6 border-b border-gray-200 flex items-center justify-between">
-                <h2 class="text-xl font-bold text-gray-900">Mes publications</h2>
+                <h2 class="text-md md:text-xl font-bold text-gray-900">Mes publications</h2>
                 <a href="{{ route('trajet.create') }}"
                     class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                     <i class="fas fa-plus mr-2"></i>
@@ -90,7 +90,7 @@
 
             <div class="p-2 md:p-6">
                 <div class="space-y-6">
-                    @foreach ($trajets as $trajet)
+                    @forelse ($trajets as $trajet)
                         <div class="bg-white rounded-lg border border-gray-200 p-4 md:p-6 hover:shadow-md transition-shadow">
                             <!-- En-tête du trajet -->
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -156,9 +156,9 @@
                                     <div class="flex-1 flex items-center">
                                         <i class="fas fa-info-circle text-blue-500 mr-2"></i>
                                         <span class="px-2 py-1 rounded-full text-sm font-medium
-                                            @if($trajet->statut == 'disponible') bg-green-100 text-green-800
-                                            @elseif($trajet->statut == 'complet' || $trajet->statut == 'annule') bg-red-100 text-red-800
-                                            @else bg-yellow-100 text-yellow-800 @endif">
+                                                    @if($trajet->statut == 'disponible') bg-green-100 text-green-800
+                                                    @elseif($trajet->statut == 'complet' || $trajet->statut == 'annule') bg-red-100 text-red-800
+                                                    @else bg-yellow-100 text-yellow-800 @endif">
                                             {{ ucfirst($trajet->statut == 'annule' ? 'annulé' : $trajet->statut) }}
                                         </span>
                                     </div>
@@ -197,7 +197,11 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 p-4 rounded-lg">
+                            <p class="text-sm font-medium">Aucun trajet disponible pour le moment.</p>
+                        </div>
+                    @endforelse
                 </div>
 
                 <!-- Pagination -->

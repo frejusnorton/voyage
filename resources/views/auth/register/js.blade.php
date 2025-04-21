@@ -3,8 +3,11 @@
         $("#register-form").submit(function (e) {
             console.log('soumis')
             e.preventDefault();
-            $(".text-danger").text("");
-            $("#alert-message").removeClass("alert-success alert-danger d-block").addClass("d-none");
+            const $btn = $("#kt_sign_up_submit");
+            $btn.prop("disabled", true);
+            $btn.find(".indicator-label").addClass("hidden");
+            $btn.find(".indicator-progress").removeClass("hidden");
+
             $.ajax({
                 url: "{{ route('register') }}",
                 type: "POST",
@@ -24,6 +27,9 @@
                     }
                 },
                 error: function (xhr) {
+                    $btn.prop("disabled", false);
+                    $btn.find(".indicator-label").removeClass("hidden");
+                    $btn.find(".indicator-progress").addClass("hidden");
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
                         $.each(errors, function (key, value) {
@@ -45,15 +51,12 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Gestion de la visibilité du mot de passe
         const togglePasswordButtons = document.querySelectorAll('.toggle-password');
         togglePasswordButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const input = this.parentElement.querySelector('input');
                 const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
                 input.setAttribute('type', type);
-                
-                // Animation de l'icône
                 this.querySelector('svg').classList.toggle('text-blue-500');
             });
         });

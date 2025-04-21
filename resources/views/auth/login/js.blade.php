@@ -1,9 +1,13 @@
 <script>
     let url = "{{ route('login', [], true) }}";
-    console.log(url,'ici');
+    console.log(url, 'ici');
     $(document).ready(function () {
         $("#login-form").submit(function (e) {
             e.preventDefault();
+            $("#kt_sign_in_submit .indicator-label").addClass('hidden');
+            $("#kt_sign_in_submit .indicator-progress").removeClass('hidden');
+            $("#kt_sign_in_submit").attr("disabled", true);
+
             $.ajax({
                 url: url,
                 type: "POST",
@@ -25,6 +29,9 @@
                     }
                 },
                 error: function (xhr) {
+                    $("#kt_sign_in_submit .indicator-label").removeClass('hidden');
+                    $("#kt_sign_in_submit .indicator-progress").addClass('hidden');
+                    $("#kt_sign_in_submit").removeAttr("disabled");
                     if (xhr.status == 401) {
                         const notification = $('<div>').addClass('notification-container');
                         const notificationHtml = `
@@ -54,4 +61,6 @@
             $(`.error-${fieldName}`).empty();
         });
     });
+
+    
 </script>

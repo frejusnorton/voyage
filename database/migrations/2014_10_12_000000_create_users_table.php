@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telephone')->nullable();;
             $table->boolean('is_online')->default(false);
             $table->string('profil_img')->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->date('naissance')->nullable();
             $table->enum('sexe', ['homme', 'femme']);
             $table->enum('type', ['passager', 'conducteur']);

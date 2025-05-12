@@ -27,35 +27,6 @@ class UsersSeeder extends Seeder
                 'profil_img' => null,
                 'naissance' => $faker->date('Y-m-d', '2000-01-01'),
                 'sexe' => $faker->randomElement(['homme', 'femme']),
-                'type' => 'passager',
-                'email_verified_at' => now(),
-                'password' => Hash::make('password123'),
-                'remember_token' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-
-            DB::table('passagers')->insert([
-                'id' => Str::uuid()->toString(),
-                'user_id' => $userId,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
-
-        // Insérer 20 conducteurs
-        for ($i = 0; $i < 20; $i++) {
-            $userId = Str::uuid()->toString();
-            DB::table('users')->insert([
-                'id' => $userId,
-                'nom' => $faker->lastName,
-                'prenom' => $faker->firstName,
-                'email' => $faker->unique()->safeEmail,
-                'adresse' => $faker->address,
-                'telephone' => '0190775682',
-                'profil_img' => null,
-                'naissance' => $faker->date('Y-m-d', '2000-01-01'),
-                'sexe' => $faker->randomElement(['homme', 'femme']),
                 'type' => 'conducteur',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password123'),
@@ -72,5 +43,34 @@ class UsersSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+        // ➤ ADMIN EN DEHORS DE LA BOUCLE
+        $adminId = Str::uuid()->toString();
+        DB::table('users')->insert([
+            'id' => $adminId,
+            'nom' => 'frejus',
+            'prenom' => 'AGUESSY',
+            'email' => 'nortonfrejus77@gmail.com',
+            'adresse' => 'Adresse Admin',
+            'telephone' => '0102030405',
+            'profil_img' => null,
+            'naissance' => '2000-01-01',
+            'sexe' => 'homme',
+            'type' => 'conducteur',
+            'is_admin' => true,
+            'email_verified_at' => now(),
+            'password' => Hash::make('motdepasse1@@FA'),
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('conducteurs')->insert([
+            'id' => Str::uuid()->toString(),
+            'user_id' => $adminId,
+            'note' => 5.0,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

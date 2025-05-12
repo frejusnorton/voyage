@@ -100,8 +100,8 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    {{-- @include('components.loading') --}}
-    <div id="app">
+    @include('components.loading')
+    <div id="app" >
         @include('components.header')
         <main>
             @yield('content')

@@ -12,6 +12,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\PassagerController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\ConducteurController;
 use App\Http\Controllers\SocialAuthController;
@@ -19,14 +20,14 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SupprimerCompteController;
 
 
-
-
-// Route::post('/send-message', [MessageController::class, 'sendMessage']);
-// Route::get('message', [MessageController::class, 'index']);
+Route::middleware(['auth', 'isadmin'])->prefix('admin')->group(function () {
+    Route::get('/', [AdminPanelController::class, 'index'])->name('admin.dashboard');
+    Route::delete('/trajet/{trajet}', [AdminPanelController::class, 'deleteTrajet'])->name('admin.deleteTrajet');
+    Route::delete('/user/{user}', [AdminPanelController::class, 'deleteUser'])->name('admin.deleteUser');
+});
 
 // ACCUEIL & CONDITIONS
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 
 Route::get('conditions', [ConditionsController::class, 'conditions'])->name('conditions');
 Route::get('politiques', [ConditionsController::class, 'politiques'])->name('politique');
@@ -47,15 +48,11 @@ Route::middleware('guest')->group(function () {
 
 // ROUTES PROTÉGÉES (Accessible uniquement aux utilisateurs connectés)
 Route::middleware('auth')->group(function () {
-
-     // CONTACTER UN CONDUCTREUR
+    // CONTACTER UN CONDUCTREUR
     Route::get('contact/{user}', [ConducteurController::class, 'contact'])->name('conducteur.contact');
-
     // MODIFICATION DES INFORMATIONS DU PASSAGER
     Route::get('compte/{user}', [PassagerController::class, 'index'])->name('passager.index');
     Route::match(['get', 'post'], 'modifier/{user}', [PassagerController::class, 'edit'])->name('passager.edit');
-
-
     // TRAJETS
     Route::match(['get', 'post'], 'create/trajet', [TrajetController::class, 'create'])->name('trajet.create');
 
@@ -72,14 +69,10 @@ Route::middleware('auth')->group(function () {
 
     //PAIEMENT
     Route::get('/payment/{reservation}', [PaiementController::class, 'index'])->name('payment.index');
-    Route::get('/paiement/callback/{reservation}',[PaiementController::class,'callback'])->name('paiement.callback');
+    Route::get('/paiement/callback/{reservation}', [PaiementController::class, 'callback'])->name('paiement.callback');
 
     //SUPPRESSION DE COMPTE
     Route::post('supprimer/{user}', [SupprimerCompteController::class, 'deleteAccount'])->name('suppression');
-
-
-
-     
     // DÉCONNEXION
     Route::match(['get', 'post'], 'deconnexion', [LoginController::class, 'logout'])->name('logout');
 });
@@ -87,10 +80,7 @@ Route::middleware('auth')->group(function () {
 // TRAJETS (Accessible à tous)
 Route::match(['get', 'post'], '/trajet', [TrajetController::class, 'index'])->name('trajet');
 Route::match(['get', 'post'], '/trajet/{trajet}', [TrajetController::class, 'details'])->name('trajet.details');
-
-
 // PROFIL UTILISATEUR
 Route::get('profil/{user}', [ProfilController::class, 'show'])->name('profil.show');
-
 // NOUS CONTACTER
 Route::post('/contact', [HomeController::class, 'contact'])->name('contact');

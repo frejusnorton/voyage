@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 text-white pt-12 pb-8">
+<footer class="bg-gray-900 text-white pt-12 pb-8 ">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
@@ -10,8 +10,6 @@
                 <ul class="space-y-2">
                     <li><a href="{{route('trajet')}}" class="text-gray-400 hover:text-white transition">Trouver un trajet</a></li>
                     <li><a href="{{route('home')}}" class="text-gray-400 hover:text-white transition">Acceuil</a></li>
-                    <li><a href="{{route('home')}}" class="text-gray-400 hover:text-white transition">FAQ</a></li>
-                    <li><a href="{{route('home')}}" class="text-gray-400 hover:text-white transition">Contact</a></li>
                 </ul>
             </div>
             <div>

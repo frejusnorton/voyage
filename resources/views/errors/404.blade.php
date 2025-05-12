@@ -3,7 +3,7 @@
 @section('title', 'Erreur 404')
 
 @section('content')
-    <div class="d-flex flex-column flex-center flex-column-fluid">
+    <div class="d-flex flex-column flex-center flex-column-fluid pt-20">
         <!--begin::Content-->
         <div class="d-flex flex-column flex-center text-center p-10">
             <!--begin::Wrapper-->

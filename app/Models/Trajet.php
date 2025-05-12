@@ -15,6 +15,11 @@ class Trajet extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $casts = [
+        'date_depart' => 'datetime',
+        'heure_depart' => 'datetime',
+    ];
+
     public function villeDepart()
     {
         return $this->belongsTo(Ville::class, 'ville_depart_id');

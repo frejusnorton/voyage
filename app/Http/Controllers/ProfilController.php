@@ -9,7 +9,6 @@ class ProfilController extends Controller
 {
     public function show (User $user){
 
-
         $trajets = $user->trajets()->paginate(5);  
         
         $nombreTrajetsPublies = $user->trajets()->count();  

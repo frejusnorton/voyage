@@ -23,7 +23,28 @@ class TrajetController extends Controller
       
         $query = Trajet::filter($search)
             ->with(['villeDepart', 'villeArrive'])
-            ->where('statut', 'disponible');
+            ->where('statut', 'disponible')
+            ->where(function($q) {
+                $now = now();
+                $oneHourFromNow = $now->copy()->addHour();
+                
+                $q->where(function($subQ) use ($now, $oneHourFromNow) {
+                    // Ne pas afficher les trajets dont l'heure de départ est passée
+                    $subQ->where('date_depart', '>', $now->format('Y-m-d'))
+                        ->orWhere(function($dateQ) use ($now) {
+                            $dateQ->whereDate('date_depart', $now->format('Y-m-d'))
+                                ->whereTime('heure_depart', '>', $now->format('H:i:s'));
+                        });
+                })
+                // Ne pas afficher les trajets qui sont à moins d'une heure
+                ->where(function($subQ) use ($oneHourFromNow) {
+                    $subQ->where('date_depart', '>', $oneHourFromNow->format('Y-m-d'))
+                        ->orWhere(function($dateQ) use ($oneHourFromNow) {
+                            $dateQ->whereDate('date_depart', $oneHourFromNow->format('Y-m-d'))
+                                ->whereTime('heure_depart', '>', $oneHourFromNow->format('H:i:s'));
+                        });
+                });
+            });
 
         if ($request->filled('ville_depart')) {
             $query->where('ville_depart_id', $request->ville_depart);

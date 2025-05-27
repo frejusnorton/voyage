@@ -82,30 +82,8 @@
                                             <i class="fas fa-check-circle mr-2"></i>
                                             Confirmer
                                         </a>
-                                    @else
-                                        <button id="annuler_reservation_{{ $reservation->id }}"
-                                                data-reservation="{{ $reservation->id }}"
-                                                data-heure-depart="{{ \Carbon\Carbon::parse($reservation->trajet->heure_depart)->toIso8601String() }}"
-                                                class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
-                                            <i class="fas fa-times-circle mr-2"></i>
-                                            Annuler
-                                        </button>
-                                    @endif
+                                        @endif
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Avertissement -->
-                    <div class="mt-6 p-4 bg-yellow-50 rounded-lg">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-exclamation-triangle text-yellow-400"></i>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm text-yellow-700">
-                                    Une fois la réservation confirmée, elle ne pourra plus être annulée moins d'une heure avant l'heure de départ.
-                                </p>
                             </div>
                         </div>
                     </div>

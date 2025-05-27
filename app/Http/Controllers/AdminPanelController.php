@@ -13,7 +13,7 @@ class AdminPanelController extends Controller
     { 
         try {
             // Récupération des trajets avec leurs relations et pagination
-            $trajets = Trajet::with(['conducteur', 'reservations'])
+            $trajets = Trajet::with(['conducteur', 'reservations','villeDepart','villeArrive'])
                 ->withCount('reservations')
                 ->latest()
                 ->paginate(10);

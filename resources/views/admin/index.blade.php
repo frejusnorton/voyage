@@ -76,7 +76,6 @@
                 </li>
             </ul>
         </div>
-
         <!-- Contenu des Onglets -->
         <div id="adminTabsContent">
             <!-- Onglet Trajets -->
@@ -107,9 +106,9 @@
                             @foreach($trajets as $trajet)
                             <tr>
                                 <td class="py-3 px-4">{{ $trajet->id }}</td>
-                                <td class="py-3 px-4 font-medium">{{ $trajet->conducteur->name }}</td>
-                                <td class="py-3 px-4">{{ $trajet->lieu_depart }}</td>
-                                <td class="py-3 px-4">{{ $trajet->lieu_arrivee }}</td>
+                                <td class="py-3 px-4 font-medium">{{ $trajet->conducteur->nom }}</td>
+                                <td class="py-3 px-4">{{ $trajet->villeDepart->nom }}</td>
+                                <td class="py-3 px-4">{{ $trajet->villeArrive->nom }}</td>
                                 <td class="py-3 px-4">{{ $trajet->date_depart->format('d/m/Y H:i') }}</td>
                                 <td class="py-3 px-4">{{ $trajet->nombre_places }}</td>
                                 <td class="py-3 px-4">{{ $trajet->reservations_count }}</td>

@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             <!-- Bouton de réservation -->
-                            @if($trajet->statut == 'disponible')
+                            @if($trajet->statut == 'disponible' && auth()->id() != $trajet->user_id)
                                 <div class="mt-6">
                                     <button id="reservation" 
                                         class="group flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -110,6 +110,10 @@
                                         <i class="fas fa-calendar-check text-lg group-hover:rotate-12 transition-transform duration-300"></i>
                                         <span>Réserver</span>
                                     </button>
+                                </div>
+                            @elseif($trajet->statut == 'disponible' && auth()->id() == $trajet->user_id)
+                                <div class="mt-6 text-center">
+                                    <p class="text-gray-600 font-medium">Vous ne pouvez pas réserver votre propre trajet</p>
                                 </div>
                             @else
                                 <div class="mt-6 text-center">

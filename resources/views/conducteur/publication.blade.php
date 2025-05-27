@@ -154,9 +154,9 @@
                                     <div class="flex-1 flex items-center">
                                         <i class="fas fa-info-circle text-blue-500 mr-2"></i>
                                         <span class="px-2 py-1 rounded-full text-sm font-medium
-                                                                    @if($trajet->statut == 'disponible') bg-green-100 text-green-800
-                                                                    @elseif($trajet->statut == 'complet' || $trajet->statut == 'annule') bg-red-100 text-red-800
-                                                                    @else bg-yellow-100 text-yellow-800 @endif">
+                                                            @if($trajet->statut == 'disponible') bg-green-100 text-green-800
+                                                            @elseif($trajet->statut == 'complet' || $trajet->statut == 'annule') bg-red-100 text-red-800
+                                                            @else bg-yellow-100 text-yellow-800 @endif">
                                             {{ ucfirst($trajet->statut == 'annule' ? 'annulé' : $trajet->statut) }}
                                         </span>
                                     </div>
@@ -178,22 +178,22 @@
 
 
                                     @if($trajet->reservations->count() == 0)
-                                        <button type="button"
-                                            class="px-2 py-2 bg-yellow-100 text-yellow-800 rounded-lg hover:bg-yellow-200 transition-colors open-edit-btn"
-                                            data-id="{{ $trajet->id }}" data-ville-depart="{{ $trajet->villeDepart->nom }}"
-                                            data-ville-arrive="{{ $trajet->villeArrive->nom }}"
-                                            data-description="{{ $trajet->description }}" data-prix="{{ $trajet->prix }}"
-                                            data-date-depart="{{ \Carbon\Carbon::parse($trajet->heure_depart)->format('Y-m-d') }}"
-                                            data-heure-depart="{{ \Carbon\Carbon::parse($trajet->heure_depart)->format('H:i') }}"
-                                            data-statut="{{ $trajet->statut }}">
-                                            <i class="fas fa-edit mr-2"></i> Modifier
-                                        </button>
+                                    <button type="button"
+                                    class="px-2 py-2 bg-yellow-100 text-yellow-800 rounded-lg hover:bg-yellow-200 transition-colors open-edit-btn"
+                                    data-id="{{ $trajet->id }}" data-ville-depart="{{ $trajet->villeDepart->nom }}"
+                                    data-ville-arrive="{{ $trajet->villeArrive->nom }}"
+                                    data-description="{{ $trajet->description }}" data-prix="{{ $trajet->prix }}"
+                                    data-date-depart="{{ \Carbon\Carbon::parse($trajet->heure_depart)->format('Y-m-d') }}"
+                                    data-heure-depart="{{ \Carbon\Carbon::parse($trajet->heure_depart)->format('H:i') }}"
+                                    data-statut="{{ $trajet->statut }}">
+                                    <i class="fas fa-edit mr-2"></i> Modifier
+                                </button>
                                         <button type="button"
                                             class="px-2 py-2 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 transition-colors"
                                             onclick="confirmDelete({{ $trajet->id }})">
                                             <i class="fas fa-trash mr-2"></i> Supprimer
                                         </button>
-
+                                    
                                     @else
                                         <button type="button"
                                             class="px-2 py-2 bg-gray-100 text-gray-400 rounded-lg cursor-not-allowed" disabled>

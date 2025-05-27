@@ -77,4 +77,23 @@ class PassagerController extends Controller
             ], 500);
         }
     }
+
+    public function solde()
+    {
+        $user = Auth::user();
+        $reservations = Reservation::where('user_id', $user->id)
+            ->where('status', 'confirmer')
+            ->with(['trajet'])
+            ->get();
+
+        $totalSolde = $reservations->sum(function ($reservation) {
+            return $reservation->trajet->prix;
+        });
+
+        return view('passager.solde', [
+            'user' => $user,
+            'reservations' => $reservations,
+            'totalSolde' => $totalSolde
+        ]);
+    }
 }

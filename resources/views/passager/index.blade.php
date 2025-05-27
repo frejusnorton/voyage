@@ -54,6 +54,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <a href="{{ route('passager.solde', ['user' => $user->id]) }}" class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-500">Voir mon solde</p>
+                                        <p class="text-lg font-semibold text-blue-600">Consulter <i class="fas fa-arrow-right ml-2"></i></p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

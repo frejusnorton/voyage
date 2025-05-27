@@ -10,4 +10,3 @@
     @include('components.contact')
 @endsection 
 
-{{-- @extends('components.landing') --}}

@@ -1,90 +1,97 @@
 <!-- FAQ Section -->
-<section class="py-20 bg-gray-50" id="faq">
+<section class="py-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Questions fréquentes</h2>
-            <p class="text-xl text-gray-600">Tout ce que vous devez savoir sur notre service</p>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Questions Fréquentes</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Trouvez rapidement des réponses à vos questions.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(1)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Comment fonctionne le paiement ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon1"></i>
+
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <button type="button" class="faq-button flex justify-between items-center w-full text-left">
+                    <h3 class="text-lg font-semibold text-gray-900">Comment réserver un trajet ?</h3>
+                    <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
                 </button>
-                <div id="faqContent1" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">Le paiement se fait directement sur notre plateforme de manière sécurisée. Vous pouvez payer par carte bancaire ou mobile money. Le conducteur reçoit le paiement après validation du trajet.</p>
+                <div class="faq-answer mt-4 text-gray-600 hidden">
+                    <p>Pour réserver un trajet, connectez-vous à votre compte, recherchez un trajet disponible, sélectionnez-le et suivez les étapes de réservation. Le paiement se fait en ligne de manière sécurisée.</p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(2)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Comment sont sélectionnés les conducteurs ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon2"></i>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <button type="button" class="faq-button flex justify-between items-center w-full text-left">
+                    <h3 class="text-lg font-semibold text-gray-900">Comment devenir conducteur ?</h3>
+                    <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
                 </button>
-                <div id="faqContent2" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">Tous nos conducteurs sont vérifiés et doivent fournir des documents d'identité valides, leur permis de conduire et leur historique de trajets. Nous vérifions également leur réputation auprès des passagers.</p>
+                <div class="faq-answer mt-4 text-gray-600 hidden">
+                    <p>Pour devenir conducteur, vous devez créer un compte, remplir votre profil conducteur, fournir les documents nécessaires (permis de conduire, assurance) et attendre la validation de votre dossier.</p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(3)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Puis-je annuler un trajet ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon3"></i>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <button type="button" class="faq-button flex justify-between items-center w-full text-left">
+                    <h3 class="text-lg font-semibold text-gray-900">Comment sont calculés les prix ?</h3>
+                    <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
                 </button>
-                <div id="faqContent3" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">Oui, vous pouvez annuler un trajet jusqu'à 24 heures avant le départ sans frais. Pour les annulations de dernière minute, des frais peuvent s'appliquer selon les conditions générales.</p>
+                <div class="faq-answer mt-4 text-gray-600 hidden">
+                    <p>Les prix sont calculés en fonction de la distance, du nombre de places disponibles, et peuvent varier selon la demande. Une commission de service est incluse dans le prix final.</p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(4)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Comment fonctionne le système de notation ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon4"></i>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <button type="button" class="faq-button flex justify-between items-center w-full text-left">
+                    <h3 class="text-lg font-semibold text-gray-900">Comment annuler une réservation ?</h3>
+                    <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
                 </button>
-                <div id="faqContent4" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">Après chaque trajet, les passagers et les conducteurs se notent mutuellement. Ces notes sont publiques et contribuent à maintenir une communauté de confiance. Les utilisateurs avec des notes insatisfaisantes peuvent être exclus de la plateforme.</p>
+                <div class="faq-answer mt-4 text-gray-600 hidden">
+                    <p>Vous pouvez annuler votre réservation depuis votre espace personnel jusqu'à 24h avant le départ. Les frais d'annulation varient selon le délai : gratuit jusqu'à 48h avant, 50% du prix entre 48h et 24h avant, et 100% dans les 24h précédant le départ.</p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(5)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Quels sont les avantages pour les conducteurs ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon5"></i>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <button type="button" class="faq-button flex justify-between items-center w-full text-left">
+                    <h3 class="text-lg font-semibold text-gray-900">Comment contacter le support client ?</h3>
+                    <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
                 </button>
-                <div id="faqContent5" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">En tant que conducteur, vous pouvez rentabiliser vos trajets réguliers, rencontrer de nouvelles personnes, et bénéficier d'une assurance spéciale covoiturage. Notre plateforme vous permet également de gérer facilement vos trajets et vos paiements.</p>
+                <div class="faq-answer mt-4 text-gray-600 hidden">
+                    <p>Notre support client est disponible 24/7. Vous pouvez nous contacter par email à support@covoyage.com, par téléphone au +33 1 23 45 67 89, ou via le formulaire de contact sur notre site. Nous vous répondrons dans les plus brefs délais.</p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(6)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Comment puis-je modifier mon trajet ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon6"></i>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <button type="button" class="faq-button flex justify-between items-center w-full text-left">
+                    <h3 class="text-lg font-semibold text-gray-900">Comment fonctionne le système de paiement ?</h3>
+                    <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
                 </button>
-                <div id="faqContent6" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">Vous pouvez modifier votre trajet jusqu'à 12 heures avant le départ. Les modifications incluent l'heure de départ, le point de rendez-vous, et le nombre de places disponibles. Les passagers seront notifiés automatiquement des changements.</p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(7)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Quelle est la politique de bagages ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon7"></i>
-                </button>
-                <div id="faqContent7" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">Chaque passager peut emporter un bagage à main et une valise moyenne. Les bagages volumineux doivent être signalés lors de la réservation. Le conducteur a le droit de refuser les bagages qui ne respectent pas ces conditions.</p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <button onclick="toggleFAQ(8)" class="w-full flex justify-between items-center p-6 text-left">
-                    <span class="text-lg font-semibold">Comment fonctionne l'assurance ?</span>
-                    <i class="fas fa-chevron-down transform transition-transform duration-300 faq-icon" id="faqIcon8"></i>
-                </button>
-                <div id="faqContent8" class="hidden px-6 pb-6 faq-content">
-                    <p class="text-gray-600">Tous nos trajets sont couverts par une assurance responsabilité civile spécifique au covoiturage. Cette assurance couvre les dommages matériels et corporels pouvant survenir pendant le trajet. Les détails de la couverture sont disponibles dans nos conditions générales.</p>
+                <div class="faq-answer mt-4 text-gray-600 hidden">
+                    <p>Le paiement se fait en ligne via MTN MOMO. Le montant est bloqué sur votre compte jusqu'à la fin du trajet. Une fois le trajet terminé, le conducteur confirme l'arrivée et le montant est débloqué. En cas de problème, notre service client peut intervenir pour résoudre la situation.</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqButtons = document.querySelectorAll('.faq-button');
+            
+            faqButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Fermer toutes les autres réponses
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        if (item !== answer) {
+                            item.classList.add('hidden');
+                            const otherIcon = item.previousElementSibling.querySelector('i');
+                            otherIcon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                    
+                    // Toggle la réponse actuelle
+                    answer.classList.toggle('hidden');
+                    icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                });
+            });
+        });
+    </script>
 </section>

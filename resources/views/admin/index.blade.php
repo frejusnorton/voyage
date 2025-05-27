@@ -2,7 +2,7 @@
 @section('title', 'Interface administrateur')
 
 @section('content')
-    <div class="container mx-auto px-4 py-8 pt-20">
+    <div class="container mx-auto px-4 py-8 pt-32">
         <h1 class="text-3xl font-bold mb-8">Tableau de bord administrateur</h1>
 
         <!-- Statistiques rapides -->

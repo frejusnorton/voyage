@@ -1,5 +1,5 @@
 @extends('main.index')
-@section('title', "Mes réservations")
+@section('title', "Mon solde")
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20">
@@ -35,19 +35,19 @@
                     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <div class="flex items-center">
-                                <i class="fas fa-route text-green-600 mr-2"></i>
+                                <i class="fas fa-money-bill-wave text-green-600 mr-2"></i>
                                 <div>
-                                    <div class="text-2xl font-bold text-gray-900">{{$nbresTrajet}}</div>
-                                    <div class="text-sm text-gray-500">Trajets publiés</div>
+                                    <div class="text-2xl font-bold text-gray-900">{{ number_format($totalSolde, 0, ',', ' ') }} FCFA</div>
+                                    <div class="text-sm text-gray-500">Total des paiements</div>
                                 </div>
                             </div>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <div class="flex items-center">
-                                <i class="fas fa-chart-line text-blue-600 mr-2"></i>
+                                <i class="fas fa-route text-blue-600 mr-2"></i>
                                 <div>
-                                    <div class="text-2xl font-bold text-gray-900">60%</div>
-                                    <div class="text-sm text-gray-500">Taux de réussite</div>
+                                    <div class="text-2xl font-bold text-gray-900">{{ count($reservations) }}</div>
+                                    <div class="text-sm text-gray-500">Réservations confirmées</div>
                                 </div>
                             </div>
                         </div>
@@ -59,20 +59,13 @@
         <!-- Navigation -->
         <div class="border-t border-gray-200">
             <nav class="flex overflow-x-auto">
-                <a href="{{ route('conducteur.espace') }}"
+                <a href="{{ route('passager.index', ['user' => $user->id]) }}"
                     class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                     Paramètres
                 </a>
-                <a href="{{ route('trajet.conducteur') }}"
-                    class="px-6 py-4 text-sm font-medium ">
-                    Publications
-                </a>
-                {{-- <a href="#" class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Sécurité
-                </a> --}}
-                <a href="{{ route('conducteur.reservation') }}"
-                    class="text-blue-600 border-b-2 border-blue-600 px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Demandes 
+                <a href="{{ route('passager.solde', ['user' => $user->id]) }}"
+                    class="text-blue-600 border-b-2 border-blue-600 px-6 py-4 text-sm font-medium">
+                    Mon solde
                 </a>
             </nav>
         </div>
@@ -88,7 +81,7 @@
                         <h3 class="text-lg font-semibold text-gray-900">
                             {{ $reservation->trajet->villeDepart->nom }} → {{ $reservation->trajet->villeArrive->nom }}
                         </h3>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium">
+                        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium">
                             {{ number_format($reservation->trajet->prix, 0, ',', ' ') }} FCFA
                         </span>
                     </div>
@@ -127,34 +120,13 @@
                         <!-- Statut -->
                         <div class="flex items-start">
                             <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
-                                <i class="fas fa-info-circle text-blue-600"></i>
+                                <i class="fas fa-check-circle text-green-600"></i>
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm font-medium text-gray-900">Statut</p>
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                                    {{ $reservation->status == 'confirmer' ? 'bg-green-100 text-green-800' : 
-                                       ($reservation->status == 'annuler' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
-                                    {{ ucfirst($reservation->status) }}
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    Confirmé
                                 </span>
-                            </div>
-                        </div>
-
-                        <!-- Actions -->
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
-                                <i class="fas fa-cog text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-900">Action</p>
-                                <div class="mt-2">
-                                    @if ($reservation->status == 'en attente')
-                                        <a href="{{ route('payment.index', ['reservation' => $reservation->id]) }}"
-                                           class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
-                                            <i class="fas fa-check-circle mr-2"></i>
-                                            Confirmer
-                                        </a>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -163,4 +135,4 @@
         @endforeach
     </div>
 </div>
-@endsection
+@endsection 

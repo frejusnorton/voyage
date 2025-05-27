@@ -1,7 +1,4 @@
 <?php
-
-
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Mail\Events\MessageSent;
 use App\Http\Controllers\HomeController;
@@ -53,6 +50,7 @@ Route::middleware('auth')->group(function () {
     // MODIFICATION DES INFORMATIONS DU PASSAGER
     Route::get('compte/{user}', [PassagerController::class, 'index'])->name('passager.index');
     Route::match(['get', 'post'], 'modifier/{user}', [PassagerController::class, 'edit'])->name('passager.edit');
+    Route::get('solde/{user}', [PassagerController::class, 'solde'])->name('passager.solde');
     // TRAJETS
     Route::match(['get', 'post'], 'create/trajet', [TrajetController::class, 'create'])->name('trajet.create');
 
@@ -65,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::get('conducteur', [ConducteurController::class, 'index'])->name('trajet.conducteur');
     Route::get('conducteur/reservation', [ConducteurController::class, 'reservation'])->name('conducteur.reservation');
     Route::get('conducteur/espace', [ConducteurController::class, 'espace'])->name('conducteur.espace');
+    Route::get('conducteur/statistiques/{user}', [ConducteurController::class, 'statistiques'])->name('conducteur.statistiques');
+    Route::post('trajet/update', [TrajetController::class, 'update'])->name('trajet.update');
     Route::get('/check-if-conducteur', [TrajetController::class, 'checkIfConducteur'])->name('checkIfConducteur');
 
     //PAIEMENT

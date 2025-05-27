@@ -69,6 +69,13 @@
 											<span>Mon compte</span>
 										</a>
 									</span>
+									<span>
+										<a href="{{ route('conducteur.statistiques', ['user' => Auth::user()->id]) }}"
+											class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
+											<i class="fas fa-chart-line w-6"></i>
+											<span>Mes statistiques</span>
+										</a>
+									</span>
 								@endif
 								<a href="{{ route('logout') }}"
 									class="block px-4 py-2  text-red-500 hover:text-red-800 transition">
@@ -188,6 +195,13 @@
 										class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
 										<i class="fas fa-user w-6"></i>
 										<span>Mon compte</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ route('conducteur.statistiques', ['user' => Auth::user()->id]) }}"
+										class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
+										<i class="fas fa-chart-line w-6"></i>
+										<span>Mes statistiques</span>
 									</a>
 								</li>
 							@endif

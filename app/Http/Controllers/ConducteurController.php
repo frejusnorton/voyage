@@ -68,4 +68,32 @@ class ConducteurController extends Controller
     public function contact(){
         return view('conducteur.contact');
     }
+
+    public function statistiques(User $user)
+    {
+        $user = auth()->user();
+        if (!$user) {
+            abort(403, 'Utilisateur non authentifié.');
+        }
+
+        $reservations = Reservation::whereHas('trajet', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+        ->where('status', 'confirmer')
+        ->with(['trajet', 'user'])
+        ->get();
+
+        $totalMontant = $reservations->sum(function ($reservation) {
+            return $reservation->trajet->prix;
+        });
+
+        $nombreReservations = $reservations->count();
+
+        return view('conducteur.statistiques', [
+            'user' => $user,
+            'reservations' => $reservations,
+            'totalMontant' => $totalMontant,
+            'nombreReservations' => $nombreReservations
+        ]);
+    }
 }

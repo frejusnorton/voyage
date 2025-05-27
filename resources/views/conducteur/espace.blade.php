@@ -86,13 +86,9 @@
                    class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                     Publications
                 </a>
-                <a href="#" 
-                   class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Sécurité
-                </a>
                 <a href="{{ route('conducteur.reservation') }}" 
                    class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Demandes de réservation
+                    Demandes
                 </a>
             </nav>
         </div>

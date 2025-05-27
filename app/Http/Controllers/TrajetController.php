@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TrajetCreateRequest;
-
+use Illuminate\Support\Facades\Log;
 
 class TrajetController extends Controller
 {
@@ -165,5 +165,48 @@ class TrajetController extends Controller
             return response()->json(['isConducteur' => true]);
         }
         return response()->json(['isConducteur' => false]);
+    }
+
+    public function update(Request $request)
+    {
+        try {
+            $trajet = Trajet::findOrFail($request->trajet_id);
+            
+         
+            if ($trajet->user_id !== auth()->id()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Vous n\'êtes pas autorisé à modifier ce trajet.'
+                ], 403);
+            }
+
+            // Vérifier s'il y a des réservations
+            if ($trajet->reservations()->count() > 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Ce trajet ne peut pas être modifié car il a des réservations.'
+                ], 400);
+            }
+
+            // Mettre à jour le trajet
+            $trajet->update([
+                'ville_depart' => $request->ville_depart,
+                'ville_arrive' => $request->ville_arrive,
+                'prix' => $request->prix,
+                'heure_depart' => $request->date_depart . ' ' . $request->heure_depart,
+                'description' => $request->description
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Le trajet a été modifié avec succès.'
+            ]);
+        } catch (\Exception $e) {
+            Log::error(''. $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur est survenue lors de la modification du trajet.'
+            ], 500);
+        }
     }
 }

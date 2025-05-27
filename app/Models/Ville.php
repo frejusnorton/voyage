@@ -9,7 +9,7 @@ class Ville extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nom'];
+    protected $fillable = ['nom','ville_depart',''];
 
     public function trajetsDepart()
     {

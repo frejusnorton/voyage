@@ -3,11 +3,6 @@
 		<div class="flex justify-between items-center py-4">
 			<div class="flex items-center">
 				<a href="{{route('home')}}" class="flex items-center space-x-2 group">
-					<div class="relative">
-						<i
-							class="fas fa-car text-3xl text-blue-600 transform group-hover:scale-110 transition-transform duration-300"></i>
-						<div class="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-					</div>
 					<span
 						class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent group-hover:from-pink-500 group-hover:to-blue-600 transition-all duration-300">Covoyage</span>
 				</a>
@@ -61,12 +56,20 @@
 											<span>Mes réservations</span>
 										</a>
 									</span>
-								@else
+							@else
 									<span>
 										<a href="{{ route('conducteur.espace', Auth::user()->id) }}"
 											class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
 											<i class="fas fa-user w-6"></i>
 											<span>Mon compte</span>
+										</a>
+									</span>
+
+									<span>
+										<a href="{{ route('reservation') }}"
+											class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
+											<i class="fas fa-user w-6"></i>
+											<span>Mes réservations</span>
 										</a>
 									</span>
 									<span>
